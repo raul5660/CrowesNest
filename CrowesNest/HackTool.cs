@@ -48,7 +48,8 @@ namespace CrowesNest
             {
                 try
                 {   // wrap binaries in cmd.exe /K to keep cmd.exe open after completion of process.
-                    ProcessStartInfo psInfo = new ProcessStartInfo("cmd.exe", "/K \" " + this.DeployString + "\"");
+                    string deployCommand = String.Format("/K \"{0}\"", this.DeployString);
+                    ProcessStartInfo psInfo = new ProcessStartInfo("cmd.exe", deployCommand);
                     psInfo.UseShellExecute = true;
 
                     using(Process exeProcess = Process.Start(psInfo)) { }
@@ -66,10 +67,11 @@ namespace CrowesNest
                 {
                     try
                     {
-                        ProcessStartInfo psInfo = new ProcessStartInfo("cmd.exe", "/K \"\"C:\\Program Files (x86)\\PuTTY\\plink.exe\" -pw " + password + " " + username +"@"+ ip + " " + this.DeployString + "\"");
+                        string deployCommand = String.Format("/K \"\"C:\\Program Files (x86)\\PuTTY\\plink.exe\" -pw {0} {1}@{2} {3}\"", password, username, ip, this.DeployString);
+                        ProcessStartInfo psInfo = new ProcessStartInfo("cmd.exe", deployCommand);
                         psInfo.UseShellExecute = false;
 
-                        using (Process exeProcess = Process.Start(psInfo)) { }
+                        using (Process exeProcess = Process.Start(psInfo)) { } 
                     }
                     catch (Exception)
                     {
@@ -92,22 +94,22 @@ namespace CrowesNest
             {
                 if (this.OperatingSystem.ToLower() == "windows")
                 {
-                    FileInfo exportFileInfo = new FileInfo(@"C:\Tools\CrowesNest\Batch" + "\\" + this.Name + ".bat");
+                    string fileLocation = String.Format(@"C:\Tools\CrowesNest\Batch\{0}.bat", this.Name);
+                    FileInfo exportFileInfo = new FileInfo(fileLocation);
                     using (StreamWriter swFile = new StreamWriter(exportFileInfo.FullName))
                     {
                         swFile.WriteLine(this.DeployString);
                         swFile.WriteLine("pause");
-                        swFile.Close();
                     }  
                 }
                 else
                 {
-                    FileInfo exportFileInfo = new FileInfo(@"C:\Tools\CrowesNest\Bash" + "\\" + this.Name + ".sh");
+                    string fileLocation = String.Format(@"C:\Tools\CrowesNest\Bash\{0}.bat", this.Name);
+                    FileInfo exportFileInfo = new FileInfo(fileLocation);
                     using (StreamWriter swFile = new StreamWriter(exportFileInfo.FullName))
                     {
                         swFile.WriteLine("#! /bin/bash");
                         swFile.WriteLine(this.DeployString);
-                        swFile.Close();
                     }
                     
                 }
@@ -129,21 +131,21 @@ namespace CrowesNest
                 //string[] inputIps = File.ReadAllLines(hostFile);
                 if (this.OperatingSystem.ToLower() == "windows")
                 {
-
-                    FileInfo exportFileInfo = new FileInfo(@"C:\Tools\CrowesNest\Batch" + "\\" + this.Name + ".bat");
+                    string fileLocation = String.Format(@"C:\Tools\CrowesNest\Batch\{0}.bat", this.Name);
+                    FileInfo exportFileInfo = new FileInfo(fileLocation);
                     using (StreamWriter swFile = new StreamWriter(exportFileInfo.FullName))
                     {
                         foreach (string ip in inputIps)
                         {
                             swFile.WriteLine(this.DeployString.Replace("x.x.x.x", ip));
                         }
-                        swFile.WriteLine("pause");
-                        swFile.Close();
+                        swFile.WriteLine("pause"); 
                     }       
                 }
                 else
                 {
-                    FileInfo exportFileInfo = new FileInfo(@"C:\Tools\CrowesNest\Bash" + "\\" + this.Name + ".sh");
+                    string fileLocation = String.Format(@"C:\Tools\CrowesNest\Bash\{0}.bat", this.Name);
+                    FileInfo exportFileInfo = new FileInfo(fileLocation);
                     using (StreamWriter swFile = new StreamWriter(exportFileInfo.FullName))
                     {
                         swFile.WriteLine("#! /bin/bash");
@@ -151,7 +153,6 @@ namespace CrowesNest
                         {
                             swFile.WriteLine(this.DeployString.Replace("x.x.x.x", ip));
                         }
-                        swFile.Close();
                     }
                 }
                         
@@ -160,16 +161,6 @@ namespace CrowesNest
             {
                 MessageBox.Show("Error:\nProblem exporting to C:\\Tools\\CrowesNest\\Bash or C:\\Tools\\CrowesNest\\Batch \nMake sure directories exist and Hosts file is selected.");
             }
-        }
-        public void SaveNotes()
-        {
-            //Serialize Notes property only....
-            //XmlSerializer serializer = new XmlSerializer(typeof(HackToolCollection));
-            //using (FileStream fileStream = new FileStream(@"C:\tools\CrowesNest\cn_configwrite.xml", FileMode.Open))
-            //{
-            //    serializer.Serialize(fileStream, this);
-            //}
-            MessageBox.Show(@"Saving notes not supported yet, please save them manually to C:\tools\CrowesNest\cn_config.xml");
         }
     }
 

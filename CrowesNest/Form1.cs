@@ -136,12 +136,6 @@ namespace CrowesNest
             }
         }
 
-        private void SaveNotesButton_Click(object sender, EventArgs e)
-        {
-            tools[(string)ToolsListBox.SelectedItem].Notes = NotesTextBox.Text;
-            tools[(string)ToolsListBox.SelectedItem].SaveNotes();
-        }
-
         private void ConnectButton_Click(object sender, EventArgs e)
         {
             if (IPTextBox.Text != "" && UsernameTextBox.Text != "" && PasswordTextBox.Text != "")

@@ -44,7 +44,6 @@
             this.OSValueLabel = new System.Windows.Forms.Label();
             this.NotesLabel = new System.Windows.Forms.Label();
             this.NotesTextBox = new System.Windows.Forms.RichTextBox();
-            this.SaveNotesButton = new System.Windows.Forms.Button();
             this.ConnectButton = new System.Windows.Forms.Button();
             this.IPLabel = new System.Windows.Forms.Label();
             this.IPTextBox = new System.Windows.Forms.TextBox();
@@ -134,7 +133,7 @@
             this.MultiHostCheckBox.AutoSize = true;
             this.MultiHostCheckBox.Location = new System.Drawing.Point(552, 313);
             this.MultiHostCheckBox.Name = "MultiHostCheckBox";
-            this.MultiHostCheckBox.Size = new System.Drawing.Size(22, 21);
+            this.MultiHostCheckBox.Size = new System.Drawing.Size(15, 14);
             this.MultiHostCheckBox.TabIndex = 13;
             this.MultiHostCheckBox.UseVisualStyleBackColor = true;
             this.MultiHostCheckBox.CheckedChanged += new System.EventHandler(this.MultiHostCheckBox_CheckedChanged);
@@ -193,16 +192,6 @@
             this.NotesTextBox.Size = new System.Drawing.Size(663, 123);
             this.NotesTextBox.TabIndex = 19;
             this.NotesTextBox.Text = "";
-            // 
-            // SaveNotesButton
-            // 
-            this.SaveNotesButton.Location = new System.Drawing.Point(670, 151);
-            this.SaveNotesButton.Name = "SaveNotesButton";
-            this.SaveNotesButton.Size = new System.Drawing.Size(157, 23);
-            this.SaveNotesButton.TabIndex = 20;
-            this.SaveNotesButton.Text = "Save Notes";
-            this.SaveNotesButton.UseVisualStyleBackColor = true;
-            this.SaveNotesButton.Click += new System.EventHandler(this.SaveNotesButton_Click);
             // 
             // ConnectButton
             // 
@@ -284,7 +273,6 @@
             this.Controls.Add(this.IPTextBox);
             this.Controls.Add(this.IPLabel);
             this.Controls.Add(this.ConnectButton);
-            this.Controls.Add(this.SaveNotesButton);
             this.Controls.Add(this.NotesTextBox);
             this.Controls.Add(this.NotesLabel);
             this.Controls.Add(this.OSValueLabel);
@@ -324,7 +312,6 @@
         private System.Windows.Forms.Label OSValueLabel;
         private System.Windows.Forms.Label NotesLabel;
         private System.Windows.Forms.RichTextBox NotesTextBox;
-        private System.Windows.Forms.Button SaveNotesButton;
         private System.Windows.Forms.Button ConnectButton;
         private System.Windows.Forms.Label IPLabel;
         private System.Windows.Forms.TextBox IPTextBox;
