@@ -52,11 +52,15 @@
             this.UsernameTextBox = new System.Windows.Forms.TextBox();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.ScpButton = new System.Windows.Forms.Button();
+            this.ToolGroupBox = new System.Windows.Forms.GroupBox();
+            this.RemoteGroupBox = new System.Windows.Forms.GroupBox();
+            this.ToolGroupBox.SuspendLayout();
+            this.RemoteGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // Run
             // 
-            this.Run.Location = new System.Drawing.Point(751, 307);
+            this.Run.Location = new System.Drawing.Point(749, 315);
             this.Run.Name = "Run";
             this.Run.Size = new System.Drawing.Size(75, 23);
             this.Run.TabIndex = 4;
@@ -66,7 +70,7 @@
             // 
             // SyntaxTextBox
             // 
-            this.SyntaxTextBox.Location = new System.Drawing.Point(162, 40);
+            this.SyntaxTextBox.Location = new System.Drawing.Point(160, 45);
             this.SyntaxTextBox.Name = "SyntaxTextBox";
             this.SyntaxTextBox.Size = new System.Drawing.Size(664, 103);
             this.SyntaxTextBox.TabIndex = 6;
@@ -75,16 +79,16 @@
             // ToolLabel
             // 
             this.ToolLabel.AutoSize = true;
-            this.ToolLabel.Location = new System.Drawing.Point(9, 18);
+            this.ToolLabel.Location = new System.Drawing.Point(8, 22);
             this.ToolLabel.Name = "ToolLabel";
-            this.ToolLabel.Size = new System.Drawing.Size(43, 20);
+            this.ToolLabel.Size = new System.Drawing.Size(55, 20);
             this.ToolLabel.TabIndex = 7;
-            this.ToolLabel.Text = "Tool:";
+            this.ToolLabel.Text = "Name:";
             // 
             // SyntaxLabel
             // 
             this.SyntaxLabel.AutoSize = true;
-            this.SyntaxLabel.Location = new System.Drawing.Point(163, 18);
+            this.SyntaxLabel.Location = new System.Drawing.Point(156, 22);
             this.SyntaxLabel.Name = "SyntaxLabel";
             this.SyntaxLabel.Size = new System.Drawing.Size(61, 20);
             this.SyntaxLabel.TabIndex = 8;
@@ -94,7 +98,7 @@
             // 
             this.ToolsListBox.FormattingEnabled = true;
             this.ToolsListBox.ItemHeight = 20;
-            this.ToolsListBox.Location = new System.Drawing.Point(13, 40);
+            this.ToolsListBox.Location = new System.Drawing.Point(10, 45);
             this.ToolsListBox.Name = "ToolsListBox";
             this.ToolsListBox.Size = new System.Drawing.Size(144, 264);
             this.ToolsListBox.TabIndex = 9;
@@ -102,7 +106,7 @@
             // 
             // ClientButton
             // 
-            this.ClientButton.Location = new System.Drawing.Point(13, 307);
+            this.ClientButton.Location = new System.Drawing.Point(12, 318);
             this.ClientButton.Name = "ClientButton";
             this.ClientButton.Size = new System.Drawing.Size(100, 23);
             this.ClientButton.TabIndex = 10;
@@ -112,7 +116,7 @@
             // 
             // ClientTextBox
             // 
-            this.ClientTextBox.Location = new System.Drawing.Point(119, 309);
+            this.ClientTextBox.Location = new System.Drawing.Point(118, 319);
             this.ClientTextBox.Name = "ClientTextBox";
             this.ClientTextBox.Size = new System.Drawing.Size(160, 26);
             this.ClientTextBox.TabIndex = 11;
@@ -120,7 +124,7 @@
             // 
             // Export
             // 
-            this.Export.Location = new System.Drawing.Point(670, 307);
+            this.Export.Location = new System.Drawing.Point(668, 315);
             this.Export.Name = "Export";
             this.Export.Size = new System.Drawing.Size(75, 23);
             this.Export.TabIndex = 12;
@@ -131,7 +135,7 @@
             // MultiHostCheckBox
             // 
             this.MultiHostCheckBox.AutoSize = true;
-            this.MultiHostCheckBox.Location = new System.Drawing.Point(552, 313);
+            this.MultiHostCheckBox.Location = new System.Drawing.Point(545, 320);
             this.MultiHostCheckBox.Name = "MultiHostCheckBox";
             this.MultiHostCheckBox.Size = new System.Drawing.Size(15, 14);
             this.MultiHostCheckBox.TabIndex = 13;
@@ -141,7 +145,7 @@
             // HostsButton
             // 
             this.HostsButton.Enabled = false;
-            this.HostsButton.Location = new System.Drawing.Point(291, 307);
+            this.HostsButton.Location = new System.Drawing.Point(284, 318);
             this.HostsButton.Name = "HostsButton";
             this.HostsButton.Size = new System.Drawing.Size(75, 23);
             this.HostsButton.TabIndex = 14;
@@ -152,7 +156,7 @@
             // HostsTextBox
             // 
             this.HostsTextBox.Enabled = false;
-            this.HostsTextBox.Location = new System.Drawing.Point(372, 309);
+            this.HostsTextBox.Location = new System.Drawing.Point(365, 319);
             this.HostsTextBox.Name = "HostsTextBox";
             this.HostsTextBox.ReadOnly = true;
             this.HostsTextBox.Size = new System.Drawing.Size(174, 26);
@@ -161,7 +165,7 @@
             // OSLabel
             // 
             this.OSLabel.AutoSize = true;
-            this.OSLabel.Location = new System.Drawing.Point(676, 17);
+            this.OSLabel.Location = new System.Drawing.Point(646, 22);
             this.OSLabel.Name = "OSLabel";
             this.OSLabel.Size = new System.Drawing.Size(140, 20);
             this.OSLabel.TabIndex = 16;
@@ -170,7 +174,7 @@
             // OSValueLabel
             // 
             this.OSValueLabel.AutoSize = true;
-            this.OSValueLabel.Location = new System.Drawing.Point(773, 18);
+            this.OSValueLabel.Location = new System.Drawing.Point(754, 22);
             this.OSValueLabel.Name = "OSValueLabel";
             this.OSValueLabel.Size = new System.Drawing.Size(32, 20);
             this.OSValueLabel.TabIndex = 17;
@@ -179,7 +183,7 @@
             // NotesLabel
             // 
             this.NotesLabel.AutoSize = true;
-            this.NotesLabel.Location = new System.Drawing.Point(163, 152);
+            this.NotesLabel.Location = new System.Drawing.Point(157, 151);
             this.NotesLabel.Name = "NotesLabel";
             this.NotesLabel.Size = new System.Drawing.Size(55, 20);
             this.NotesLabel.TabIndex = 18;
@@ -187,7 +191,7 @@
             // 
             // NotesTextBox
             // 
-            this.NotesTextBox.Location = new System.Drawing.Point(164, 178);
+            this.NotesTextBox.Location = new System.Drawing.Point(160, 174);
             this.NotesTextBox.Name = "NotesTextBox";
             this.NotesTextBox.Size = new System.Drawing.Size(663, 123);
             this.NotesTextBox.TabIndex = 19;
@@ -195,7 +199,7 @@
             // 
             // ConnectButton
             // 
-            this.ConnectButton.Location = new System.Drawing.Point(751, 336);
+            this.ConnectButton.Location = new System.Drawing.Point(748, 19);
             this.ConnectButton.Name = "ConnectButton";
             this.ConnectButton.Size = new System.Drawing.Size(75, 23);
             this.ConnectButton.TabIndex = 21;
@@ -206,7 +210,7 @@
             // IPLabel
             // 
             this.IPLabel.AutoSize = true;
-            this.IPLabel.Location = new System.Drawing.Point(9, 345);
+            this.IPLabel.Location = new System.Drawing.Point(6, 22);
             this.IPLabel.Name = "IPLabel";
             this.IPLabel.Size = new System.Drawing.Size(89, 20);
             this.IPLabel.TabIndex = 22;
@@ -214,7 +218,7 @@
             // 
             // IPTextBox
             // 
-            this.IPTextBox.Location = new System.Drawing.Point(71, 342);
+            this.IPTextBox.Location = new System.Drawing.Point(74, 19);
             this.IPTextBox.Name = "IPTextBox";
             this.IPTextBox.Size = new System.Drawing.Size(126, 26);
             this.IPTextBox.TabIndex = 23;
@@ -222,7 +226,7 @@
             // UsernameLabel
             // 
             this.UsernameLabel.AutoSize = true;
-            this.UsernameLabel.Location = new System.Drawing.Point(203, 345);
+            this.UsernameLabel.Location = new System.Drawing.Point(206, 22);
             this.UsernameLabel.Name = "UsernameLabel";
             this.UsernameLabel.Size = new System.Drawing.Size(87, 20);
             this.UsernameLabel.TabIndex = 26;
@@ -231,7 +235,7 @@
             // PasswordLabel
             // 
             this.PasswordLabel.AutoSize = true;
-            this.PasswordLabel.Location = new System.Drawing.Point(392, 345);
+            this.PasswordLabel.Location = new System.Drawing.Point(396, 22);
             this.PasswordLabel.Name = "PasswordLabel";
             this.PasswordLabel.Size = new System.Drawing.Size(82, 20);
             this.PasswordLabel.TabIndex = 27;
@@ -239,14 +243,14 @@
             // 
             // UsernameTextBox
             // 
-            this.UsernameTextBox.Location = new System.Drawing.Point(260, 342);
+            this.UsernameTextBox.Location = new System.Drawing.Point(264, 19);
             this.UsernameTextBox.Name = "UsernameTextBox";
             this.UsernameTextBox.Size = new System.Drawing.Size(126, 26);
             this.UsernameTextBox.TabIndex = 28;
             // 
             // PasswordTextBox
             // 
-            this.PasswordTextBox.Location = new System.Drawing.Point(448, 342);
+            this.PasswordTextBox.Location = new System.Drawing.Point(455, 19);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(126, 26);
@@ -254,7 +258,7 @@
             // 
             // ScpButton
             // 
-            this.ScpButton.Location = new System.Drawing.Point(670, 337);
+            this.ScpButton.Location = new System.Drawing.Point(667, 19);
             this.ScpButton.Name = "ScpButton";
             this.ScpButton.Size = new System.Drawing.Size(75, 23);
             this.ScpButton.TabIndex = 30;
@@ -262,37 +266,60 @@
             this.ScpButton.UseVisualStyleBackColor = true;
             this.ScpButton.Click += new System.EventHandler(this.ScpButton_Click);
             // 
+            // ToolGroupBox
+            // 
+            this.ToolGroupBox.Controls.Add(this.ToolLabel);
+            this.ToolGroupBox.Controls.Add(this.SyntaxLabel);
+            this.ToolGroupBox.Controls.Add(this.OSLabel);
+            this.ToolGroupBox.Controls.Add(this.OSValueLabel);
+            this.ToolGroupBox.Controls.Add(this.ToolsListBox);
+            this.ToolGroupBox.Controls.Add(this.SyntaxTextBox);
+            this.ToolGroupBox.Controls.Add(this.NotesLabel);
+            this.ToolGroupBox.Controls.Add(this.NotesTextBox);
+            this.ToolGroupBox.Controls.Add(this.ClientButton);
+            this.ToolGroupBox.Controls.Add(this.Run);
+            this.ToolGroupBox.Controls.Add(this.Export);
+            this.ToolGroupBox.Controls.Add(this.MultiHostCheckBox);
+            this.ToolGroupBox.Controls.Add(this.HostsTextBox);
+            this.ToolGroupBox.Controls.Add(this.ClientTextBox);
+            this.ToolGroupBox.Controls.Add(this.HostsButton);
+            this.ToolGroupBox.Location = new System.Drawing.Point(4, 2);
+            this.ToolGroupBox.Name = "ToolGroupBox";
+            this.ToolGroupBox.Size = new System.Drawing.Size(830, 351);
+            this.ToolGroupBox.TabIndex = 31;
+            this.ToolGroupBox.TabStop = false;
+            this.ToolGroupBox.Text = "Tool";
+            // 
+            // RemoteGroupBox
+            // 
+            this.RemoteGroupBox.Controls.Add(this.ConnectButton);
+            this.RemoteGroupBox.Controls.Add(this.ScpButton);
+            this.RemoteGroupBox.Controls.Add(this.PasswordLabel);
+            this.RemoteGroupBox.Controls.Add(this.PasswordTextBox);
+            this.RemoteGroupBox.Controls.Add(this.IPLabel);
+            this.RemoteGroupBox.Controls.Add(this.UsernameTextBox);
+            this.RemoteGroupBox.Controls.Add(this.IPTextBox);
+            this.RemoteGroupBox.Controls.Add(this.UsernameLabel);
+            this.RemoteGroupBox.Location = new System.Drawing.Point(5, 359);
+            this.RemoteGroupBox.Name = "RemoteGroupBox";
+            this.RemoteGroupBox.Size = new System.Drawing.Size(829, 49);
+            this.RemoteGroupBox.TabIndex = 32;
+            this.RemoteGroupBox.TabStop = false;
+            this.RemoteGroupBox.Text = "Remote Connection";
+            // 
             // CrowesNest
             // 
-            this.ClientSize = new System.Drawing.Size(839, 371);
-            this.Controls.Add(this.ScpButton);
-            this.Controls.Add(this.PasswordTextBox);
-            this.Controls.Add(this.UsernameTextBox);
-            this.Controls.Add(this.PasswordLabel);
-            this.Controls.Add(this.UsernameLabel);
-            this.Controls.Add(this.IPTextBox);
-            this.Controls.Add(this.IPLabel);
-            this.Controls.Add(this.ConnectButton);
-            this.Controls.Add(this.NotesTextBox);
-            this.Controls.Add(this.NotesLabel);
-            this.Controls.Add(this.OSValueLabel);
-            this.Controls.Add(this.OSLabel);
-            this.Controls.Add(this.HostsTextBox);
-            this.Controls.Add(this.HostsButton);
-            this.Controls.Add(this.MultiHostCheckBox);
-            this.Controls.Add(this.Export);
-            this.Controls.Add(this.ClientTextBox);
-            this.Controls.Add(this.ClientButton);
-            this.Controls.Add(this.ToolsListBox);
-            this.Controls.Add(this.SyntaxLabel);
-            this.Controls.Add(this.ToolLabel);
-            this.Controls.Add(this.SyntaxTextBox);
-            this.Controls.Add(this.Run);
+            this.ClientSize = new System.Drawing.Size(839, 418);
+            this.Controls.Add(this.RemoteGroupBox);
+            this.Controls.Add(this.ToolGroupBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CrowesNest";
             this.Text = "CrowesNest";
+            this.ToolGroupBox.ResumeLayout(false);
+            this.ToolGroupBox.PerformLayout();
+            this.RemoteGroupBox.ResumeLayout(false);
+            this.RemoteGroupBox.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -320,6 +347,8 @@
         private System.Windows.Forms.TextBox UsernameTextBox;
         private System.Windows.Forms.TextBox PasswordTextBox;
         private System.Windows.Forms.Button ScpButton;
+        private System.Windows.Forms.GroupBox ToolGroupBox;
+        private System.Windows.Forms.GroupBox RemoteGroupBox;
     }
 }
 

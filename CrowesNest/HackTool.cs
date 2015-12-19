@@ -6,8 +6,6 @@ using System.Xml.Serialization;
 using System.Windows.Forms;
 
 
-
-
 namespace CrowesNest
 {
     //Class represents the Hacking Tool used on the job,
