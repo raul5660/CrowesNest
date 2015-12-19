@@ -15,14 +15,46 @@ This tool alleviates the need to:
 * Managing tool ouput, and ouput syntax by utilizing CrowesNest folder selection feature.
 
 ##Configuration and Usage
-//Screenshots and explanations coming soon...
+CrowesNest has a few hardcoded dependencies (I know this is not ideal but hey, I do this in my freetime.)
 
+Initial Setup Steps:
 
+* Download link for WinSCP:https://winscp.net/eng/download.php
+* Download link for PuTTY and Plink: http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
+
+1. Install plinke.exe and PuTTY here: C:\Program Files (x86)\PuTTY\
+2. Install WinSCP.exe here: C:\Program Files (x86)\WinSCP\ 
+3. Create Directory: C:\tools\CrowesNest
+4. Create Directory: C:\tools\CrowesNest\Batch
+5. Create Directory: C:\tools\CrowesNest\Bash
+6. Create XML file "cn_config.xml" in C:\tools\CrowesNest
+7. Add the following XML and Save:
+
+![CrowesNest Overview](CrowesNestScreenshots/crowesNestXMLNoConfig.JPG?raw=true)
+
+Congrats, thats it! You now have CrowesNest configured without any tools or notes.
+
+Adding Tools:
+
+Adding tools is as easy as just populating the associated XML attributes. Lets configure ping for linux together.
+
+1. Edit C:\tools\CrowesNest\cn_config.xml with the following entry.
+![CrowesNest Overview](CrowesNestScreenshots/crowesNestXMLToolConfig.JPG?raw=true)
+
+Our ping configuration:
+* <Name>Ping_Linux</Name> is the name I selected to use.
+* <Location>/bin/ping</Location> is the location of the binary or script on the intended system. If the script needs an interpreter please put the interpreter binary here. For example, some_script.py would require the python intepreter to run.
+* <Arguments>8.8.8.8</Arguments> are the argument you want for the tool.
+* <OperatingSystem>Linux</OperatingSystem> is the intended deployment platform.
+* I chose to use the ping man page as our notes.
+To add additional tools use the same format.
+
+//More usage info coming for configuring and using features.
 
 ##Dependencies
 
 ### Binary applications in these exact locations:
-* C:\Program Files (x86)\plink\plink.exe
+* C:\Program Files (x86)\PuTTY\plink.exe
 * C:\Program Files (x86)\PuTTY\putty.exe
 * C:\Program Files (x86)\WinSCP\WinSCP.exe
 
@@ -31,5 +63,5 @@ This tool alleviates the need to:
 * C:\tools\CrowesNest\Batch
 
 ###Files:
-* C:\tools\CrowesNest\Batch\cn_config.xml
+* C:\tools\CrowesNest\cn_config.xml
 
