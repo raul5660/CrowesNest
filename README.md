@@ -24,11 +24,7 @@ Initial Setup Steps:
 
 1. Install plinke.exe and PuTTY here: C:\Program Files (x86)\PuTTY\
 2. Install WinSCP.exe here: C:\Program Files (x86)\WinSCP\ 
-3. Create Directory: C:\tools\CrowesNest
-4. Create Directory: C:\tools\CrowesNest\Batch
-5. Create Directory: C:\tools\CrowesNest\Bash
-6. Create XML file "cn_config.xml" in C:\tools\CrowesNest
-7. Add the following XML and Save:
+3. Add the following XML to C:\tools\CrowesNest\cn_config.xml and Save:
 
 ![CrowesNest Overview](CrowesNestScreenshots/crowesNestXMLNoConfig.JPG?raw=true)
 
@@ -50,7 +46,12 @@ Our ping configuration:
 To add additional tools use the same format.
 
 //More usage info coming for configuring and using features.
-
+##Using the Features
+#Script Generation
+#Folder Selection
+#Using Putty SSH
+#Using WinSCP SFTP
+#Using Remote Command Execution
 ##Dependencies
 
 ### Binary applications in these exact locations:
@@ -58,10 +59,4 @@ To add additional tools use the same format.
 * C:\Program Files (x86)\PuTTY\putty.exe
 * C:\Program Files (x86)\WinSCP\WinSCP.exe
 
-###Directories:
-* C:\tools\CrowesNest\Bash
-* C:\tools\CrowesNest\Batch
-
-###Files:
-* C:\tools\CrowesNest\cn_config.xml
 
