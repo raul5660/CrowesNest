@@ -46,7 +46,7 @@ namespace CrowesNest
             {
                 try
                 {   // wrap binaries in cmd.exe /K to keep cmd.exe open after completion of process.
-                    string deployCommand = String.Format("/K \"{0}\"", this.DeployString);
+                    string deployCommand = String.Format($"/K \"{this.DeployString}\"");
                     ProcessStartInfo psInfo = new ProcessStartInfo("cmd.exe", deployCommand);
                     psInfo.UseShellExecute = true;
 
@@ -65,7 +65,7 @@ namespace CrowesNest
                 {
                     try
                     {
-                        string deployCommand = String.Format("/K \"\"C:\\Program Files (x86)\\PuTTY\\plink.exe\" -pw {0} {1}@{2} {3}\"", password, username, ip, this.DeployString);
+                        string deployCommand = String.Format($"/K \"\"C:\\Program Files (x86)\\PuTTY\\plink.exe\" -pw {password} {username}@{ip} {this.DeployString}\"");
                         ProcessStartInfo psInfo = new ProcessStartInfo("cmd.exe", deployCommand);
                         psInfo.UseShellExecute = false;
 
@@ -92,7 +92,12 @@ namespace CrowesNest
             {
                 if (this.OperatingSystem.ToLower() == "windows")
                 {
-                    string fileLocation = String.Format(@"C:\Tools\CrowesNest\Batch\{0}.bat", this.Name);
+                    if(Directory.Exists(@"C:\Tools\CrowesNest\Batch\") != true)
+                    {
+                        Directory.CreateDirectory(@"C:\Tools\CrowesNest\Batch\");
+                    }
+
+                    string fileLocation = String.Format($@"C:\Tools\CrowesNest\Batch\{this.Name}.bat");
                     FileInfo exportFileInfo = new FileInfo(fileLocation);
                     using (StreamWriter swFile = new StreamWriter(exportFileInfo.FullName))
                     {
@@ -102,7 +107,11 @@ namespace CrowesNest
                 }
                 else
                 {
-                    string fileLocation = String.Format(@"C:\Tools\CrowesNest\Bash\{0}.bat", this.Name);
+                    if (Directory.Exists(@"C:\Tools\CrowesNest\Bash\") != true)
+                    {
+                        Directory.CreateDirectory(@"C:\Tools\CrowesNest\Bash\");
+                    }
+                    string fileLocation = String.Format($@"C:\Tools\CrowesNest\Bash\{this.Name}.sh");
                     FileInfo exportFileInfo = new FileInfo(fileLocation);
                     using (StreamWriter swFile = new StreamWriter(exportFileInfo.FullName))
                     {
@@ -126,10 +135,15 @@ namespace CrowesNest
             {
                 string[] inputIps = File.ReadAllLines(hostFile);
 
-                //string[] inputIps = File.ReadAllLines(hostFile);
+                
                 if (this.OperatingSystem.ToLower() == "windows")
                 {
-                    string fileLocation = String.Format(@"C:\Tools\CrowesNest\Batch\{0}.bat", this.Name);
+                    if (Directory.Exists(@"C:\Tools\CrowesNest\Batch\") != true)
+                    {
+                        Directory.CreateDirectory(@"C:\Tools\CrowesNest\Batch\");
+                    }
+
+                    string fileLocation = String.Format($@"C:\Tools\CrowesNest\Batch\{this.Name}.bat");
                     FileInfo exportFileInfo = new FileInfo(fileLocation);
                     using (StreamWriter swFile = new StreamWriter(exportFileInfo.FullName))
                     {
@@ -142,7 +156,11 @@ namespace CrowesNest
                 }
                 else
                 {
-                    string fileLocation = String.Format(@"C:\Tools\CrowesNest\Bash\{0}.bat", this.Name);
+                    if (Directory.Exists(@"C:\Tools\CrowesNest\Bash\") != true)
+                    {
+                        Directory.CreateDirectory(@"C:\Tools\CrowesNest\Bash\");
+                    }
+                    string fileLocation = String.Format($@"C:\Tools\CrowesNest\Bash\{this.Name}.sh");
                     FileInfo exportFileInfo = new FileInfo(fileLocation);
                     using (StreamWriter swFile = new StreamWriter(exportFileInfo.FullName))
                     {
@@ -203,8 +221,12 @@ namespace CrowesNest
             XmlSerializer serializer = new XmlSerializer(typeof(HackToolCollection));
             try
             {
+                if (Directory.Exists(@"C:\tools\CrowesNest\") != true)
+                {
+                    Directory.CreateDirectory(@"C:\tools\CrowesNest\");
+                }
                 
-                using (FileStream fileStream = new FileStream(@"C:\tools\CrowesNest\cn_config.xml", FileMode.Open))
+                using (FileStream fileStream = new FileStream(@"C:\tools\CrowesNest\cn_config.xml", FileMode.OpenOrCreate))
                 {
                     HackToolCollection tools = (HackToolCollection)serializer.Deserialize(fileStream);
                     return tools;
@@ -212,7 +234,8 @@ namespace CrowesNest
             }
             catch (Exception)
             {
-                MessageBox.Show("Error:\nProblem in C:\\tools\\CrowesNest\\cn_config.xml\nConfirm file exists and contains proper XML");
+                MessageBox.Show("Problem in C:\\tools\\CrowesNest\\cn_config.xml\n1. If directory or file did not exist, we created it for you.\n2. Confirm file contains proper XML configuration.\n3. Restart application.");
+                System.Environment.Exit(1);
             }
             //XmlSerializer serializer = new XmlSerializer(typeof(HackToolCollection));
             using (FileStream fileStream = new FileStream(@"C:\tools\CrowesNest\cn_config.xml", FileMode.Open))
