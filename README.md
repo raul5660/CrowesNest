@@ -47,11 +47,12 @@ To add additional tools use the same format.
 
 //More usage info coming for configuring and using features.
 ##Using the Features
-#Script Generation
-#Folder Selection
-#Using Putty SSH
-#Using WinSCP SFTP
-#Using Remote Command Execution
+###Script Generation
+###Folder Selection
+###Using Putty SSH
+###Using WinSCP SFTP
+###Using Remote Command Execution
+
 ##Dependencies
 
 ### Binary applications in these exact locations:
