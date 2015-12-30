@@ -219,6 +219,7 @@ namespace CrowesNest
         static public HackToolCollection GetConfiguration()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(HackToolCollection));
+            HackToolCollection tools;
             try
             {
                 if (Directory.Exists(@"C:\tools\CrowesNest\") != true)
@@ -228,7 +229,7 @@ namespace CrowesNest
                 
                 using (FileStream fileStream = new FileStream(@"C:\tools\CrowesNest\cn_config.xml", FileMode.OpenOrCreate))
                 {
-                    HackToolCollection tools = (HackToolCollection)serializer.Deserialize(fileStream);
+                    tools = (HackToolCollection)serializer.Deserialize(fileStream);
                     return tools;
                 }
             }
@@ -237,12 +238,9 @@ namespace CrowesNest
                 MessageBox.Show("Problem in C:\\tools\\CrowesNest\\cn_config.xml\n1. If directory or file did not exist, we created it for you.\n2. Confirm file contains proper XML configuration.\n3. Restart application.");
                 System.Environment.Exit(1);
             }
-            //XmlSerializer serializer = new XmlSerializer(typeof(HackToolCollection));
-            using (FileStream fileStream = new FileStream(@"C:\tools\CrowesNest\cn_config.xml", FileMode.Open))
-            {
-                HackToolCollection tools = (HackToolCollection)serializer.Deserialize(fileStream);
-                return tools;
-            }
+   
+            return tools = null;
+ 
         }
     }
    
