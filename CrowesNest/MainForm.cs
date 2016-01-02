@@ -138,11 +138,12 @@ namespace CrowesNest
 
         private void ConnectButton_Click(object sender, EventArgs e)
         {
-            if (IPTextBox.Text != "" && UsernameTextBox.Text != "" && PasswordTextBox.Text != "")
+            if (IPTextBox.Text != String.Empty && UsernameTextBox.Text != String.Empty && PasswordTextBox.Text != String.Empty)
             {
                 try
                 {
-                    ProcessStartInfo psInfo = new ProcessStartInfo(@"C:\Program Files (x86)\PuTTY\putty.exe", " -ssh -l " + UsernameTextBox.Text + " -pw " + PasswordTextBox.Text + " " + IPTextBox.Text);
+                    string command = $" -ssh -l {UsernameTextBox.Text} -pw {PasswordTextBox.Text} {IPTextBox.Text}";
+                    ProcessStartInfo psInfo = new ProcessStartInfo(@"C:\Program Files (x86)\PuTTY\putty.exe", command);
                     psInfo.UseShellExecute = false;
 
                     using (Process exeProcess = Process.Start(psInfo)) { }
@@ -162,11 +163,12 @@ namespace CrowesNest
 
         private void ScpButton_Click(object sender, EventArgs e)
         {
-            if (IPTextBox.Text != "" && UsernameTextBox.Text != "" && PasswordTextBox.Text != "")
+            if (IPTextBox.Text != String.Empty && UsernameTextBox.Text != String.Empty && PasswordTextBox.Text != String.Empty)
             {
                 try
                 {
-                    ProcessStartInfo psInfo = new ProcessStartInfo(@"C:\Program Files (x86)\WinSCP\WinSCP.exe", " sftp://" + UsernameTextBox.Text + ":" + PasswordTextBox.Text + "@" + IPTextBox.Text);
+                    string command = $" sftp://{UsernameTextBox.Text}:{PasswordTextBox.Text}@{IPTextBox.Text}";
+                    ProcessStartInfo psInfo = new ProcessStartInfo(@"C:\Program Files (x86)\WinSCP\WinSCP.exe", command);
                     psInfo.UseShellExecute = false;
 
                     using (Process exeProcess = Process.Start(psInfo)) { }

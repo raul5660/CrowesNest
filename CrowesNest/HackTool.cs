@@ -61,7 +61,7 @@ namespace CrowesNest
             
             else
             {   
-                if (ip != "" && username != "" && password != "")
+                if (ip != String.Empty && username != String.Empty && password != String.Empty)
                 {
                     try
                     {
