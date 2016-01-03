@@ -12,7 +12,7 @@ namespace CrowesNest
     public partial class CrowesNest : Form
     {
         //Deserialize XML configuratio for tools into custom collection of HackTools C:\tools\CrowesNest\cn_config.xml
-        public static HackToolCollection tools = HackToolCollection.GetConfiguration();
+        private static HackToolCollection tools = HackToolCollection.GetConfiguration();
 
         public CrowesNest()
         {
