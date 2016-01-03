@@ -70,7 +70,10 @@ namespace CrowesNest
             stringList.Add("All");
             foreach (HackTool ht in tools.HackToolList)
             {
-                stringList.Add(ht.Category);
+                if(ht.Category != String.Empty && !stringList.Contains(ht.Category))
+                {
+                    stringList.Add(ht.Category);
+                }  
             }
             stringList.Sort();
             return stringList;
