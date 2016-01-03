@@ -57,6 +57,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CategoryListBox = new System.Windows.Forms.ListBox();
+            this.CategoryLabel = new System.Windows.Forms.Label();
             this.ToolGroupBox.SuspendLayout();
             this.RemoteGroupBox.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -64,7 +66,7 @@
             // 
             // Run
             // 
-            this.Run.Location = new System.Drawing.Point(749, 315);
+            this.Run.Location = new System.Drawing.Point(900, 315);
             this.Run.Name = "Run";
             this.Run.Size = new System.Drawing.Size(75, 23);
             this.Run.TabIndex = 4;
@@ -74,7 +76,7 @@
             // 
             // SyntaxTextBox
             // 
-            this.SyntaxTextBox.Location = new System.Drawing.Point(160, 45);
+            this.SyntaxTextBox.Location = new System.Drawing.Point(312, 45);
             this.SyntaxTextBox.Name = "SyntaxTextBox";
             this.SyntaxTextBox.Size = new System.Drawing.Size(664, 103);
             this.SyntaxTextBox.TabIndex = 6;
@@ -83,7 +85,7 @@
             // ToolLabel
             // 
             this.ToolLabel.AutoSize = true;
-            this.ToolLabel.Location = new System.Drawing.Point(8, 22);
+            this.ToolLabel.Location = new System.Drawing.Point(162, 22);
             this.ToolLabel.Name = "ToolLabel";
             this.ToolLabel.Size = new System.Drawing.Size(55, 20);
             this.ToolLabel.TabIndex = 7;
@@ -92,7 +94,7 @@
             // SyntaxLabel
             // 
             this.SyntaxLabel.AutoSize = true;
-            this.SyntaxLabel.Location = new System.Drawing.Point(156, 22);
+            this.SyntaxLabel.Location = new System.Drawing.Point(312, 22);
             this.SyntaxLabel.Name = "SyntaxLabel";
             this.SyntaxLabel.Size = new System.Drawing.Size(61, 20);
             this.SyntaxLabel.TabIndex = 8;
@@ -102,7 +104,7 @@
             // 
             this.ToolsListBox.FormattingEnabled = true;
             this.ToolsListBox.ItemHeight = 20;
-            this.ToolsListBox.Location = new System.Drawing.Point(10, 45);
+            this.ToolsListBox.Location = new System.Drawing.Point(162, 45);
             this.ToolsListBox.Name = "ToolsListBox";
             this.ToolsListBox.Size = new System.Drawing.Size(144, 264);
             this.ToolsListBox.TabIndex = 9;
@@ -128,7 +130,7 @@
             // 
             // Export
             // 
-            this.Export.Location = new System.Drawing.Point(668, 315);
+            this.Export.Location = new System.Drawing.Point(819, 315);
             this.Export.Name = "Export";
             this.Export.Size = new System.Drawing.Size(75, 23);
             this.Export.TabIndex = 12;
@@ -187,7 +189,7 @@
             // NotesLabel
             // 
             this.NotesLabel.AutoSize = true;
-            this.NotesLabel.Location = new System.Drawing.Point(157, 151);
+            this.NotesLabel.Location = new System.Drawing.Point(312, 151);
             this.NotesLabel.Name = "NotesLabel";
             this.NotesLabel.Size = new System.Drawing.Size(55, 20);
             this.NotesLabel.TabIndex = 18;
@@ -195,7 +197,7 @@
             // 
             // NotesTextBox
             // 
-            this.NotesTextBox.Location = new System.Drawing.Point(160, 174);
+            this.NotesTextBox.Location = new System.Drawing.Point(312, 186);
             this.NotesTextBox.Name = "NotesTextBox";
             this.NotesTextBox.Size = new System.Drawing.Size(663, 123);
             this.NotesTextBox.TabIndex = 19;
@@ -203,7 +205,7 @@
             // 
             // ConnectButton
             // 
-            this.ConnectButton.Location = new System.Drawing.Point(748, 19);
+            this.ConnectButton.Location = new System.Drawing.Point(900, 19);
             this.ConnectButton.Name = "ConnectButton";
             this.ConnectButton.Size = new System.Drawing.Size(75, 23);
             this.ConnectButton.TabIndex = 21;
@@ -262,7 +264,7 @@
             // 
             // ScpButton
             // 
-            this.ScpButton.Location = new System.Drawing.Point(667, 19);
+            this.ScpButton.Location = new System.Drawing.Point(819, 19);
             this.ScpButton.Name = "ScpButton";
             this.ScpButton.Size = new System.Drawing.Size(75, 23);
             this.ScpButton.TabIndex = 30;
@@ -272,6 +274,8 @@
             // 
             // ToolGroupBox
             // 
+            this.ToolGroupBox.Controls.Add(this.CategoryLabel);
+            this.ToolGroupBox.Controls.Add(this.CategoryListBox);
             this.ToolGroupBox.Controls.Add(this.ToolLabel);
             this.ToolGroupBox.Controls.Add(this.SyntaxLabel);
             this.ToolGroupBox.Controls.Add(this.OSLabel);
@@ -289,7 +293,7 @@
             this.ToolGroupBox.Controls.Add(this.HostsButton);
             this.ToolGroupBox.Location = new System.Drawing.Point(9, 36);
             this.ToolGroupBox.Name = "ToolGroupBox";
-            this.ToolGroupBox.Size = new System.Drawing.Size(830, 351);
+            this.ToolGroupBox.Size = new System.Drawing.Size(998, 351);
             this.ToolGroupBox.TabIndex = 31;
             this.ToolGroupBox.TabStop = false;
             this.ToolGroupBox.Text = "Tool";
@@ -306,7 +310,7 @@
             this.RemoteGroupBox.Controls.Add(this.UsernameLabel);
             this.RemoteGroupBox.Location = new System.Drawing.Point(9, 393);
             this.RemoteGroupBox.Name = "RemoteGroupBox";
-            this.RemoteGroupBox.Size = new System.Drawing.Size(829, 49);
+            this.RemoteGroupBox.Size = new System.Drawing.Size(998, 49);
             this.RemoteGroupBox.TabIndex = 32;
             this.RemoteGroupBox.TabStop = false;
             this.RemoteGroupBox.Text = "Remote Connection";
@@ -318,7 +322,7 @@
             this.configureToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(839, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(1020, 33);
             this.menuStrip1.TabIndex = 33;
             this.menuStrip1.Text = "menuStrip";
             // 
@@ -337,9 +341,28 @@
             this.selectFileToolStripMenuItem.Text = "Select XML File...";
             this.selectFileToolStripMenuItem.Click += new System.EventHandler(this.selectFileToolStripMenuItem_Click);
             // 
+            // CategoryListBox
+            // 
+            this.CategoryListBox.FormattingEnabled = true;
+            this.CategoryListBox.ItemHeight = 20;
+            this.CategoryListBox.Location = new System.Drawing.Point(12, 45);
+            this.CategoryListBox.Name = "CategoryListBox";
+            this.CategoryListBox.Size = new System.Drawing.Size(144, 264);
+            this.CategoryListBox.TabIndex = 20;
+            this.CategoryListBox.SelectedIndexChanged += new System.EventHandler(this.CategoryListBox_SelectedIndexChanged);
+            // 
+            // CategoryLabel
+            // 
+            this.CategoryLabel.AutoSize = true;
+            this.CategoryLabel.Location = new System.Drawing.Point(8, 22);
+            this.CategoryLabel.Name = "CategoryLabel";
+            this.CategoryLabel.Size = new System.Drawing.Size(77, 20);
+            this.CategoryLabel.TabIndex = 21;
+            this.CategoryLabel.Text = "Category:";
+            // 
             // CrowesNest
             // 
-            this.ClientSize = new System.Drawing.Size(839, 454);
+            this.ClientSize = new System.Drawing.Size(1020, 454);
             this.Controls.Add(this.RemoteGroupBox);
             this.Controls.Add(this.ToolGroupBox);
             this.Controls.Add(this.menuStrip1);
@@ -389,6 +412,8 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem configureToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem selectFileToolStripMenuItem;
+        private System.Windows.Forms.Label CategoryLabel;
+        private System.Windows.Forms.ListBox CategoryListBox;
     }
 }
 

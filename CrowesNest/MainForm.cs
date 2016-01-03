@@ -5,6 +5,7 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Diagnostics;
 using System.Text;
+using System.Linq;
 
 namespace CrowesNest
 {
@@ -18,7 +19,8 @@ namespace CrowesNest
             InitializeComponent();
             //HackToolCollection tools = GetConfiguration();
             //Pupulate combo box with available tools.
-            ToolsListBox.DataSource = GetTools();
+            CategoryListBox.DataSource = GetCategories();
+            ToolsListBox.DataSource = GetTools((string)CategoryListBox.SelectedItem);
         }
 
         void Main()
@@ -31,18 +33,46 @@ namespace CrowesNest
             CrowesNest.tools = HackToolCollection.GetConfiguration(configLocation);
         }
 
-        public string[] GetTools()
+        public List<string> GetTools(string filter)
         {
             //Dynamically update list of tools based on XML configs.
             //List<String> stringList = new List<string>();
-            string[] stringList = new string[tools.HackToolList.Count];
-            int count = 0;
-            foreach(HackTool ht in tools.HackToolList)
+            List<string> stringList = new List<string>();
+            
+
+            if (filter != "All")
             {
-                stringList[count] = ht.Name;
-                count++;
+                IEnumerable<HackTool> filteredHackToolList = tools.HackToolList.Where(s => s.Category == filter);
+                //stringList = filteredStringList.ToList<string>()
+
+                foreach (HackTool ht in filteredHackToolList)
+                {
+                    stringList.Add(ht.Name);
+                }
             }
-            Array.Sort(stringList);
+            else
+            {
+                foreach (HackTool ht in tools.HackToolList)
+                {
+                    stringList.Add(ht.Name);
+                }
+            }
+            
+            stringList.Sort();
+
+            return stringList;
+        }
+        public List<string> GetCategories()
+        {
+            //Dynamically update list of tools based on XML configs.
+            //List<String> stringList = new List<string>();
+            List<string> stringList = new List<string>();
+            stringList.Add("All");
+            foreach (HackTool ht in tools.HackToolList)
+            {
+                stringList.Add(ht.Category);
+            }
+            stringList.Sort();
             return stringList;
         }
 
@@ -84,6 +114,11 @@ namespace CrowesNest
             AmmendDirectoryWithClient(ToolsListBox.SelectedItem);
             //Method for dynamically populating Arguments TextBox
             PopulateTextBox();
+        }
+
+        private void CategoryListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ToolsListBox.DataSource = GetTools((string)CategoryListBox.SelectedItem);
         }
 
         private void ClientButton_Click(object sender, EventArgs e)
@@ -199,8 +234,11 @@ namespace CrowesNest
             {
                 // Select successful
                 ReconfigureTools(Fld.FileName);
-                ToolsListBox.DataSource = GetTools();
+                CategoryListBox.DataSource = GetCategories();
+                ToolsListBox.DataSource = GetTools((string)CategoryListBox.SelectedItem);
             }
         }
+
+        
     }
 }

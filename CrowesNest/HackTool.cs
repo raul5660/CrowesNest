@@ -28,6 +28,9 @@ namespace CrowesNest
         [XmlElement("Notes")]
         public string Notes { get; set; }
 
+        [XmlElement("Category")]
+        public string Category { get; set; }
+
         public string Client { get; set; } = @"Z:\XYZ";
         public string DeployString { get; set; }
         
