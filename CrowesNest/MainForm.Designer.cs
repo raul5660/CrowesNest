@@ -54,8 +54,12 @@
             this.ScpButton = new System.Windows.Forms.Button();
             this.ToolGroupBox = new System.Windows.Forms.GroupBox();
             this.RemoteGroupBox = new System.Windows.Forms.GroupBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolGroupBox.SuspendLayout();
             this.RemoteGroupBox.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Run
@@ -137,7 +141,7 @@
             this.MultiHostCheckBox.AutoSize = true;
             this.MultiHostCheckBox.Location = new System.Drawing.Point(545, 320);
             this.MultiHostCheckBox.Name = "MultiHostCheckBox";
-            this.MultiHostCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.MultiHostCheckBox.Size = new System.Drawing.Size(22, 21);
             this.MultiHostCheckBox.TabIndex = 13;
             this.MultiHostCheckBox.UseVisualStyleBackColor = true;
             this.MultiHostCheckBox.CheckedChanged += new System.EventHandler(this.MultiHostCheckBox_CheckedChanged);
@@ -283,7 +287,7 @@
             this.ToolGroupBox.Controls.Add(this.HostsTextBox);
             this.ToolGroupBox.Controls.Add(this.ClientTextBox);
             this.ToolGroupBox.Controls.Add(this.HostsButton);
-            this.ToolGroupBox.Location = new System.Drawing.Point(4, 2);
+            this.ToolGroupBox.Location = new System.Drawing.Point(9, 36);
             this.ToolGroupBox.Name = "ToolGroupBox";
             this.ToolGroupBox.Size = new System.Drawing.Size(830, 351);
             this.ToolGroupBox.TabIndex = 31;
@@ -300,26 +304,59 @@
             this.RemoteGroupBox.Controls.Add(this.UsernameTextBox);
             this.RemoteGroupBox.Controls.Add(this.IPTextBox);
             this.RemoteGroupBox.Controls.Add(this.UsernameLabel);
-            this.RemoteGroupBox.Location = new System.Drawing.Point(5, 359);
+            this.RemoteGroupBox.Location = new System.Drawing.Point(9, 393);
             this.RemoteGroupBox.Name = "RemoteGroupBox";
             this.RemoteGroupBox.Size = new System.Drawing.Size(829, 49);
             this.RemoteGroupBox.TabIndex = 32;
             this.RemoteGroupBox.TabStop = false;
             this.RemoteGroupBox.Text = "Remote Connection";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.configureToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(839, 33);
+            this.menuStrip1.TabIndex = 33;
+            this.menuStrip1.Text = "menuStrip";
+            // 
+            // configureToolStripMenuItem
+            // 
+            this.configureToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectFileToolStripMenuItem});
+            this.configureToolStripMenuItem.Name = "configureToolStripMenuItem";
+            this.configureToolStripMenuItem.Size = new System.Drawing.Size(102, 29);
+            this.configureToolStripMenuItem.Text = "Configure";
+            // 
+            // selectFileToolStripMenuItem
+            // 
+            this.selectFileToolStripMenuItem.Name = "selectFileToolStripMenuItem";
+            this.selectFileToolStripMenuItem.Size = new System.Drawing.Size(226, 30);
+            this.selectFileToolStripMenuItem.Text = "Select XML File...";
+            this.selectFileToolStripMenuItem.Click += new System.EventHandler(this.selectFileToolStripMenuItem_Click);
+            // 
             // CrowesNest
             // 
-            this.ClientSize = new System.Drawing.Size(839, 418);
+            this.ClientSize = new System.Drawing.Size(839, 454);
             this.Controls.Add(this.RemoteGroupBox);
             this.Controls.Add(this.ToolGroupBox);
+            this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "CrowesNest";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CrowesNest";
             this.ToolGroupBox.ResumeLayout(false);
             this.ToolGroupBox.PerformLayout();
             this.RemoteGroupBox.ResumeLayout(false);
             this.RemoteGroupBox.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -349,6 +386,9 @@
         private System.Windows.Forms.Button ScpButton;
         private System.Windows.Forms.GroupBox ToolGroupBox;
         private System.Windows.Forms.GroupBox RemoteGroupBox;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem configureToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectFileToolStripMenuItem;
     }
 }
 

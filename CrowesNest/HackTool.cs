@@ -28,14 +28,14 @@ namespace CrowesNest
         [XmlElement("Notes")]
         public string Notes { get; set; }
 
-        public string Client { get; set; }
+        public string Client { get; set; } = @"Z:\XYZ";
         public string DeployString { get; set; }
         
         
 
         public HackTool()
         {
-            this.Client = @"Z:\XYZ";
+            //this.Client = @"Z:\XYZ";
         }
 
 
@@ -46,7 +46,7 @@ namespace CrowesNest
             {
                 try
                 {   // wrap binaries in cmd.exe /K to keep cmd.exe open after completion of process.
-                    string deployCommand = String.Format($"/K \"{this.DeployString}\"");
+                    string deployCommand =$"/K \"{this.DeployString}\"";
                     ProcessStartInfo psInfo = new ProcessStartInfo("cmd.exe", deployCommand);
                     psInfo.UseShellExecute = true;
 
@@ -65,7 +65,7 @@ namespace CrowesNest
                 {
                     try
                     {
-                        string deployCommand = String.Format($"/K \"\"C:\\Program Files (x86)\\PuTTY\\plink.exe\" -pw {password} {username}@{ip} {this.DeployString}\"");
+                        string deployCommand = $"/K \"\"C:\\Program Files (x86)\\PuTTY\\plink.exe\" -pw {password} {username}@{ip} {this.DeployString}\"";
                         ProcessStartInfo psInfo = new ProcessStartInfo("cmd.exe", deployCommand);
                         psInfo.UseShellExecute = false;
 

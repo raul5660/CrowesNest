@@ -11,7 +11,7 @@ namespace CrowesNest
     public partial class CrowesNest : Form
     {
         //Deserialize XML configuratio for tools into custom collection of HackTools C:\tools\CrowesNest\cn_config.xml
-        HackToolCollection tools = HackToolCollection.GetConfiguration();
+        public static HackToolCollection tools = HackToolCollection.GetConfiguration();
 
         public CrowesNest()
         {
@@ -26,6 +26,11 @@ namespace CrowesNest
             //Not implemented.
         }
         
+        public void ReconfigureTools(string configLocation)
+        {
+            CrowesNest.tools = HackToolCollection.GetConfiguration(configLocation);
+        }
+
         public string[] GetTools()
         {
             //Dynamically update list of tools based on XML configs.
@@ -182,6 +187,19 @@ namespace CrowesNest
             else
             {
                 MessageBox.Show("Please provide connection information!");
+            }
+        }
+
+        private void selectFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // New FolderBrowserDialog instance
+            OpenFileDialog Fld = new OpenFileDialog();
+
+            if (Fld.ShowDialog() == DialogResult.OK)
+            {
+                // Select successful
+                ReconfigureTools(Fld.FileName);
+                ToolsListBox.DataSource = GetTools();
             }
         }
     }

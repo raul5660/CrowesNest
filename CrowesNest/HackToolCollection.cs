@@ -44,7 +44,7 @@ namespace CrowesNest
         }
 
         //Deserialize XML configuratio for tools into custom collection of HackTools C:\tools\CrowesNest\cn_config.xml
-        static public HackToolCollection GetConfiguration()
+        static public HackToolCollection GetConfiguration(string location = @"C:\tools\CrowesNest\cn_config.xml")
         {
             XmlSerializer serializer = new XmlSerializer(typeof(HackToolCollection));
             HackToolCollection tools;
@@ -55,7 +55,7 @@ namespace CrowesNest
                     Directory.CreateDirectory(@"C:\tools\CrowesNest\");
                 }
 
-                using (FileStream fileStream = new FileStream(@"C:\tools\CrowesNest\cn_config.xml", FileMode.OpenOrCreate))
+                using (FileStream fileStream = new FileStream(location, FileMode.OpenOrCreate))
                 {
                     tools = (HackToolCollection)serializer.Deserialize(fileStream);
                     return tools;
