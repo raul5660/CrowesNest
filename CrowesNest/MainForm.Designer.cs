@@ -53,12 +53,12 @@
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.ScpButton = new System.Windows.Forms.Button();
             this.ToolGroupBox = new System.Windows.Forms.GroupBox();
+            this.CategoryLabel = new System.Windows.Forms.Label();
+            this.CategoryListBox = new System.Windows.Forms.ListBox();
             this.RemoteGroupBox = new System.Windows.Forms.GroupBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CategoryListBox = new System.Windows.Forms.ListBox();
-            this.CategoryLabel = new System.Windows.Forms.Label();
             this.ToolGroupBox.SuspendLayout();
             this.RemoteGroupBox.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -171,7 +171,7 @@
             // OSLabel
             // 
             this.OSLabel.AutoSize = true;
-            this.OSLabel.Location = new System.Drawing.Point(646, 22);
+            this.OSLabel.Location = new System.Drawing.Point(815, 22);
             this.OSLabel.Name = "OSLabel";
             this.OSLabel.Size = new System.Drawing.Size(140, 20);
             this.OSLabel.TabIndex = 16;
@@ -180,7 +180,7 @@
             // OSValueLabel
             // 
             this.OSValueLabel.AutoSize = true;
-            this.OSValueLabel.Location = new System.Drawing.Point(754, 22);
+            this.OSValueLabel.Location = new System.Drawing.Point(923, 22);
             this.OSValueLabel.Name = "OSValueLabel";
             this.OSValueLabel.Size = new System.Drawing.Size(32, 20);
             this.OSValueLabel.TabIndex = 17;
@@ -291,12 +291,31 @@
             this.ToolGroupBox.Controls.Add(this.HostsTextBox);
             this.ToolGroupBox.Controls.Add(this.ClientTextBox);
             this.ToolGroupBox.Controls.Add(this.HostsButton);
-            this.ToolGroupBox.Location = new System.Drawing.Point(9, 36);
+            this.ToolGroupBox.Location = new System.Drawing.Point(9, 25);
             this.ToolGroupBox.Name = "ToolGroupBox";
-            this.ToolGroupBox.Size = new System.Drawing.Size(998, 351);
+            this.ToolGroupBox.Size = new System.Drawing.Size(986, 362);
             this.ToolGroupBox.TabIndex = 31;
             this.ToolGroupBox.TabStop = false;
             this.ToolGroupBox.Text = "Tool";
+            // 
+            // CategoryLabel
+            // 
+            this.CategoryLabel.AutoSize = true;
+            this.CategoryLabel.Location = new System.Drawing.Point(8, 22);
+            this.CategoryLabel.Name = "CategoryLabel";
+            this.CategoryLabel.Size = new System.Drawing.Size(77, 20);
+            this.CategoryLabel.TabIndex = 21;
+            this.CategoryLabel.Text = "Category:";
+            // 
+            // CategoryListBox
+            // 
+            this.CategoryListBox.FormattingEnabled = true;
+            this.CategoryListBox.ItemHeight = 20;
+            this.CategoryListBox.Location = new System.Drawing.Point(12, 45);
+            this.CategoryListBox.Name = "CategoryListBox";
+            this.CategoryListBox.Size = new System.Drawing.Size(144, 264);
+            this.CategoryListBox.TabIndex = 20;
+            this.CategoryListBox.SelectedIndexChanged += new System.EventHandler(this.CategoryListBox_SelectedIndexChanged);
             // 
             // RemoteGroupBox
             // 
@@ -308,9 +327,9 @@
             this.RemoteGroupBox.Controls.Add(this.UsernameTextBox);
             this.RemoteGroupBox.Controls.Add(this.IPTextBox);
             this.RemoteGroupBox.Controls.Add(this.UsernameLabel);
-            this.RemoteGroupBox.Location = new System.Drawing.Point(9, 393);
+            this.RemoteGroupBox.Location = new System.Drawing.Point(9, 376);
             this.RemoteGroupBox.Name = "RemoteGroupBox";
-            this.RemoteGroupBox.Size = new System.Drawing.Size(998, 49);
+            this.RemoteGroupBox.Size = new System.Drawing.Size(986, 53);
             this.RemoteGroupBox.TabIndex = 32;
             this.RemoteGroupBox.TabStop = false;
             this.RemoteGroupBox.Text = "Remote Connection";
@@ -322,7 +341,7 @@
             this.configureToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1020, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(1004, 33);
             this.menuStrip1.TabIndex = 33;
             this.menuStrip1.Text = "menuStrip";
             // 
@@ -341,28 +360,9 @@
             this.selectFileToolStripMenuItem.Text = "Select XML File...";
             this.selectFileToolStripMenuItem.Click += new System.EventHandler(this.selectFileToolStripMenuItem_Click);
             // 
-            // CategoryListBox
-            // 
-            this.CategoryListBox.FormattingEnabled = true;
-            this.CategoryListBox.ItemHeight = 20;
-            this.CategoryListBox.Location = new System.Drawing.Point(12, 45);
-            this.CategoryListBox.Name = "CategoryListBox";
-            this.CategoryListBox.Size = new System.Drawing.Size(144, 264);
-            this.CategoryListBox.TabIndex = 20;
-            this.CategoryListBox.SelectedIndexChanged += new System.EventHandler(this.CategoryListBox_SelectedIndexChanged);
-            // 
-            // CategoryLabel
-            // 
-            this.CategoryLabel.AutoSize = true;
-            this.CategoryLabel.Location = new System.Drawing.Point(8, 22);
-            this.CategoryLabel.Name = "CategoryLabel";
-            this.CategoryLabel.Size = new System.Drawing.Size(77, 20);
-            this.CategoryLabel.TabIndex = 21;
-            this.CategoryLabel.Text = "Category:";
-            // 
             // CrowesNest
             // 
-            this.ClientSize = new System.Drawing.Size(1020, 454);
+            this.ClientSize = new System.Drawing.Size(1004, 441);
             this.Controls.Add(this.RemoteGroupBox);
             this.Controls.Add(this.ToolGroupBox);
             this.Controls.Add(this.menuStrip1);
