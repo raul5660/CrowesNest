@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Xml.Serialization;
-using System.IO;
 using System.Diagnostics;
-using System.Text;
 using System.Linq;
 
 namespace CrowesNest
