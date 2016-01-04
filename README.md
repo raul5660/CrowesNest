@@ -15,7 +15,6 @@ This tool alleviates the need to:
 * Managing tool ouput, and ouput syntax by utilizing CrowesNest folder selection feature.
 
 ##Configuration and Usage
-CrowesNest has a few hardcoded dependencies (I know this is not ideal but hey, I do this in my freetime.)
 
 Initial Setup Steps:
 
