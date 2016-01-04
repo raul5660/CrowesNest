@@ -25,8 +25,9 @@ Initial Setup Steps:
 1. Install plinke.exe and PuTTY here: C:\Program Files (x86)\PuTTY\
 2. Install WinSCP.exe here: C:\Program Files (x86)\WinSCP\ 
 3. Add the following XML to C:\tools\CrowesNest\cn_config.xml and Save:
+   Note**: (If you do not create C:\tools\CrowesNest\cn_config.xml manually it will do it for you but you still need to populate cn_config.xml with a valid configuration.) 
 
-![CrowesNest Overview](CrowesNestScreenshots/crowesNestXMLNoConfig.JPG?raw=true)
+![CrowesNest Overview](CrowesNestScreenshots/2.0/crowesNestXMLNoConfig.JPG?raw=true)
 
 Congrats, thats it! You now have CrowesNest configured without any tools or notes.
 
@@ -35,7 +36,7 @@ Adding Tools:
 Adding tools is as easy as just populating the associated XML attributes. Lets configure ping for linux together.
 
 1. Edit C:\tools\CrowesNest\cn_config.xml with the following entry.
-![CrowesNest Overview](CrowesNestScreenshots/crowesNestXMLToolConfig.JPG?raw=true)
+![CrowesNest Overview](CrowesNestScreenshots/2.0/crowesNestXMLToolConfig.JPG?raw=true)
 
 Our ping configuration:
 * <Name>Ping_Linux</Name> is the name I selected to use.
