@@ -46,9 +46,15 @@ Our ping configuration:
 * I chose to use the ping man page as our notes.
 To add additional tools use the same format.
 
-//More usage info coming for configuring and using features.
+
 ##Using the Features
-###Script Generation
+###Deploying Tools - The "Run" button.
+Deploying the selected tool is as easy as hitting run. 
+* If tool is marked "Windows" on the OperatingSystem XML attribute CrowesNest will deploy a local instance in a seperate process from its allocated Virtual Memory. This means that a running tool will not be affected if the CrowesNest applications is terminated.
+* If tool is marked "Linux" on the OperatingSystem XML attribute CrowesNest will attempt to connect to the remote machine indicated in the "Remote Connection" section. If no connection details are given, it will ask for them without deploying tool. If connection details are present. CrowesNest will run the tool on the remote machine and give you a shell to monitor.
+* It important to note that you can type in the "syntax" text box to ammend commands on the fly. This means you can clear the entire pre-saved syntax and use the textbox like a shell if you please. 
+###Script Generation - The "Export" button.
+
 ###Folder Selection
 ###Using Putty SSH
 ###Using WinSCP SFTP
