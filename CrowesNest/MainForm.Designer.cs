@@ -362,6 +362,7 @@
             // 
             // CrowesNest
             // 
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1004, 441);
             this.Controls.Add(this.RemoteGroupBox);
             this.Controls.Add(this.ToolGroupBox);
