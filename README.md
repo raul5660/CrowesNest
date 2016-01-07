@@ -24,7 +24,9 @@ Initial Setup Steps:
 1. Install plinke.exe and PuTTY here: C:\Program Files (x86)\PuTTY\
 2. Install WinSCP.exe here: C:\Program Files (x86)\WinSCP\ 
 3. Add the following XML to C:\tools\CrowesNest\cn_config.xml and Save:
-   Note**: (If you do not create C:\tools\CrowesNest\cn_config.xml manually it will do it for you but you still need to populate cn_config.xml with a valid configuration.) 
+   Note**: (If you do not create C:\tools\CrowesNest\cn_config.xml manually it will do it for you but you still need to populate cn_config.xml with a valid configuration.)
+
+Additionally you can import configurations during runtime with Configure -> "Select XML File..."
 
 ![CrowesNest Overview](CrowesNestScreenshots/2.0/crowesNestXMLNoConfig.JPG?raw=true)
 
@@ -78,6 +80,12 @@ nest
 Then any instance of x.x.x.x will be replaced with "crowes" and "nest" and written to a script file.
 
 * You cannot run single instances of tools while multi host file is selected.
+* 
+####Script File Selected (Cross tool scripting)
+CorwesNest now supports script generation capabilities for combining tools. 
+* Just check the "Use cross tool scripting" check box and select or create a file youd like to export syntax to. Use .bat extension for batch scripts and .sh extensions for Bash shell scripts.
+* Now the export button will append any tool selected to the existing content of that file, allowing you to build workflow scripts with just a few clicks!
+* All scripting features mentioned before are supports for cross tool scripting.
 
 ###Folder Selection - The "Client Folder" button.
 Much like the scalable script generation functionality. CrowesNest allows you to select a directory for command that support output options or for use with standard output redirection.
