@@ -15,7 +15,6 @@ This tool alleviates the need to:
 * Managing tool ouput, and ouput syntax by utilizing CrowesNest folder selection feature.
 
 ##Configuration and Usage
-CrowesNest has a few hardcoded dependencies (I know this is not ideal but hey, I do this in my freetime.)
 
 Initial Setup Steps:
 
@@ -25,8 +24,9 @@ Initial Setup Steps:
 1. Install plinke.exe and PuTTY here: C:\Program Files (x86)\PuTTY\
 2. Install WinSCP.exe here: C:\Program Files (x86)\WinSCP\ 
 3. Add the following XML to C:\tools\CrowesNest\cn_config.xml and Save:
+   Note**: (If you do not create C:\tools\CrowesNest\cn_config.xml manually it will do it for you but you still need to populate cn_config.xml with a valid configuration.) 
 
-![CrowesNest Overview](CrowesNestScreenshots/crowesNestXMLNoConfig.JPG?raw=true)
+![CrowesNest Overview](CrowesNestScreenshots/2.0/crowesNestXMLNoConfig.JPG?raw=true)
 
 Congrats, thats it! You now have CrowesNest configured without any tools or notes.
 
@@ -35,7 +35,7 @@ Adding Tools:
 Adding tools is as easy as just populating the associated XML attributes. Lets configure ping for linux together.
 
 1. Edit C:\tools\CrowesNest\cn_config.xml with the following entry.
-![CrowesNest Overview](CrowesNestScreenshots/crowesNestXMLToolConfig.JPG?raw=true)
+![CrowesNest Overview](CrowesNestScreenshots/2.0/crowesNestXMLToolConfig.JPG?raw=true)
 
 Our ping configuration:
 * <Name>Ping_Linux</Name> is the name I selected to use.
@@ -45,13 +45,65 @@ Our ping configuration:
 * I chose to use the ping man page as our notes.
 To add additional tools use the same format.
 
-//More usage info coming for configuring and using features.
+
 ##Using the Features
-###Script Generation
-###Folder Selection
-###Using Putty SSH
-###Using WinSCP SFTP
-###Using Remote Command Execution
+###Deploying Tools - The "Run" button.
+Deploying the selected tool is as easy as hitting run. 
+* If tool is marked "Windows" on the OperatingSystem XML attribute CrowesNest will deploy a local instance in a seperate process from its allocated Virtual Memory. This means that a running tool will not be affected if the CrowesNest applications is terminated.
+* If tool is marked "Linux" on the OperatingSystem XML attribute CrowesNest will attempt to connect to the remote machine indicated in the "Remote Connection" section. If no connection details are given, it will ask for them without deploying tool. If connection details are present. CrowesNest will run the tool on the remote machine and give you a shell to monitor.
+* It important to note that you can type in the "syntax" text box to ammend commands on the fly. This means you can clear the entire pre-saved syntax and use the textbox like a shell if you please. 
+![CrowesNest Overview](CrowesNestScreenshots/crowesNestWindowsPingViewRunning.JPG?raw=true)
+
+###Script Generation - The "Export" button.
+Export tools to scripts using the export button.
+
+####Single Host (No Hosts File selected)
+* If tool is marked "Windows" on the OperatingSystem XML attribute CrowesNest will export the tool syntax to a runnable .bat script located at C:\tools\CrowesNest\Batch , if directory doesnt exist, it will be created for you.
+* If tool is marked "Linux" on the OperatingSystem XML attribute CrowesNest will export the tool syntax to a runnable .sh script located at C:\tools\CrowesNest\Bash , if directory doesnt exist, it will be created for you.
+* Scripts will be named with the name of the tool and their appropriate OS extension. 
+* If export button is hit more then once for the same tool, the script will be overwritten.
+![CrowesNest Overview](CrowesNestScreenshots/crowesNestExportWindows2.JPG?raw=true)
+
+####Multiple Hosts (Hosts File selected)
+If a tool does not support multiple hosts nativly, like nmaps -iL option, CrowesNest makes managing single host tools much for flexible by implementing scalability.
+* Click the checkbox and select an IP input file with IP address seperated by new line.
+![CrowesNest Overview](CrowesNestScreenshots/crowesNestExportWindows.JPG?raw=true)
+
+* When configuring a single host tool, place the string pattern x.x.x.x in the ip location. Any instance of this string pattern will be replaced with the line indicated in the file. With the host file selected, hit export. A script will be generated.
+![CrowesNest Overview](CrowesNestScreenshots/crowesNestExportWindows3.JPG?raw=true)
+
+* This engine is very flexible. It will replace any instance of x.x.x.x with anything indicated in the selected hosts file, making it possible to generate scripts of other types, not just IP address. Eg: if the input file had the following text:
+crowes
+nest
+Then any instance of x.x.x.x will be replaced with "crowes" and "nest" and written to a script file.
+
+* You cannot run single instances of tools while multi host file is selected.
+
+###Folder Selection - The "Client Folder" button.
+Much like the scalable script generation functionality. CrowesNest allows you to select a directory for command that support output options or for use with standard output redirection.
+* When configuring a tool in which you want to use the folder selection feature, add the string pattern "Z:\XYZ" to its syntax.
+![CrowesNest Overview](CrowesNestScreenshots/crowesNestClientFolder.JPG?raw=true)
+
+* When selecting a folder, the Z:XYZ patter will be replaced with the directory you chose, much like the x.x.x.x pattern.
+![CrowesNest Overview](CrowesNestScreenshots/crowesNestClientFolder2.JPG?raw=true)
+
+![CrowesNest Overview](CrowesNestScreenshots/crowesNestClientFolder3.JPG?raw=true)
+
+* The syntax box wont updated automatically by design. I chose this so every tool thats loaded into CrowesNest will update with the client folder when you select it, so to update the syntax text box, just cick off the tool then back on.
+
+###Using Putty SSH - The "PuTTY" button.
+CrowesNest will launch a SSH shell with a single click! Allowing you remote interaction.
+* If no connection details are given, it will ask for them. If connection details are present. CrowesNest will launch a remote shell.
+![CrowesNest Overview](CrowesNestScreenshots/crowesNestPuttyIntegration.JPG?raw=true)
+
+* This shell is a seperated process same as tools that are deployed, closing crowesNest will not effect the shell.
+
+###Using WinSCP SFTP - The "WinSCP" Button
+CrowesNest will launch a WinSCP commander with a single click! Allowing you to move files back and forth on the fly.
+* If no connection details are given, it will ask for them. If connection details are present. CrowesNest will launch a remote shell.
+![CrowesNest Overview](CrowesNestScreenshots/crowesNestWinSCPIntegration.JPG?raw=true)
+
+* This session is a seperated process same as tools that are deployed, closing crowesNest will not effect the shell.
 
 ##Dependencies
 
