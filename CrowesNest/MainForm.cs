@@ -139,9 +139,17 @@ namespace CrowesNest
         private void Export_Click(object sender, EventArgs e)
         {
             tools[(string)ToolsListBox.SelectedItem].DeployString = SyntaxTextBox.Text;
-            if (MultiHostCheckBox.Checked == true)
+            if (MultiHostCheckBox.Checked == true && ScriptCheckBox.Checked == false)
             {
                 tools[(string)ToolsListBox.SelectedItem].ExportMultiCommands(HostsTextBox.Text);
+            }
+            else if (MultiHostCheckBox.Checked == true && ScriptCheckBox.Checked == true)
+            {
+                tools[(string)ToolsListBox.SelectedItem].ExportMultiCommands(HostsTextBox.Text, ScriptTextBox.Text);
+            }
+            else if (MultiHostCheckBox.Checked == false && ScriptCheckBox.Checked == true)
+            {
+                tools[(string)ToolsListBox.SelectedItem].ExportCommands(ScriptTextBox.Text);
             }
             else
             {
@@ -164,6 +172,20 @@ namespace CrowesNest
             }
         }
 
+        private void ScriptCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ScriptCheckBox.Checked == true)
+            {
+                ScriptButton.Enabled = true;
+                ScriptTextBox.Enabled = true;
+            }
+            else
+            {
+                ScriptButton.Enabled = false;
+                ScriptTextBox.Enabled = false;
+            }
+        }
+
         private void HostsButton_Click(object sender, EventArgs e)
         {
             // New FolderBrowserDialog instance
@@ -175,6 +197,19 @@ namespace CrowesNest
                 HostsTextBox.Text = Fld.FileName;
             }
         }
+
+        private void ScriptButton_Click(object sender, EventArgs e)
+        {
+            // New FolderBrowserDialog instance
+            OpenFileDialog Fld = new OpenFileDialog();
+
+            if (Fld.ShowDialog() == DialogResult.OK)
+            {
+                // Select successful
+                ScriptTextBox.Text = Fld.FileName;
+            }
+        }
+
 
         private void ConnectButton_Click(object sender, EventArgs e)
         {
@@ -238,7 +273,5 @@ namespace CrowesNest
                 ToolsListBox.DataSource = GetTools((string)CategoryListBox.SelectedItem);
             }
         }
-
-        
     }
 }

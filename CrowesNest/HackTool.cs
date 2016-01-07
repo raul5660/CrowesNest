@@ -3,6 +3,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Xml.Serialization;
 using System.Windows.Forms;
+using System.Text;
 
 
 namespace CrowesNest
@@ -51,8 +52,10 @@ namespace CrowesNest
                     string deployCommand =$"/K \"{this.DeployString}\"";
                     ProcessStartInfo psInfo = new ProcessStartInfo("cmd.exe", deployCommand);
                     psInfo.UseShellExecute = true;
+                    //psInfo.RedirectStandardOutput = true;
 
-                    using(Process exeProcess = Process.Start(psInfo)) { }
+                    using (Process exeProcess = Process.Start(psInfo)) { }
+                    
                     
                 }
                 catch (Exception)
@@ -86,7 +89,12 @@ namespace CrowesNest
             }
            
         }
-        
+
+        private void ExeProcess_OutputDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         //export syntax to .bat or .sh for appropriate platform.
         public void ExportCommands()
         {
@@ -130,6 +138,23 @@ namespace CrowesNest
             }
 
         }
+        public void ExportCommands(string scriptOuputFile)
+        {
+            try
+            {
+                FileInfo exportFileInfo = new FileInfo(scriptOuputFile);
+                using (StreamWriter swFile = new StreamWriter(exportFileInfo.FullName, true))
+                {
+                    swFile.WriteLine(this.DeployString);
+                }
+            }
+
+            catch (Exception)
+            {
+                MessageBox.Show("Error:\nProblem exporting to C:\\Tools\\CrowesNest\\Bash or C:\\Tools\\CrowesNest\\Batch \nMake sure directories exist and Hosts file is selected.");
+            }
+
+        }
         //Support for export functionnality to scale with many hosts.
         public void ExportMultiCommands(string hostFile)
         {
@@ -137,7 +162,7 @@ namespace CrowesNest
             {
                 string[] inputIps = File.ReadAllLines(hostFile);
 
-                
+
                 if (this.OperatingSystem.ToLower() == "windows")
                 {
                     if (Directory.Exists(@"C:\Tools\CrowesNest\Batch\") != true)
@@ -153,8 +178,8 @@ namespace CrowesNest
                         {
                             swFile.WriteLine(this.DeployString.Replace("x.x.x.x", ip));
                         }
-                        swFile.WriteLine("pause"); 
-                    }       
+                        swFile.WriteLine("pause");
+                    }
                 }
                 else
                 {
@@ -172,13 +197,33 @@ namespace CrowesNest
                             swFile.WriteLine(this.DeployString.Replace("x.x.x.x", ip));
                         }
                     }
-                }
-                        
+                }       
             }
             catch (Exception)
             {
                 MessageBox.Show("Error:\nProblem exporting to C:\\Tools\\CrowesNest\\Bash or C:\\Tools\\CrowesNest\\Batch \nMake sure directories exist and Hosts file is selected.");
             }
         }
+        public void ExportMultiCommands(string hostFile, string scriptOuputFile)
+        {
+            try
+            {
+                string[] inputIps = File.ReadAllLines(hostFile);
+                FileInfo exportFileInfo = new FileInfo(scriptOuputFile);
+                using (StreamWriter swFile = new StreamWriter(exportFileInfo.FullName,true))
+                {
+                    foreach (string ip in inputIps)
+                    {
+                        swFile.WriteLine(this.DeployString.Replace("x.x.x.x", ip));
+                    }
+                }
+                
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error:\nProblem exporting to C:\\Tools\\CrowesNest\\Bash or C:\\Tools\\CrowesNest\\Batch \nMake sure directories exist and Hosts file is selected.");
+            }
+        }
+
     }
 }
