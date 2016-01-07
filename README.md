@@ -80,7 +80,7 @@ nest
 Then any instance of x.x.x.x will be replaced with "crowes" and "nest" and written to a script file.
 
 * You cannot run single instances of tools while multi host file is selected.
-* 
+
 ####Script File Selected (Cross tool scripting)
 CorwesNest now supports script generation capabilities for combining tools. 
 * Just check the "Use cross tool scripting" check box and select or create a file youd like to export syntax to. Use .bat extension for batch scripts and .sh extensions for Bash shell scripts.
