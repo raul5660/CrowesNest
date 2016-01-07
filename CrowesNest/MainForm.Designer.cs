@@ -53,27 +53,27 @@
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.ScpButton = new System.Windows.Forms.Button();
             this.ToolGroupBox = new System.Windows.Forms.GroupBox();
+            this.RemoteGroupBox = new System.Windows.Forms.GroupBox();
+            this.CategoryLabel = new System.Windows.Forms.Label();
+            this.DeploymentGroupBox = new System.Windows.Forms.GroupBox();
             this.ScriptLabel = new System.Windows.Forms.Label();
             this.ScriptCheckBox = new System.Windows.Forms.CheckBox();
             this.ScriptTextBox = new System.Windows.Forms.TextBox();
             this.ScriptButton = new System.Windows.Forms.Button();
-            this.RemoteGroupBox = new System.Windows.Forms.GroupBox();
             this.HostsLabel = new System.Windows.Forms.Label();
-            this.CategoryLabel = new System.Windows.Forms.Label();
             this.CategoryListBox = new System.Windows.Forms.ListBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DeploymentGroupBox = new System.Windows.Forms.GroupBox();
             this.ToolGroupBox.SuspendLayout();
             this.RemoteGroupBox.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.DeploymentGroupBox.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Run
             // 
-            this.Run.Location = new System.Drawing.Point(488, 25);
+            this.Run.Location = new System.Drawing.Point(488, 34);
             this.Run.Name = "Run";
             this.Run.Size = new System.Drawing.Size(75, 23);
             this.Run.TabIndex = 4;
@@ -137,7 +137,7 @@
             // 
             // Export
             // 
-            this.Export.Location = new System.Drawing.Point(488, 50);
+            this.Export.Location = new System.Drawing.Point(488, 59);
             this.Export.Name = "Export";
             this.Export.Size = new System.Drawing.Size(75, 23);
             this.Export.TabIndex = 12;
@@ -212,9 +212,9 @@
             // 
             // ConnectButton
             // 
-            this.ConnectButton.Location = new System.Drawing.Point(229, 25);
+            this.ConnectButton.Location = new System.Drawing.Point(229, 34);
             this.ConnectButton.Name = "ConnectButton";
-            this.ConnectButton.Size = new System.Drawing.Size(75, 19);
+            this.ConnectButton.Size = new System.Drawing.Size(75, 23);
             this.ConnectButton.TabIndex = 21;
             this.ConnectButton.Text = "PuTTY";
             this.ConnectButton.UseVisualStyleBackColor = true;
@@ -223,7 +223,7 @@
             // IPLabel
             // 
             this.IPLabel.AutoSize = true;
-            this.IPLabel.Location = new System.Drawing.Point(11, 21);
+            this.IPLabel.Location = new System.Drawing.Point(11, 26);
             this.IPLabel.Name = "IPLabel";
             this.IPLabel.Size = new System.Drawing.Size(89, 20);
             this.IPLabel.TabIndex = 22;
@@ -231,7 +231,7 @@
             // 
             // IPTextBox
             // 
-            this.IPTextBox.Location = new System.Drawing.Point(79, 18);
+            this.IPTextBox.Location = new System.Drawing.Point(79, 22);
             this.IPTextBox.Name = "IPTextBox";
             this.IPTextBox.Size = new System.Drawing.Size(126, 26);
             this.IPTextBox.TabIndex = 23;
@@ -239,7 +239,7 @@
             // UsernameLabel
             // 
             this.UsernameLabel.AutoSize = true;
-            this.UsernameLabel.Location = new System.Drawing.Point(11, 44);
+            this.UsernameLabel.Location = new System.Drawing.Point(11, 53);
             this.UsernameLabel.Name = "UsernameLabel";
             this.UsernameLabel.Size = new System.Drawing.Size(87, 20);
             this.UsernameLabel.TabIndex = 26;
@@ -248,7 +248,7 @@
             // PasswordLabel
             // 
             this.PasswordLabel.AutoSize = true;
-            this.PasswordLabel.Location = new System.Drawing.Point(11, 67);
+            this.PasswordLabel.Location = new System.Drawing.Point(11, 82);
             this.PasswordLabel.Name = "PasswordLabel";
             this.PasswordLabel.Size = new System.Drawing.Size(82, 20);
             this.PasswordLabel.TabIndex = 27;
@@ -256,14 +256,14 @@
             // 
             // UsernameTextBox
             // 
-            this.UsernameTextBox.Location = new System.Drawing.Point(79, 41);
+            this.UsernameTextBox.Location = new System.Drawing.Point(79, 50);
             this.UsernameTextBox.Name = "UsernameTextBox";
             this.UsernameTextBox.Size = new System.Drawing.Size(126, 26);
             this.UsernameTextBox.TabIndex = 28;
             // 
             // PasswordTextBox
             // 
-            this.PasswordTextBox.Location = new System.Drawing.Point(79, 64);
+            this.PasswordTextBox.Location = new System.Drawing.Point(79, 79);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(126, 26);
@@ -271,9 +271,9 @@
             // 
             // ScpButton
             // 
-            this.ScpButton.Location = new System.Drawing.Point(229, 50);
+            this.ScpButton.Location = new System.Drawing.Point(229, 59);
             this.ScpButton.Name = "ScpButton";
-            this.ScpButton.Size = new System.Drawing.Size(75, 19);
+            this.ScpButton.Size = new System.Drawing.Size(75, 23);
             this.ScpButton.TabIndex = 30;
             this.ScpButton.Text = "WinSCP";
             this.ScpButton.UseVisualStyleBackColor = true;
@@ -299,6 +299,53 @@
             this.ToolGroupBox.TabIndex = 31;
             this.ToolGroupBox.TabStop = false;
             this.ToolGroupBox.Text = "Tool";
+            // 
+            // RemoteGroupBox
+            // 
+            this.RemoteGroupBox.Controls.Add(this.ConnectButton);
+            this.RemoteGroupBox.Controls.Add(this.ScpButton);
+            this.RemoteGroupBox.Controls.Add(this.PasswordLabel);
+            this.RemoteGroupBox.Controls.Add(this.PasswordTextBox);
+            this.RemoteGroupBox.Controls.Add(this.IPLabel);
+            this.RemoteGroupBox.Controls.Add(this.UsernameTextBox);
+            this.RemoteGroupBox.Controls.Add(this.IPTextBox);
+            this.RemoteGroupBox.Controls.Add(this.UsernameLabel);
+            this.RemoteGroupBox.Location = new System.Drawing.Point(12, 321);
+            this.RemoteGroupBox.Name = "RemoteGroupBox";
+            this.RemoteGroupBox.Size = new System.Drawing.Size(321, 112);
+            this.RemoteGroupBox.TabIndex = 32;
+            this.RemoteGroupBox.TabStop = false;
+            this.RemoteGroupBox.Text = "Remote Connection";
+            // 
+            // CategoryLabel
+            // 
+            this.CategoryLabel.AutoSize = true;
+            this.CategoryLabel.Location = new System.Drawing.Point(8, 22);
+            this.CategoryLabel.Name = "CategoryLabel";
+            this.CategoryLabel.Size = new System.Drawing.Size(77, 20);
+            this.CategoryLabel.TabIndex = 21;
+            this.CategoryLabel.Text = "Category:";
+            // 
+            // DeploymentGroupBox
+            // 
+            this.DeploymentGroupBox.Controls.Add(this.ScriptLabel);
+            this.DeploymentGroupBox.Controls.Add(this.ClientTextBox);
+            this.DeploymentGroupBox.Controls.Add(this.ScriptCheckBox);
+            this.DeploymentGroupBox.Controls.Add(this.HostsButton);
+            this.DeploymentGroupBox.Controls.Add(this.ScriptTextBox);
+            this.DeploymentGroupBox.Controls.Add(this.HostsTextBox);
+            this.DeploymentGroupBox.Controls.Add(this.ScriptButton);
+            this.DeploymentGroupBox.Controls.Add(this.MultiHostCheckBox);
+            this.DeploymentGroupBox.Controls.Add(this.Export);
+            this.DeploymentGroupBox.Controls.Add(this.HostsLabel);
+            this.DeploymentGroupBox.Controls.Add(this.Run);
+            this.DeploymentGroupBox.Controls.Add(this.ClientButton);
+            this.DeploymentGroupBox.Location = new System.Drawing.Point(349, 321);
+            this.DeploymentGroupBox.Name = "DeploymentGroupBox";
+            this.DeploymentGroupBox.Size = new System.Drawing.Size(575, 112);
+            this.DeploymentGroupBox.TabIndex = 34;
+            this.DeploymentGroupBox.TabStop = false;
+            this.DeploymentGroupBox.Text = "Deployment";
             // 
             // ScriptLabel
             // 
@@ -339,23 +386,6 @@
             this.ScriptButton.UseVisualStyleBackColor = true;
             this.ScriptButton.Click += new System.EventHandler(this.ScriptButton_Click);
             // 
-            // RemoteGroupBox
-            // 
-            this.RemoteGroupBox.Controls.Add(this.ConnectButton);
-            this.RemoteGroupBox.Controls.Add(this.ScpButton);
-            this.RemoteGroupBox.Controls.Add(this.PasswordLabel);
-            this.RemoteGroupBox.Controls.Add(this.PasswordTextBox);
-            this.RemoteGroupBox.Controls.Add(this.IPLabel);
-            this.RemoteGroupBox.Controls.Add(this.UsernameTextBox);
-            this.RemoteGroupBox.Controls.Add(this.IPTextBox);
-            this.RemoteGroupBox.Controls.Add(this.UsernameLabel);
-            this.RemoteGroupBox.Location = new System.Drawing.Point(12, 321);
-            this.RemoteGroupBox.Name = "RemoteGroupBox";
-            this.RemoteGroupBox.Size = new System.Drawing.Size(321, 112);
-            this.RemoteGroupBox.TabIndex = 32;
-            this.RemoteGroupBox.TabStop = false;
-            this.RemoteGroupBox.Text = "Remote Connection";
-            // 
             // HostsLabel
             // 
             this.HostsLabel.AutoSize = true;
@@ -364,15 +394,6 @@
             this.HostsLabel.Size = new System.Drawing.Size(113, 20);
             this.HostsLabel.TabIndex = 22;
             this.HostsLabel.Text = "Use Hosts File";
-            // 
-            // CategoryLabel
-            // 
-            this.CategoryLabel.AutoSize = true;
-            this.CategoryLabel.Location = new System.Drawing.Point(8, 22);
-            this.CategoryLabel.Name = "CategoryLabel";
-            this.CategoryLabel.Size = new System.Drawing.Size(77, 20);
-            this.CategoryLabel.TabIndex = 21;
-            this.CategoryLabel.Text = "Category:";
             // 
             // CategoryListBox
             // 
@@ -410,27 +431,6 @@
             this.selectFileToolStripMenuItem.Text = "Select XML File...";
             this.selectFileToolStripMenuItem.Click += new System.EventHandler(this.selectFileToolStripMenuItem_Click);
             // 
-            // DeploymentGroupBox
-            // 
-            this.DeploymentGroupBox.Controls.Add(this.ScriptLabel);
-            this.DeploymentGroupBox.Controls.Add(this.ClientTextBox);
-            this.DeploymentGroupBox.Controls.Add(this.ScriptCheckBox);
-            this.DeploymentGroupBox.Controls.Add(this.HostsButton);
-            this.DeploymentGroupBox.Controls.Add(this.ScriptTextBox);
-            this.DeploymentGroupBox.Controls.Add(this.HostsTextBox);
-            this.DeploymentGroupBox.Controls.Add(this.ScriptButton);
-            this.DeploymentGroupBox.Controls.Add(this.MultiHostCheckBox);
-            this.DeploymentGroupBox.Controls.Add(this.Export);
-            this.DeploymentGroupBox.Controls.Add(this.HostsLabel);
-            this.DeploymentGroupBox.Controls.Add(this.Run);
-            this.DeploymentGroupBox.Controls.Add(this.ClientButton);
-            this.DeploymentGroupBox.Location = new System.Drawing.Point(349, 321);
-            this.DeploymentGroupBox.Name = "DeploymentGroupBox";
-            this.DeploymentGroupBox.Size = new System.Drawing.Size(575, 112);
-            this.DeploymentGroupBox.TabIndex = 34;
-            this.DeploymentGroupBox.TabStop = false;
-            this.DeploymentGroupBox.Text = "Deployment";
-            // 
             // CrowesNest
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
@@ -447,10 +447,10 @@
             this.ToolGroupBox.PerformLayout();
             this.RemoteGroupBox.ResumeLayout(false);
             this.RemoteGroupBox.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.DeploymentGroupBox.ResumeLayout(false);
             this.DeploymentGroupBox.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -33,8 +33,6 @@ namespace CrowesNest
 
         public string Client { get; set; } = @"Z:\XYZ";
         public string DeployString { get; set; }
-        
-        
 
         public HackTool()
         {
@@ -134,7 +132,7 @@ namespace CrowesNest
             
             catch (Exception)
             {
-                MessageBox.Show("Error:\nProblem exporting to C:\\Tools\\CrowesNest\\Bash or C:\\Tools\\CrowesNest\\Batch \nMake sure directories exist and Hosts file is selected.");
+                MessageBox.Show("Problem exporting. Make sure Hosts file and/or Script File is selected.");
             }
 
         }
@@ -151,7 +149,7 @@ namespace CrowesNest
 
             catch (Exception)
             {
-                MessageBox.Show("Error:\nProblem exporting to C:\\Tools\\CrowesNest\\Bash or C:\\Tools\\CrowesNest\\Batch \nMake sure directories exist and Hosts file is selected.");
+                MessageBox.Show("Problem exporting. Make sure Hosts file and / or Script File is selected.");
             }
 
         }
@@ -201,7 +199,7 @@ namespace CrowesNest
             }
             catch (Exception)
             {
-                MessageBox.Show("Error:\nProblem exporting to C:\\Tools\\CrowesNest\\Bash or C:\\Tools\\CrowesNest\\Batch \nMake sure directories exist and Hosts file is selected.");
+                MessageBox.Show("Problem exporting. Make sure Hosts file and/or Script File is selected.");
             }
         }
         public void ExportMultiCommands(string hostFile, string scriptOuputFile)
@@ -221,7 +219,7 @@ namespace CrowesNest
             }
             catch (Exception)
             {
-                MessageBox.Show("Error:\nProblem exporting to C:\\Tools\\CrowesNest\\Bash or C:\\Tools\\CrowesNest\\Batch \nMake sure directories exist and Hosts file is selected.");
+                MessageBox.Show("Problem exporting. Make sure Hosts file and/or Script File is selected.");
             }
         }
 
