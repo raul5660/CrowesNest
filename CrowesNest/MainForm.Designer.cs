@@ -85,7 +85,7 @@
             // 
             this.SyntaxTextBox.Location = new System.Drawing.Point(312, 45);
             this.SyntaxTextBox.Name = "SyntaxTextBox";
-            this.SyntaxTextBox.Size = new System.Drawing.Size(612, 103);
+            this.SyntaxTextBox.Size = new System.Drawing.Size(612, 115);
             this.SyntaxTextBox.TabIndex = 6;
             this.SyntaxTextBox.Text = "";
             // 
@@ -340,9 +340,9 @@
             this.DeploymentGroupBox.Controls.Add(this.HostsLabel);
             this.DeploymentGroupBox.Controls.Add(this.Run);
             this.DeploymentGroupBox.Controls.Add(this.ClientButton);
-            this.DeploymentGroupBox.Location = new System.Drawing.Point(349, 321);
+            this.DeploymentGroupBox.Location = new System.Drawing.Point(339, 321);
             this.DeploymentGroupBox.Name = "DeploymentGroupBox";
-            this.DeploymentGroupBox.Size = new System.Drawing.Size(575, 112);
+            this.DeploymentGroupBox.Size = new System.Drawing.Size(585, 112);
             this.DeploymentGroupBox.TabIndex = 34;
             this.DeploymentGroupBox.TabStop = false;
             this.DeploymentGroupBox.Text = "Deployment";
