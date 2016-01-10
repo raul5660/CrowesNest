@@ -77,7 +77,7 @@
             this.Run.Name = "Run";
             this.Run.Size = new System.Drawing.Size(75, 23);
             this.Run.TabIndex = 4;
-            this.Run.Text = "Run";
+            this.Run.Text = "&Run";
             this.Run.UseVisualStyleBackColor = true;
             this.Run.Click += new System.EventHandler(this.Run_Click);
             // 
@@ -141,7 +141,7 @@
             this.Export.Name = "Export";
             this.Export.Size = new System.Drawing.Size(75, 23);
             this.Export.TabIndex = 12;
-            this.Export.Text = "Export";
+            this.Export.Text = "&Export";
             this.Export.UseVisualStyleBackColor = true;
             this.Export.Click += new System.EventHandler(this.Export_Click);
             // 
@@ -216,7 +216,7 @@
             this.ConnectButton.Name = "ConnectButton";
             this.ConnectButton.Size = new System.Drawing.Size(75, 23);
             this.ConnectButton.TabIndex = 21;
-            this.ConnectButton.Text = "PuTTY";
+            this.ConnectButton.Text = "&PuTTY";
             this.ConnectButton.UseVisualStyleBackColor = true;
             this.ConnectButton.Click += new System.EventHandler(this.ConnectButton_Click);
             // 
@@ -275,7 +275,7 @@
             this.ScpButton.Name = "ScpButton";
             this.ScpButton.Size = new System.Drawing.Size(75, 23);
             this.ScpButton.TabIndex = 30;
-            this.ScpButton.Text = "WinSCP";
+            this.ScpButton.Text = "&WinSCP";
             this.ScpButton.UseVisualStyleBackColor = true;
             this.ScpButton.Click += new System.EventHandler(this.ScpButton_Click);
             // 
@@ -422,7 +422,7 @@
             this.selectFileToolStripMenuItem});
             this.configureToolStripMenuItem.Name = "configureToolStripMenuItem";
             this.configureToolStripMenuItem.Size = new System.Drawing.Size(102, 29);
-            this.configureToolStripMenuItem.Text = "Configure";
+            this.configureToolStripMenuItem.Text = "&Configure";
             // 
             // selectFileToolStripMenuItem
             // 
