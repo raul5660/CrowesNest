@@ -39,7 +39,7 @@ namespace CrowesNest
 
             if (filter != "All")
             {
-                IEnumerable<HackTool> filteredHackToolList = tools.HackToolList.Where(tool => tool.Category == filter);
+                IEnumerable<HackTool> filteredHackToolList = tools.HackToolList.Where( (tool => tool.Category == filter);
                 //stringList = filteredStringList.ToList<string>()
 
                 foreach (HackTool ht in filteredHackToolList)
