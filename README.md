@@ -54,7 +54,8 @@ Deploying the selected tool is as easy as hitting run.
 * If tool is marked "Windows" on the OperatingSystem XML attribute CrowesNest will deploy a local instance in a seperate process from its allocated Virtual Memory. This means that a running tool will not be affected if the CrowesNest applications is terminated.
 * If tool is marked "Linux" on the OperatingSystem XML attribute CrowesNest will attempt to connect to the remote machine indicated in the "Remote Connection" section. If no connection details are given, it will ask for them without deploying tool. If connection details are present. CrowesNest will run the tool on the remote machine and give you a shell to monitor.
 * It important to note that you can type in the "syntax" text box to ammend commands on the fly. This means you can clear the entire pre-saved syntax and use the textbox like a shell if you please. 
-![CrowesNest Overview](CrowesNestScreenshots/crowesNestWindowsPingViewRunning.JPG?raw=true)
+![CrowesNest Overview](CrowesNestScreenshots/2.0/pingWindowsScratch.JPG?raw=true)
+![CrowesNest Overview](CrowesNestScreenshots/2.0/pingLinux.JPG?raw=true)
 
 ###Script Generation - The "Export" button.
 Export tools to scripts using the export button.
@@ -65,11 +66,13 @@ Export tools to scripts using the export button.
 * Scripts will be named with the name of the tool and their appropriate OS extension. 
 * If export button is hit more then once for the same tool, the script will be overwritten.
 ![CrowesNest Overview](CrowesNestScreenshots/crowesNestExportWindows2.JPG?raw=true)
+![CrowesNest Overview](CrowesNestScreenshots/crowesNestExportLinux.JPG?raw=true)
+![CrowesNest Overview](CrowesNestScreenshots/crowesNestExportLinux2.JPG?raw=true}
 
 ####Multiple Hosts (Hosts File selected)
 If a tool does not support multiple hosts nativly, like nmaps -iL option, CrowesNest makes managing single host tools much for flexible by implementing scalability.
 * Click the checkbox and select an IP input file with IP address seperated by new line.
-![CrowesNest Overview](CrowesNestScreenshots/crowesNestExportWindows.JPG?raw=true)
+![CrowesNest Overview](CrowesNestScreenshots/2.0/ipInputFile.JPG?raw=true)
 
 * When configuring a single host tool, place the string pattern x.x.x.x in the ip location. Any instance of this string pattern will be replaced with the line indicated in the file. With the host file selected, hit export. A script will be generated.
 ![CrowesNest Overview](CrowesNestScreenshots/crowesNestExportWindows3.JPG?raw=true)
@@ -90,26 +93,26 @@ CorwesNest now supports script generation capabilities for combining tools.
 ###Folder Selection - The "Client Folder" button.
 Much like the scalable script generation functionality. CrowesNest allows you to select a directory for command that support output options or for use with standard output redirection.
 * When configuring a tool in which you want to use the folder selection feature, add the string pattern "Z:\XYZ" to its syntax.
-![CrowesNest Overview](CrowesNestScreenshots/crowesNestClientFolder.JPG?raw=true)
+![CrowesNest Overview](CrowesNestScreenshots/2.0/clientFolder.JPG?raw=true)
 
 * When selecting a folder, the Z:XYZ patter will be replaced with the directory you chose, much like the x.x.x.x pattern.
-![CrowesNest Overview](CrowesNestScreenshots/crowesNestClientFolder2.JPG?raw=true)
+![CrowesNest Overview](CrowesNestScreenshots/2.0/ClientFolder2.JPG?raw=true)
 
-![CrowesNest Overview](CrowesNestScreenshots/crowesNestClientFolder3.JPG?raw=true)
+![CrowesNest Overview](CrowesNestScreenshots/2.0/ClientFolder3.JPG?raw=true)
 
 * The syntax box wont updated automatically by design. I chose this so every tool thats loaded into CrowesNest will update with the client folder when you select it, so to update the syntax text box, just cick off the tool then back on.
 
 ###Using Putty SSH - The "PuTTY" button.
 CrowesNest will launch a SSH shell with a single click! Allowing you remote interaction.
 * If no connection details are given, it will ask for them. If connection details are present. CrowesNest will launch a remote shell.
-![CrowesNest Overview](CrowesNestScreenshots/crowesNestPuttyIntegration.JPG?raw=true)
+![CrowesNest Overview](CrowesNestScreenshots/2.0/putty.JPG?raw=true)
 
 * This shell is a seperated process same as tools that are deployed, closing crowesNest will not effect the shell.
 
 ###Using WinSCP SFTP - The "WinSCP" Button
 CrowesNest will launch a WinSCP commander with a single click! Allowing you to move files back and forth on the fly.
 * If no connection details are given, it will ask for them. If connection details are present. CrowesNest will launch a remote shell.
-![CrowesNest Overview](CrowesNestScreenshots/crowesNestWinSCPIntegration.JPG?raw=true)
+![CrowesNest Overview](CrowesNestScreenshots/2.0/winscp.JPG?raw=true)
 
 * This session is a seperated process same as tools that are deployed, closing crowesNest will not effect the shell.
 
