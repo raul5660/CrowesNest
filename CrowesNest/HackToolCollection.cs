@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml;
 using System.Xml.Serialization;
 using System.Windows.Forms;
 
@@ -60,8 +61,15 @@ namespace CrowesNest
                     return tools;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                if (e.InnerException.Message == "Root element is missing.")
+                {
+                    using (StreamWriter outputFile = new StreamWriter(location))
+                    {
+                        outputFile.Write("<HackToolCollection><HackToolList><HackTool><Name></Name><Location></Location><Arguments></Arguments><OperatingSystem></OperatingSystem><Notes></Notes><Category></Category></HackTool></HackToolList></HackToolCollection>");
+                    }
+                }
                 MessageBox.Show("Problem in C:\\tools\\CrowesNest\\cn_config.xml\n1. If directory or file did not exist, we created it for you.\n2. Confirm file contains proper XML configuration.\n3. Restart application.");
                 System.Environment.Exit(1);
             }
