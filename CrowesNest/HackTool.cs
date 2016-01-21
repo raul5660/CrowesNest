@@ -40,20 +40,23 @@ namespace CrowesNest
 
 
         //Created needed syntax then deploys the tool.
-        public void Deploy(string ip, string username, string password)
+        public string Deploy(string ip, string username, string password)
         {
             if (this.OperatingSystem.ToLower() == "windows")
             {
                 try
-                {   // wrap binaries in cmd.exe /K to keep cmd.exe open after completion of process.
-                    string deployCommand =$"/K \"{this.DeployString}\"";
-                    ProcessStartInfo psInfo = new ProcessStartInfo("cmd.exe", deployCommand);
-                    psInfo.UseShellExecute = true;
-                    //psInfo.RedirectStandardOutput = true;
+                {   
+                    string deployCommand =$"/c \"{this.DeployString}\"";
+                    Process process = new Process();
+                    ProcessStartInfo startInfo = new ProcessStartInfo("cmd",deployCommand);
+                    startInfo.RedirectStandardOutput = true;
+                    startInfo.UseShellExecute = false;
+                    startInfo.CreateNoWindow = true;
+                    process.StartInfo = startInfo;
+                    process.Start();
+                    string results = process.StandardOutput.ReadToEnd();
+                    return results;
 
-                    using (Process exeProcess = Process.Start(psInfo)) { }
-                    
-                    
                 }
                 catch (Exception)
                 {
@@ -71,7 +74,7 @@ namespace CrowesNest
                         ProcessStartInfo psInfo = new ProcessStartInfo("cmd.exe", deployCommand);
                         psInfo.UseShellExecute = false;
 
-                        using (Process exeProcess = Process.Start(psInfo)) { } 
+                        using (Process exeProcess = Process.Start(psInfo)) { }
                     }
                     catch (Exception)
                     {
@@ -84,7 +87,7 @@ namespace CrowesNest
                     MessageBox.Show("Please provide connection information!");
                 }
             }
-           
+            return "";
         }
 
         private void ExeProcess_OutputDataReceived(object sender, DataReceivedEventArgs e)

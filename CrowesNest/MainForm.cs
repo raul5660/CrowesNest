@@ -104,7 +104,9 @@ namespace CrowesNest
             else
             {
                 tools[(string)ToolsListBox.SelectedItem].DeployString = SyntaxTextBox.Text;
-                tools[(string)ToolsListBox.SelectedItem].Deploy(IPTextBox.Text, UsernameTextBox.Text,PasswordTextBox.Text);
+                //OutputTextBox.ResetText();
+                OutputTextBox.AppendText(Line());
+                OutputTextBox.AppendText(tools[(string)ToolsListBox.SelectedItem].Deploy(IPTextBox.Text, UsernameTextBox.Text, PasswordTextBox.Text));
             }   
         }
 
@@ -272,6 +274,16 @@ namespace CrowesNest
                 CategoryListBox.DataSource = GetCategories();
                 ToolsListBox.DataSource = GetTools((string)CategoryListBox.SelectedItem);
             }
+        }
+
+        private string Line()
+        {
+            string tmp = "\n";
+            for(int i =0; i < 100; i++)
+            {
+                tmp += "=";
+            }
+            return tmp;
         }
     }
 }

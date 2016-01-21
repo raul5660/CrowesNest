@@ -65,10 +65,13 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OutputGroup = new System.Windows.Forms.GroupBox();
+            this.OutputTextBox = new System.Windows.Forms.RichTextBox();
             this.ToolGroupBox.SuspendLayout();
             this.RemoteGroupBox.SuspendLayout();
             this.DeploymentGroupBox.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.OutputGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // Run
@@ -94,7 +97,7 @@
             this.ToolLabel.AutoSize = true;
             this.ToolLabel.Location = new System.Drawing.Point(162, 22);
             this.ToolLabel.Name = "ToolLabel";
-            this.ToolLabel.Size = new System.Drawing.Size(55, 20);
+            this.ToolLabel.Size = new System.Drawing.Size(38, 13);
             this.ToolLabel.TabIndex = 7;
             this.ToolLabel.Text = "Name:";
             // 
@@ -103,14 +106,13 @@
             this.SyntaxLabel.AutoSize = true;
             this.SyntaxLabel.Location = new System.Drawing.Point(312, 22);
             this.SyntaxLabel.Name = "SyntaxLabel";
-            this.SyntaxLabel.Size = new System.Drawing.Size(61, 20);
+            this.SyntaxLabel.Size = new System.Drawing.Size(42, 13);
             this.SyntaxLabel.TabIndex = 8;
             this.SyntaxLabel.Text = "Syntax:";
             // 
             // ToolsListBox
             // 
             this.ToolsListBox.FormattingEnabled = true;
-            this.ToolsListBox.ItemHeight = 20;
             this.ToolsListBox.Location = new System.Drawing.Point(162, 45);
             this.ToolsListBox.Name = "ToolsListBox";
             this.ToolsListBox.Size = new System.Drawing.Size(144, 264);
@@ -131,7 +133,7 @@
             // 
             this.ClientTextBox.Location = new System.Drawing.Point(111, 22);
             this.ClientTextBox.Name = "ClientTextBox";
-            this.ClientTextBox.Size = new System.Drawing.Size(188, 26);
+            this.ClientTextBox.Size = new System.Drawing.Size(188, 20);
             this.ClientTextBox.TabIndex = 11;
             this.ClientTextBox.Text = "Z:\\XYZ";
             // 
@@ -150,7 +152,7 @@
             this.MultiHostCheckBox.AutoSize = true;
             this.MultiHostCheckBox.Location = new System.Drawing.Point(304, 52);
             this.MultiHostCheckBox.Name = "MultiHostCheckBox";
-            this.MultiHostCheckBox.Size = new System.Drawing.Size(22, 21);
+            this.MultiHostCheckBox.Size = new System.Drawing.Size(15, 14);
             this.MultiHostCheckBox.TabIndex = 13;
             this.MultiHostCheckBox.UseVisualStyleBackColor = true;
             this.MultiHostCheckBox.CheckedChanged += new System.EventHandler(this.MultiHostCheckBox_CheckedChanged);
@@ -172,7 +174,7 @@
             this.HostsTextBox.Location = new System.Drawing.Point(111, 50);
             this.HostsTextBox.Name = "HostsTextBox";
             this.HostsTextBox.ReadOnly = true;
-            this.HostsTextBox.Size = new System.Drawing.Size(187, 26);
+            this.HostsTextBox.Size = new System.Drawing.Size(187, 20);
             this.HostsTextBox.TabIndex = 15;
             // 
             // OSLabel
@@ -180,7 +182,7 @@
             this.OSLabel.AutoSize = true;
             this.OSLabel.Location = new System.Drawing.Point(743, 22);
             this.OSLabel.Name = "OSLabel";
-            this.OSLabel.Size = new System.Drawing.Size(140, 20);
+            this.OSLabel.Size = new System.Drawing.Size(93, 13);
             this.OSLabel.TabIndex = 16;
             this.OSLabel.Text = "Operating System:";
             // 
@@ -189,7 +191,7 @@
             this.OSValueLabel.AutoSize = true;
             this.OSValueLabel.Location = new System.Drawing.Point(880, 22);
             this.OSValueLabel.Name = "OSValueLabel";
-            this.OSValueLabel.Size = new System.Drawing.Size(32, 20);
+            this.OSValueLabel.Size = new System.Drawing.Size(22, 13);
             this.OSValueLabel.TabIndex = 17;
             this.OSValueLabel.Text = "OS";
             // 
@@ -198,7 +200,7 @@
             this.NotesLabel.AutoSize = true;
             this.NotesLabel.Location = new System.Drawing.Point(312, 163);
             this.NotesLabel.Name = "NotesLabel";
-            this.NotesLabel.Size = new System.Drawing.Size(55, 20);
+            this.NotesLabel.Size = new System.Drawing.Size(38, 13);
             this.NotesLabel.TabIndex = 18;
             this.NotesLabel.Text = "Notes:";
             // 
@@ -225,7 +227,7 @@
             this.IPLabel.AutoSize = true;
             this.IPLabel.Location = new System.Drawing.Point(11, 26);
             this.IPLabel.Name = "IPLabel";
-            this.IPLabel.Size = new System.Drawing.Size(89, 20);
+            this.IPLabel.Size = new System.Drawing.Size(60, 13);
             this.IPLabel.TabIndex = 22;
             this.IPLabel.Text = "Remote IP:";
             // 
@@ -233,7 +235,7 @@
             // 
             this.IPTextBox.Location = new System.Drawing.Point(79, 22);
             this.IPTextBox.Name = "IPTextBox";
-            this.IPTextBox.Size = new System.Drawing.Size(126, 26);
+            this.IPTextBox.Size = new System.Drawing.Size(126, 20);
             this.IPTextBox.TabIndex = 23;
             // 
             // UsernameLabel
@@ -241,7 +243,7 @@
             this.UsernameLabel.AutoSize = true;
             this.UsernameLabel.Location = new System.Drawing.Point(11, 53);
             this.UsernameLabel.Name = "UsernameLabel";
-            this.UsernameLabel.Size = new System.Drawing.Size(87, 20);
+            this.UsernameLabel.Size = new System.Drawing.Size(58, 13);
             this.UsernameLabel.TabIndex = 26;
             this.UsernameLabel.Text = "Username:";
             // 
@@ -250,7 +252,7 @@
             this.PasswordLabel.AutoSize = true;
             this.PasswordLabel.Location = new System.Drawing.Point(11, 82);
             this.PasswordLabel.Name = "PasswordLabel";
-            this.PasswordLabel.Size = new System.Drawing.Size(82, 20);
+            this.PasswordLabel.Size = new System.Drawing.Size(56, 13);
             this.PasswordLabel.TabIndex = 27;
             this.PasswordLabel.Text = "Password:";
             // 
@@ -258,7 +260,7 @@
             // 
             this.UsernameTextBox.Location = new System.Drawing.Point(79, 50);
             this.UsernameTextBox.Name = "UsernameTextBox";
-            this.UsernameTextBox.Size = new System.Drawing.Size(126, 26);
+            this.UsernameTextBox.Size = new System.Drawing.Size(126, 20);
             this.UsernameTextBox.TabIndex = 28;
             // 
             // PasswordTextBox
@@ -266,7 +268,7 @@
             this.PasswordTextBox.Location = new System.Drawing.Point(79, 79);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '*';
-            this.PasswordTextBox.Size = new System.Drawing.Size(126, 26);
+            this.PasswordTextBox.Size = new System.Drawing.Size(126, 20);
             this.PasswordTextBox.TabIndex = 29;
             // 
             // ScpButton
@@ -322,7 +324,7 @@
             this.CategoryLabel.AutoSize = true;
             this.CategoryLabel.Location = new System.Drawing.Point(8, 22);
             this.CategoryLabel.Name = "CategoryLabel";
-            this.CategoryLabel.Size = new System.Drawing.Size(77, 20);
+            this.CategoryLabel.Size = new System.Drawing.Size(52, 13);
             this.CategoryLabel.TabIndex = 21;
             this.CategoryLabel.Text = "Category:";
             // 
@@ -352,7 +354,7 @@
             this.ScriptLabel.AutoSize = true;
             this.ScriptLabel.Location = new System.Drawing.Point(320, 82);
             this.ScriptLabel.Name = "ScriptLabel";
-            this.ScriptLabel.Size = new System.Drawing.Size(183, 20);
+            this.ScriptLabel.Size = new System.Drawing.Size(123, 13);
             this.ScriptLabel.TabIndex = 36;
             this.ScriptLabel.Text = "Use Cross Tool Scripting";
             // 
@@ -361,7 +363,7 @@
             this.ScriptCheckBox.AutoSize = true;
             this.ScriptCheckBox.Location = new System.Drawing.Point(304, 81);
             this.ScriptCheckBox.Name = "ScriptCheckBox";
-            this.ScriptCheckBox.Size = new System.Drawing.Size(22, 21);
+            this.ScriptCheckBox.Size = new System.Drawing.Size(15, 14);
             this.ScriptCheckBox.TabIndex = 35;
             this.ScriptCheckBox.UseVisualStyleBackColor = true;
             this.ScriptCheckBox.CheckedChanged += new System.EventHandler(this.ScriptCheckBox_CheckedChanged);
@@ -372,7 +374,7 @@
             this.ScriptTextBox.Location = new System.Drawing.Point(111, 79);
             this.ScriptTextBox.Name = "ScriptTextBox";
             this.ScriptTextBox.ReadOnly = true;
-            this.ScriptTextBox.Size = new System.Drawing.Size(187, 26);
+            this.ScriptTextBox.Size = new System.Drawing.Size(187, 20);
             this.ScriptTextBox.TabIndex = 34;
             // 
             // ScriptButton
@@ -391,14 +393,13 @@
             this.HostsLabel.AutoSize = true;
             this.HostsLabel.Location = new System.Drawing.Point(320, 53);
             this.HostsLabel.Name = "HostsLabel";
-            this.HostsLabel.Size = new System.Drawing.Size(113, 20);
+            this.HostsLabel.Size = new System.Drawing.Size(75, 13);
             this.HostsLabel.TabIndex = 22;
             this.HostsLabel.Text = "Use Hosts File";
             // 
             // CategoryListBox
             // 
             this.CategoryListBox.FormattingEnabled = true;
-            this.CategoryListBox.ItemHeight = 20;
             this.CategoryListBox.Location = new System.Drawing.Point(12, 45);
             this.CategoryListBox.Name = "CategoryListBox";
             this.CategoryListBox.Size = new System.Drawing.Size(144, 264);
@@ -412,7 +413,7 @@
             this.configureToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(961, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(961, 24);
             this.menuStrip1.TabIndex = 33;
             this.menuStrip1.Text = "menuStrip";
             // 
@@ -421,20 +422,40 @@
             this.configureToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.selectFileToolStripMenuItem});
             this.configureToolStripMenuItem.Name = "configureToolStripMenuItem";
-            this.configureToolStripMenuItem.Size = new System.Drawing.Size(102, 29);
+            this.configureToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.configureToolStripMenuItem.Text = "&Configure";
             // 
             // selectFileToolStripMenuItem
             // 
             this.selectFileToolStripMenuItem.Name = "selectFileToolStripMenuItem";
-            this.selectFileToolStripMenuItem.Size = new System.Drawing.Size(226, 30);
+            this.selectFileToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.selectFileToolStripMenuItem.Text = "Select XML File...";
             this.selectFileToolStripMenuItem.Click += new System.EventHandler(this.selectFileToolStripMenuItem_Click);
+            // 
+            // OutputGroup
+            // 
+            this.OutputGroup.Controls.Add(this.OutputTextBox);
+            this.OutputGroup.Location = new System.Drawing.Point(9, 476);
+            this.OutputGroup.Name = "OutputGroup";
+            this.OutputGroup.Size = new System.Drawing.Size(937, 212);
+            this.OutputGroup.TabIndex = 34;
+            this.OutputGroup.TabStop = false;
+            this.OutputGroup.Text = "Output";
+            // 
+            // OutputTextBox
+            // 
+            this.OutputTextBox.Location = new System.Drawing.Point(12, 19);
+            this.OutputTextBox.Name = "OutputTextBox";
+            this.OutputTextBox.ReadOnly = true;
+            this.OutputTextBox.Size = new System.Drawing.Size(912, 178);
+            this.OutputTextBox.TabIndex = 0;
+            this.OutputTextBox.Text = "";
             // 
             // CrowesNest
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(961, 478);
+            this.ClientSize = new System.Drawing.Size(961, 700);
+            this.Controls.Add(this.OutputGroup);
             this.Controls.Add(this.ToolGroupBox);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -451,6 +472,7 @@
             this.DeploymentGroupBox.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.OutputGroup.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -493,6 +515,8 @@
         private System.Windows.Forms.TextBox ScriptTextBox;
         private System.Windows.Forms.Button ScriptButton;
         private System.Windows.Forms.GroupBox DeploymentGroupBox;
+        private System.Windows.Forms.GroupBox OutputGroup;
+        private System.Windows.Forms.RichTextBox OutputTextBox;
     }
 }
 
