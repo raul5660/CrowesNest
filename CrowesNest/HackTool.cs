@@ -3,7 +3,6 @@ using System.IO;
 using System.Diagnostics;
 using System.Xml.Serialization;
 using System.Windows.Forms;
-using System.Text;
 
 
 namespace CrowesNest
