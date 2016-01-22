@@ -77,6 +77,7 @@ namespace CrowesNest
                     catch (Exception)
                     {
                         MessageBox.Show("Error: Cannot deploy tool.");
+
                     }
 
                 }
