@@ -11,6 +11,7 @@ namespace CrowesNest
     {
         //Deserialize XML configuratio for tools into custom collection of HackTools C:\tools\CrowesNest\cn_config.xml
         private static HackToolCollection tools = HackToolCollection.GetConfiguration();
+        private static bool check = false;
 
         public CrowesNest()
         {
@@ -105,7 +106,9 @@ namespace CrowesNest
                     string[] inputIps = File.ReadAllLines(HostsTextBox.Text);
                     foreach (string ip in inputIps)
                     {
+                        tools[(string)ToolsListBox.SelectedItem].Client = ClientTextBox.Text;
                         tools[(string)ToolsListBox.SelectedItem].DeployString = SyntaxTextBox.Text;
+                        tools[(string)ToolsListBox.SelectedItem].AutoLog = AutoLoggingcheckBox.Checked;
                         OutputTextBox.AppendText(Line());
                         OutputTextBox.AppendText(tools[(string)ToolsListBox.SelectedItem].Deploy(ip, UsernameTextBox.Text, PasswordTextBox.Text));
                     }
@@ -117,7 +120,9 @@ namespace CrowesNest
             }
             else
             {
+                tools[(string)ToolsListBox.SelectedItem].Client = ClientTextBox.Text;
                 tools[(string)ToolsListBox.SelectedItem].DeployString = SyntaxTextBox.Text;
+                tools[(string)ToolsListBox.SelectedItem].AutoLog = AutoLoggingcheckBox.Checked;
                 OutputTextBox.AppendText(Line());
                 OutputTextBox.AppendText(tools[(string)ToolsListBox.SelectedItem].Deploy(IPTextBox.Text, UsernameTextBox.Text, PasswordTextBox.Text));
             }
@@ -302,7 +307,13 @@ namespace CrowesNest
 
         private void AutoLoggingcheckBox_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (!Directory.Exists(ClientTextBox.Text) && !check)
+            {
+                check = true;
+                MessageBox.Show(ClientTextBox.Text + " doesn't exist!");
+                AutoLoggingcheckBox.CheckState = CheckState.Unchecked;
+            }
+            check = false;
         }
     }
 }

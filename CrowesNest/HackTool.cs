@@ -33,6 +33,7 @@ namespace CrowesNest
 
         public string Client { get; set; } = @"Z:\XYZ";
         public string DeployString { get; set; }
+        public bool AutoLog { get; set; }
 
         public HackTool()
         {
@@ -59,6 +60,9 @@ namespace CrowesNest
         //Created needed syntax then deploys the tool.
         public string Deploy(string ip, string username, string password)
         {
+            Regex rgx = new Regex(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b");
+            string TemporaryFileName = "";
+            string Output = "";
             if (this.OperatingSystem.ToLower() == "windows")
             {
                 try
@@ -68,19 +72,33 @@ namespace CrowesNest
                     {
                         StringBuilder tmp = new StringBuilder();
                         tmp.Append("/c");
-                        Regex rgx = new Regex(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b");
                         tmp.Append(" \"");
-                        tmp.Append(rgx.Replace(this.DeployString,ip));
+                        TemporaryFileName = rgx.Replace(this.DeployString, ip);
+                        tmp.Append(TemporaryFileName);
                         tmp.Append("\"");
                         deployCommand = tmp.ToString();
                     }
                     else
                     {
+                        TemporaryFileName = this.DeployString;
                         deployCommand = $"/c \"{this.DeployString}\"";
                     }
                     if (deployCommand != "")
                     {
-                        return RunCommand(deployCommand);
+                        if (this.AutoLog)
+                        {
+                            TemporaryFileName = TemporaryFileName.Replace("/c", "").Replace(" ", "_").Replace(" \"", "").Replace("\"", "");
+                            TemporaryFileName += ".txt";
+                            Output = RunCommand(deployCommand);
+                            if (!File.Exists(this.Client + @"\" + TemporaryFileName))
+                            {
+                                using (StreamWriter OutputFile = new StreamWriter(this.Client + @"\" + TemporaryFileName, true))
+                                {
+                                    OutputFile.Write(Output);
+                                }
+                            }
+                        }
+                        return Output;
                     }
                     else
                     {
