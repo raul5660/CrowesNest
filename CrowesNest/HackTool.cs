@@ -50,11 +50,16 @@ namespace CrowesNest
                     Process process = new Process();
                     ProcessStartInfo startInfo = new ProcessStartInfo("cmd",deployCommand);
                     startInfo.RedirectStandardOutput = true;
+                    startInfo.RedirectStandardError = true;
                     startInfo.UseShellExecute = false;
                     startInfo.CreateNoWindow = true;
                     process.StartInfo = startInfo;
                     process.Start();
                     string results = process.StandardOutput.ReadToEnd();
+                    if (results == "")
+                    {
+                        results = process.StandardError.ReadToEnd();
+                    }
                     return results;
 
                 }

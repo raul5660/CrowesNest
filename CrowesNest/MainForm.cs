@@ -104,7 +104,6 @@ namespace CrowesNest
             else
             {
                 tools[(string)ToolsListBox.SelectedItem].DeployString = SyntaxTextBox.Text;
-                //OutputTextBox.ResetText();
                 OutputTextBox.AppendText(Line());
                 OutputTextBox.AppendText(tools[(string)ToolsListBox.SelectedItem].Deploy(IPTextBox.Text, UsernameTextBox.Text, PasswordTextBox.Text));
             }   
@@ -283,6 +282,7 @@ namespace CrowesNest
             {
                 tmp += "=";
             }
+            tmp += "\n";
             return tmp;
         }
     }
