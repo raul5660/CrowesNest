@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Linq;
+using System.IO;
 
 namespace CrowesNest
 {
@@ -99,14 +100,27 @@ namespace CrowesNest
         {
             if (MultiHostCheckBox.Checked == true)
             {
-                MessageBox.Show("Please export and use script for executing tool while \"Hosts File\" is selected.");
+                try
+                {
+                    string[] inputIps = File.ReadAllLines(HostsTextBox.Text);
+                    foreach (string ip in inputIps)
+                    {
+                        tools[(string)ToolsListBox.SelectedItem].DeployString = SyntaxTextBox.Text;
+                        OutputTextBox.AppendText(Line());
+                        OutputTextBox.AppendText(tools[(string)ToolsListBox.SelectedItem].Deploy(ip, UsernameTextBox.Text, PasswordTextBox.Text));
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error: Cannot deploy tool.");
+                }
             }
             else
             {
                 tools[(string)ToolsListBox.SelectedItem].DeployString = SyntaxTextBox.Text;
                 OutputTextBox.AppendText(Line());
                 OutputTextBox.AppendText(tools[(string)ToolsListBox.SelectedItem].Deploy(IPTextBox.Text, UsernameTextBox.Text, PasswordTextBox.Text));
-            }   
+            }
         }
 
         private void ToolsListBox_SelectedIndexChanged(object sender, EventArgs e)

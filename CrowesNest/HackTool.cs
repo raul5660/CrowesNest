@@ -3,7 +3,8 @@ using System.IO;
 using System.Diagnostics;
 using System.Xml.Serialization;
 using System.Windows.Forms;
-
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace CrowesNest
 {
@@ -38,30 +39,53 @@ namespace CrowesNest
             //this.Client = @"Z:\XYZ";
         }
 
-
+        private string RunCommand(string command)
+        {
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo("cmd", command);
+            startInfo.RedirectStandardOutput = true;
+            startInfo.RedirectStandardError = true;
+            startInfo.UseShellExecute = false;
+            startInfo.CreateNoWindow = true;
+            process.StartInfo = startInfo;
+            process.Start();
+            string results = process.StandardOutput.ReadToEnd();
+            if (results == "")
+            {
+                results = process.StandardError.ReadToEnd();
+            }
+            return results;
+        }
         //Created needed syntax then deploys the tool.
         public string Deploy(string ip, string username, string password)
         {
             if (this.OperatingSystem.ToLower() == "windows")
             {
                 try
-                {   
-                    string deployCommand =$"/c \"{this.DeployString}\"";
-                    Process process = new Process();
-                    ProcessStartInfo startInfo = new ProcessStartInfo("cmd",deployCommand);
-                    startInfo.RedirectStandardOutput = true;
-                    startInfo.RedirectStandardError = true;
-                    startInfo.UseShellExecute = false;
-                    startInfo.CreateNoWindow = true;
-                    process.StartInfo = startInfo;
-                    process.Start();
-                    string results = process.StandardOutput.ReadToEnd();
-                    if (results == "")
+                {
+                    string deployCommand = "";
+                    if (ip != String.Empty && username == String.Empty && password == String.Empty)
                     {
-                        results = process.StandardError.ReadToEnd();
+                        StringBuilder tmp = new StringBuilder();
+                        tmp.Append("/c");
+                        Regex rgx = new Regex(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b");
+                        tmp.Append(" \"");
+                        tmp.Append(rgx.Replace(this.DeployString,ip));
+                        tmp.Append("\"");
+                        deployCommand = tmp.ToString();
                     }
-                    return results;
-
+                    else
+                    {
+                        deployCommand = $"/c \"{this.DeployString}\"";
+                    }
+                    if (deployCommand != "")
+                    {
+                        return RunCommand(deployCommand);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error: Cannot deploy tool.");
+                    }
                 }
                 catch (Exception)
                 {
