@@ -299,5 +299,10 @@ namespace CrowesNest
             tmp += "\n";
             return tmp;
         }
+
+        private void AutoLoggingcheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -67,6 +67,7 @@
             this.selectFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OutputGroup = new System.Windows.Forms.GroupBox();
             this.OutputTextBox = new System.Windows.Forms.RichTextBox();
+            this.AutoLoggingcheckBox = new System.Windows.Forms.CheckBox();
             this.ToolGroupBox.SuspendLayout();
             this.RemoteGroupBox.SuspendLayout();
             this.DeploymentGroupBox.SuspendLayout();
@@ -330,6 +331,7 @@
             // 
             // DeploymentGroupBox
             // 
+            this.DeploymentGroupBox.Controls.Add(this.AutoLoggingcheckBox);
             this.DeploymentGroupBox.Controls.Add(this.ScriptLabel);
             this.DeploymentGroupBox.Controls.Add(this.ClientTextBox);
             this.DeploymentGroupBox.Controls.Add(this.ScriptCheckBox);
@@ -451,6 +453,17 @@
             this.OutputTextBox.TabIndex = 0;
             this.OutputTextBox.Text = "";
             // 
+            // AutoLoggingcheckBox
+            // 
+            this.AutoLoggingcheckBox.AutoSize = true;
+            this.AutoLoggingcheckBox.Location = new System.Drawing.Point(304, 24);
+            this.AutoLoggingcheckBox.Name = "AutoLoggingcheckBox";
+            this.AutoLoggingcheckBox.Size = new System.Drawing.Size(69, 17);
+            this.AutoLoggingcheckBox.TabIndex = 37;
+            this.AutoLoggingcheckBox.Text = "Auto Log";
+            this.AutoLoggingcheckBox.UseVisualStyleBackColor = true;
+            this.AutoLoggingcheckBox.CheckedChanged += new System.EventHandler(this.AutoLoggingcheckBox_CheckedChanged);
+            // 
             // CrowesNest
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
@@ -517,6 +530,7 @@
         private System.Windows.Forms.GroupBox DeploymentGroupBox;
         private System.Windows.Forms.GroupBox OutputGroup;
         private System.Windows.Forms.RichTextBox OutputTextBox;
+        private System.Windows.Forms.CheckBox AutoLoggingcheckBox;
     }
 }
 
