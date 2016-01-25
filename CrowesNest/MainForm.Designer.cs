@@ -450,24 +450,24 @@
             this.OutputGroup.Controls.Add(this.OutputTextBox);
             this.OutputGroup.Location = new System.Drawing.Point(9, 476);
             this.OutputGroup.Name = "OutputGroup";
-            this.OutputGroup.Size = new System.Drawing.Size(937, 212);
+            this.OutputGroup.Size = new System.Drawing.Size(937, 141);
             this.OutputGroup.TabIndex = 34;
             this.OutputGroup.TabStop = false;
-            this.OutputGroup.Text = "Output";
+            this.OutputGroup.Text = "History";
             // 
             // OutputTextBox
             // 
             this.OutputTextBox.Location = new System.Drawing.Point(12, 19);
             this.OutputTextBox.Name = "OutputTextBox";
             this.OutputTextBox.ReadOnly = true;
-            this.OutputTextBox.Size = new System.Drawing.Size(912, 178);
+            this.OutputTextBox.Size = new System.Drawing.Size(912, 110);
             this.OutputTextBox.TabIndex = 0;
             this.OutputTextBox.Text = "";
             // 
             // CrowesNest
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(961, 693);
+            this.ClientSize = new System.Drawing.Size(961, 622);
             this.Controls.Add(this.OutputGroup);
             this.Controls.Add(this.ToolGroupBox);
             this.Controls.Add(this.menuStrip1);

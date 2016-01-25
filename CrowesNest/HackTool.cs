@@ -3,8 +3,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Xml.Serialization;
 using System.Windows.Forms;
-using System.Text;
-using System.Text.RegularExpressions;
+
 
 namespace CrowesNest
 {
@@ -39,82 +38,41 @@ namespace CrowesNest
         {
             //this.Client = @"Z:\XYZ";
         }
-
-        private string RunCommand(string command)
-        {
-            Process process = new Process();
-            ProcessStartInfo startInfo = new ProcessStartInfo("cmd", command);
-            startInfo.RedirectStandardOutput = true;
-            startInfo.RedirectStandardError = true;
-            startInfo.UseShellExecute = false;
-            startInfo.CreateNoWindow = true;
-            process.StartInfo = startInfo;
-            process.Start();
-            string results = process.StandardOutput.ReadToEnd();
-            if (results == "")
-            {
-                results = process.StandardError.ReadToEnd();
-            }
-            return results;
-        }
+       
         //Created needed syntax then deploys the tool.
         public string Deploy(string ip, string username, string password)
         {
-            Regex rgx = new Regex(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b");
-            string TemporaryFileName = "";
-            string Output = "";
             if (this.OperatingSystem.ToLower() == "windows")
             {
                 try
                 {
-                    string deployCommand = "";
-                    if (ip != String.Empty && username == String.Empty && password == String.Empty)
+                    if (!this.AutoLog)
                     {
-                        StringBuilder tmp = new StringBuilder();
-                        tmp.Append("/c");
-                        tmp.Append(" \"");
-                        TemporaryFileName = rgx.Replace(this.DeployString, ip);
-                        tmp.Append(TemporaryFileName);
-                        tmp.Append("\"");
-                        deployCommand = tmp.ToString();
+                        string deployCommand = String.Format("-NoExit -command &{{{0}}}", this.DeployString);
+                        ProcessStartInfo psInfo = new ProcessStartInfo("powershell.exe", deployCommand);
+                        psInfo.UseShellExecute = true;
+
+                        using (Process exeProcess = Process.Start(psInfo)) { }
                     }
                     else
                     {
-                        TemporaryFileName = this.DeployString;
-                        deployCommand = $"/c \"{this.DeployString}\"";
+                        string tmpfilename = this.DeployString.Replace(" ", "_");
+                        string deployCommand = $"-NoExit -command &{{ Start-Transcript -path {this.Client}\\{tmpfilename}.txt; {this.DeployString}; Stop-Transcript}}";
+                        ProcessStartInfo psInfo = new ProcessStartInfo("powershell.exe", deployCommand);
+                        psInfo.UseShellExecute = true;
+
+                        using (Process exeProcess = Process.Start(psInfo)) { }
+                        return $"Running Windows Command: {this.DeployString}\nTime: {DateTime.Now.ToString()}\nTranscript logged to: {this.Client}\\{tmpfilename}.txt\n\n";
                     }
-                    if (deployCommand != "")
-                    {
-                        if (this.AutoLog)
-                        {
-                            TemporaryFileName = TemporaryFileName.Replace("/c", "").Replace(" ", "_").Replace(" \"", "").Replace("\"", "");
-                            TemporaryFileName += ".txt";
-                            Output = RunCommand(deployCommand);
-                            if (!File.Exists(this.Client + @"\" + TemporaryFileName))
-                            {
-                                using (StreamWriter OutputFile = new StreamWriter(this.Client + @"\" + TemporaryFileName, true))
-                                {
-                                    OutputFile.Write(Output);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Output = RunCommand(deployCommand);
-                        }
-                        return (TemporaryFileName + "\n\n" + Output);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error: Cannot deploy tool.");
-                    }
+                    
                 }
                 catch (Exception)
                 {
                     MessageBox.Show("Error: Cannot deploy tool.");
                 }
+                return $"Running Windows Command: {this.DeployString}\nTime: {DateTime.Now.ToString()}\n\n";
             }
-            
+
             else
             {   
                 if (ip != String.Empty && username != String.Empty && password != String.Empty)
@@ -125,29 +83,24 @@ namespace CrowesNest
                         ProcessStartInfo psInfo = new ProcessStartInfo("cmd.exe", deployCommand);
                         psInfo.UseShellExecute = false;
 
-                        using (Process exeProcess = Process.Start(psInfo)) { }
+                        using ( Process exeProcess = Process.Start(psInfo)) { }
                     }
                     catch (Exception)
                     {
                         MessageBox.Show("Error: Cannot deploy tool.");
                     }
-
+                    return $"Running Linux Command: {this.DeployString}\nTime: {DateTime.Now.ToString()}\n\n";
                 }
                 else
                 {
                     MessageBox.Show("Please provide connection information!");
                 }
+                return "";
             }
-            return "";
-        }
-
-        private void ExeProcess_OutputDataReceived(object sender, DataReceivedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         //export syntax to .bat or .sh for appropriate platform.
-        public void ExportCommands()
+        public string ExportCommands()
         {
             try
             {
@@ -164,7 +117,8 @@ namespace CrowesNest
                     {
                         swFile.WriteLine(this.DeployString);
                         swFile.WriteLine("pause");
-                    }  
+                    }
+                    return $"Exporting Windows Script: C:\\Tools\\CrowesNest\\Batch\\{this.Name}.bat\nTime: {DateTime.Now.ToString()}\n\n";
                 }
                 else
                 {
@@ -179,17 +133,18 @@ namespace CrowesNest
                         swFile.WriteLine("#! /bin/bash");
                         swFile.WriteLine(this.DeployString);
                     }
-                    
+                    return $"Exporting Linux Script: C:\\Tools\\CrowesNest\\Bash\\{this.Name}.sh\nTime: {DateTime.Now.ToString()}\n\n";
                 }
             }
             
             catch (Exception)
             {
                 MessageBox.Show("Problem exporting. Make sure Hosts file and/or Script File is selected.");
+                return $"Error exporting \"C:\\Tools\\CrowesNest\\Bash\\{this.Name}.sh\"\n\n";
             }
 
         }
-        public void ExportCommands(string scriptOuputFile)
+        public string ExportCommands(string scriptOuputFile)
         {
             try
             {
@@ -198,16 +153,18 @@ namespace CrowesNest
                 {
                     swFile.WriteLine(this.DeployString);
                 }
+                return $"Exporting {this.DeployString} to {scriptOuputFile}\nTime: {DateTime.Now.ToString()}\n\n";
             }
 
             catch (Exception)
             {
                 MessageBox.Show("Problem exporting. Make sure Hosts file and / or Script File is selected.");
+                return $"Error exporting {this.DeployString} to {scriptOuputFile}\nTime: {DateTime.Now.ToString()}\n\n";
             }
 
         }
         //Support for export functionnality to scale with many hosts.
-        public void ExportMultiCommands(string hostFile)
+        public string ExportMultiCommands(string hostFile)
         {
             try
             {
@@ -231,6 +188,7 @@ namespace CrowesNest
                         }
                         swFile.WriteLine("pause");
                     }
+                    return $"Exporting Multi-Hosts Windows Script: C:\\Tools\\CrowesNest\\Batch\\{this.Name}.bat\nTime: {DateTime.Now.ToString()}\n\n";
                 }
                 else
                 {
@@ -248,14 +206,16 @@ namespace CrowesNest
                             swFile.WriteLine(this.DeployString.Replace("x.x.x.x", ip));
                         }
                     }
+                    return $"Exporting Multi-Hosts Linux Script: C:\\Tools\\CrowesNest\\Bash\\{this.Name}.sh\nTime: {DateTime.Now.ToString()}\n\n";
                 }       
             }
             catch (Exception)
             {
                 MessageBox.Show("Problem exporting. Make sure Hosts file and/or Script File is selected.");
+                return $"Error exporting Multi-Hosts Linux \"C:\\Tools\\CrowesNest\\Bash\\{this.Name}.sh\"\n\n";
             }
         }
-        public void ExportMultiCommands(string hostFile, string scriptOuputFile)
+        public string ExportMultiCommands(string hostFile, string scriptOuputFile)
         {
             try
             {
@@ -268,13 +228,13 @@ namespace CrowesNest
                         swFile.WriteLine(this.DeployString.Replace("x.x.x.x", ip));
                     }
                 }
-                
+                return $"Exporting Multi-Host Cross Tool scripting {this.DeployString} to {scriptOuputFile}\nTime: {DateTime.Now.ToString()}\n\n";
             }
             catch (Exception)
             {
                 MessageBox.Show("Problem exporting. Make sure Hosts file and/or Script File is selected.");
+                return $"Error exporting {this.DeployString} to {scriptOuputFile}\nTime: {DateTime.Now.ToString()}\n\n";
             }
         }
-
     }
 }

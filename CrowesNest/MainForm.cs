@@ -13,6 +13,7 @@ namespace CrowesNest
         private static HackToolCollection tools = HackToolCollection.GetConfiguration();
         private static bool check = false;
 
+
         public CrowesNest()
         {
             InitializeComponent();
@@ -107,9 +108,8 @@ namespace CrowesNest
                     foreach (string ip in inputIps)
                     {
                         tools[(string)ToolsListBox.SelectedItem].Client = ClientTextBox.Text;
-                        tools[(string)ToolsListBox.SelectedItem].DeployString = SyntaxTextBox.Text;
+                        tools[(string)ToolsListBox.SelectedItem].DeployString = SyntaxTextBox.Text.Replace("x.x.x.x", ip);
                         tools[(string)ToolsListBox.SelectedItem].AutoLog = AutoLoggingcheckBox.Checked;
-                        OutputTextBox.AppendText(DelimitOutput());
                         OutputTextBox.AppendText(tools[(string)ToolsListBox.SelectedItem].Deploy(ip, UsernameTextBox.Text, PasswordTextBox.Text));
                     }
                 }
@@ -123,7 +123,6 @@ namespace CrowesNest
                 tools[(string)ToolsListBox.SelectedItem].Client = ClientTextBox.Text;
                 tools[(string)ToolsListBox.SelectedItem].DeployString = SyntaxTextBox.Text;
                 tools[(string)ToolsListBox.SelectedItem].AutoLog = AutoLoggingcheckBox.Checked;
-                OutputTextBox.AppendText(DelimitOutput());
                 OutputTextBox.AppendText(tools[(string)ToolsListBox.SelectedItem].Deploy(IPTextBox.Text, UsernameTextBox.Text, PasswordTextBox.Text));
             }
         }
@@ -161,19 +160,20 @@ namespace CrowesNest
             tools[(string)ToolsListBox.SelectedItem].DeployString = SyntaxTextBox.Text;
             if (MultiHostCheckBox.Checked == true && ScriptCheckBox.Checked == false)
             {
-                tools[(string)ToolsListBox.SelectedItem].ExportMultiCommands(HostsTextBox.Text);
+                OutputTextBox.AppendText(tools[(string)ToolsListBox.SelectedItem].ExportMultiCommands(HostsTextBox.Text));
+
             }
             else if (MultiHostCheckBox.Checked == true && ScriptCheckBox.Checked == true)
             {
-                tools[(string)ToolsListBox.SelectedItem].ExportMultiCommands(HostsTextBox.Text, ScriptTextBox.Text);
+                OutputTextBox.AppendText(tools[(string)ToolsListBox.SelectedItem].ExportMultiCommands(HostsTextBox.Text, ScriptTextBox.Text));
             }
             else if (MultiHostCheckBox.Checked == false && ScriptCheckBox.Checked == true)
             {
-                tools[(string)ToolsListBox.SelectedItem].ExportCommands(ScriptTextBox.Text);
+                OutputTextBox.AppendText(tools[(string)ToolsListBox.SelectedItem].ExportCommands(ScriptTextBox.Text));
             }
             else
             {
-                tools[(string)ToolsListBox.SelectedItem].ExportCommands();
+                OutputTextBox.AppendText(tools[(string)ToolsListBox.SelectedItem].ExportCommands());
             }
            
         }
@@ -292,19 +292,6 @@ namespace CrowesNest
                 CategoryListBox.DataSource = GetCategories();
                 ToolsListBox.DataSource = GetTools((string)CategoryListBox.SelectedItem);
             }
-        }
-
-        private string DelimitOutput()
-        {
-            if (tools[(string)ToolsListBox.SelectedItem].OperatingSystem.ToLower() == "linux")
-            {
-                return $"\n{new string('=', 100)}\nLinux Command Running: {SyntaxTextBox.Text}\n";
-            }
-            else
-            {
-                return $"\n{new string('=', 100)}\n";
-            }
-           
         }
 
         private void AutoLoggingcheckBox_CheckedChanged(object sender, EventArgs e)
