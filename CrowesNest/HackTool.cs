@@ -30,7 +30,8 @@ namespace CrowesNest
         [XmlElement("Category")]
         public string Category { get; set; }
 
-        public string Client { get; set; } = @"Z:\XYZ";
+        //public string Client { get; set; } = @"Z:\XYZ";
+        public string Client { get; set; } = @"C:\Users\Raul Martinez\Desktop\test output";
         public string DeployString { get; set; }
         public bool AutoLog { get; set; }
 
@@ -57,7 +58,7 @@ namespace CrowesNest
                     else
                     {
                         string tmpfilename = this.DeployString.Replace(" ", "_");
-                        string deployCommand = $"-NoExit -command &{{ Start-Transcript -path {this.Client}\\{tmpfilename}.txt; {this.DeployString}; Stop-Transcript}}";
+                        string deployCommand = $"-NoExit -Command &{{Start-Transcript -Path '{this.Client}\\{tmpfilename}.txt'; {this.DeployString}; Stop-Transcript}}";
                         ProcessStartInfo psInfo = new ProcessStartInfo("powershell.exe", deployCommand);
                         psInfo.UseShellExecute = true;
 
