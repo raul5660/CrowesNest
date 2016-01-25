@@ -1,5 +1,4 @@
-# CrowesNest 
-###Author: https://github.com/csevier
+# CrowesNest
 ##A productivity/tool deployment platform for Penetration Testers and IT Professionals.
 ![CrowesNest Overview](CrowesNestScreenshots/2.0/Overview.JPG?raw=true)
 ##The Problem:
@@ -68,7 +67,7 @@ Export tools to scripts using the export button.
 * If export button is hit more then once for the same tool, the script will be overwritten.
 ![CrowesNest Overview](CrowesNestScreenshots/crowesNestExportWindows2.JPG?raw=true)
 ![CrowesNest Overview](CrowesNestScreenshots/crowesNestExportLinux.JPG?raw=true)
-![CrowesNest Overview](CrowesNestScreenshots/crowesNestExportLinux2.JPG?raw=true)
+![CrowesNest Overview](CrowesNestScreenshots/crowesNestExportLinux2.JPG?raw=true}
 
 ####Multiple Hosts (Hosts File selected)
 If a tool does not support multiple hosts nativly, like nmaps -iL option, CrowesNest makes managing single host tools much for flexible by implementing scalability.
@@ -115,7 +114,7 @@ CrowesNest will launch a WinSCP commander with a single click! Allowing you to m
 * If no connection details are given, it will ask for them. If connection details are present. CrowesNest will launch a remote shell.
 ![CrowesNest Overview](CrowesNestScreenshots/2.0/winscp.JPG?raw=true)
 
-* This session is a seperate process, same as tools that are deployed, closing crowesNest will not effect the session.
+* This session is a seperated process same as tools that are deployed, closing crowesNest will not effect the shell.
 
 ##Dependencies
 
