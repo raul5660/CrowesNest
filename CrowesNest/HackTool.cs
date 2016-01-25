@@ -102,7 +102,7 @@ namespace CrowesNest
                         {
                             Output = RunCommand(deployCommand);
                         }
-                        return Output;
+                        return (TemporaryFileName + "\n\n" + Output);
                     }
                     else
                     {
