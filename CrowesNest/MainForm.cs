@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Linq;
+using System.IO;
 
 namespace CrowesNest
 {
@@ -10,6 +11,7 @@ namespace CrowesNest
     {
         //Deserialize XML configuratio for tools into custom collection of HackTools C:\tools\CrowesNest\cn_config.xml
         private static HackToolCollection tools = HackToolCollection.GetConfiguration();
+        private static bool check = false;
 
         public CrowesNest()
         {
@@ -99,13 +101,31 @@ namespace CrowesNest
         {
             if (MultiHostCheckBox.Checked == true)
             {
-                MessageBox.Show("Please export and use script for executing tool while \"Hosts File\" is selected.");
+                try
+                {
+                    string[] inputIps = File.ReadAllLines(HostsTextBox.Text);
+                    foreach (string ip in inputIps)
+                    {
+                        tools[(string)ToolsListBox.SelectedItem].Client = ClientTextBox.Text;
+                        tools[(string)ToolsListBox.SelectedItem].DeployString = SyntaxTextBox.Text;
+                        tools[(string)ToolsListBox.SelectedItem].AutoLog = AutoLoggingcheckBox.Checked;
+                        OutputTextBox.AppendText(Line());
+                        OutputTextBox.AppendText(tools[(string)ToolsListBox.SelectedItem].Deploy(ip, UsernameTextBox.Text, PasswordTextBox.Text));
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error: Cannot deploy tool.");
+                }
             }
             else
             {
+                tools[(string)ToolsListBox.SelectedItem].Client = ClientTextBox.Text;
                 tools[(string)ToolsListBox.SelectedItem].DeployString = SyntaxTextBox.Text;
-                tools[(string)ToolsListBox.SelectedItem].Deploy(IPTextBox.Text, UsernameTextBox.Text,PasswordTextBox.Text);
-            }   
+                tools[(string)ToolsListBox.SelectedItem].AutoLog = AutoLoggingcheckBox.Checked;
+                OutputTextBox.AppendText(Line());
+                OutputTextBox.AppendText(tools[(string)ToolsListBox.SelectedItem].Deploy(IPTextBox.Text, UsernameTextBox.Text, PasswordTextBox.Text));
+            }
         }
 
         private void ToolsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -272,6 +292,28 @@ namespace CrowesNest
                 CategoryListBox.DataSource = GetCategories();
                 ToolsListBox.DataSource = GetTools((string)CategoryListBox.SelectedItem);
             }
+        }
+
+        private string Line()
+        {
+            string tmp = "\n";
+            for(int i =0; i < 100; i++)
+            {
+                tmp += "=";
+            }
+            tmp += "\n";
+            return tmp;
+        }
+
+        private void AutoLoggingcheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!Directory.Exists(ClientTextBox.Text) && !check)
+            {
+                check = true;
+                MessageBox.Show(ClientTextBox.Text + " doesn't exist!");
+                AutoLoggingcheckBox.CheckState = CheckState.Unchecked;
+            }
+            check = false;
         }
     }
 }

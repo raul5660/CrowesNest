@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Xml.Serialization;
 using System.Windows.Forms;
 using System.Text;
-
+using System.Text.RegularExpressions;
 
 namespace CrowesNest
 {
@@ -33,28 +33,81 @@ namespace CrowesNest
 
         public string Client { get; set; } = @"Z:\XYZ";
         public string DeployString { get; set; }
+        public bool AutoLog { get; set; }
 
         public HackTool()
         {
             //this.Client = @"Z:\XYZ";
         }
 
-
-        //Created needed syntax then deploys the tool.
-        public void Deploy(string ip, string username, string password)
+        private string RunCommand(string command)
         {
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo("cmd", command);
+            startInfo.RedirectStandardOutput = true;
+            startInfo.RedirectStandardError = true;
+            startInfo.UseShellExecute = false;
+            startInfo.CreateNoWindow = true;
+            process.StartInfo = startInfo;
+            process.Start();
+            string results = process.StandardOutput.ReadToEnd();
+            if (results == "")
+            {
+                results = process.StandardError.ReadToEnd();
+            }
+            return results;
+        }
+        //Created needed syntax then deploys the tool.
+        public string Deploy(string ip, string username, string password)
+        {
+            Regex rgx = new Regex(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b");
+            string TemporaryFileName = "";
+            string Output = "";
             if (this.OperatingSystem.ToLower() == "windows")
             {
                 try
-                {   // wrap binaries in cmd.exe /K to keep cmd.exe open after completion of process.
-                    string deployCommand =$"/K \"{this.DeployString}\"";
-                    ProcessStartInfo psInfo = new ProcessStartInfo("cmd.exe", deployCommand);
-                    psInfo.UseShellExecute = true;
-                    //psInfo.RedirectStandardOutput = true;
-
-                    using (Process exeProcess = Process.Start(psInfo)) { }
-                    
-                    
+                {
+                    string deployCommand = "";
+                    if (ip != String.Empty && username == String.Empty && password == String.Empty)
+                    {
+                        StringBuilder tmp = new StringBuilder();
+                        tmp.Append("/c");
+                        tmp.Append(" \"");
+                        TemporaryFileName = rgx.Replace(this.DeployString, ip);
+                        tmp.Append(TemporaryFileName);
+                        tmp.Append("\"");
+                        deployCommand = tmp.ToString();
+                    }
+                    else
+                    {
+                        TemporaryFileName = this.DeployString;
+                        deployCommand = $"/c \"{this.DeployString}\"";
+                    }
+                    if (deployCommand != "")
+                    {
+                        if (this.AutoLog)
+                        {
+                            TemporaryFileName = TemporaryFileName.Replace("/c", "").Replace(" ", "_").Replace(" \"", "").Replace("\"", "");
+                            TemporaryFileName += ".txt";
+                            Output = RunCommand(deployCommand);
+                            if (!File.Exists(this.Client + @"\" + TemporaryFileName))
+                            {
+                                using (StreamWriter OutputFile = new StreamWriter(this.Client + @"\" + TemporaryFileName, true))
+                                {
+                                    OutputFile.Write(Output);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Output = RunCommand(deployCommand);
+                        }
+                        return (TemporaryFileName + "\n\n" + Output);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error: Cannot deploy tool.");
+                    }
                 }
                 catch (Exception)
                 {
@@ -72,12 +125,11 @@ namespace CrowesNest
                         ProcessStartInfo psInfo = new ProcessStartInfo("cmd.exe", deployCommand);
                         psInfo.UseShellExecute = false;
 
-                        using (Process exeProcess = Process.Start(psInfo)) { } 
+                        using (Process exeProcess = Process.Start(psInfo)) { }
                     }
                     catch (Exception)
                     {
                         MessageBox.Show("Error: Cannot deploy tool.");
-
                     }
 
                 }
@@ -86,7 +138,7 @@ namespace CrowesNest
                     MessageBox.Show("Please provide connection information!");
                 }
             }
-           
+            return "";
         }
 
         private void ExeProcess_OutputDataReceived(object sender, DataReceivedEventArgs e)
