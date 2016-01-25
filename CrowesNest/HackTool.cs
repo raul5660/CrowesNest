@@ -70,7 +70,7 @@ namespace CrowesNest
                 {
                     MessageBox.Show("Error: Cannot deploy tool.");
                 }
-                return $"Running Windows Command: {this.DeployString}\nTime: {DateTime.Now.ToString()}\nTime: {DateTime.Now.ToString()}\n\n";
+                return $"Running Windows Command: {this.DeployString}\nTime: {DateTime.Now.ToString()}\n\n";
             }
 
             else
