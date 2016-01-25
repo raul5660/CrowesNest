@@ -56,6 +56,7 @@
             this.RemoteGroupBox = new System.Windows.Forms.GroupBox();
             this.CategoryLabel = new System.Windows.Forms.Label();
             this.DeploymentGroupBox = new System.Windows.Forms.GroupBox();
+            this.AutoLoggingcheckBox = new System.Windows.Forms.CheckBox();
             this.ScriptLabel = new System.Windows.Forms.Label();
             this.ScriptCheckBox = new System.Windows.Forms.CheckBox();
             this.ScriptTextBox = new System.Windows.Forms.TextBox();
@@ -67,7 +68,6 @@
             this.selectFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OutputGroup = new System.Windows.Forms.GroupBox();
             this.OutputTextBox = new System.Windows.Forms.RichTextBox();
-            this.AutoLoggingcheckBox = new System.Windows.Forms.CheckBox();
             this.ToolGroupBox.SuspendLayout();
             this.RemoteGroupBox.SuspendLayout();
             this.DeploymentGroupBox.SuspendLayout();
@@ -351,6 +351,17 @@
             this.DeploymentGroupBox.TabStop = false;
             this.DeploymentGroupBox.Text = "Deployment";
             // 
+            // AutoLoggingcheckBox
+            // 
+            this.AutoLoggingcheckBox.AutoSize = true;
+            this.AutoLoggingcheckBox.Location = new System.Drawing.Point(304, 24);
+            this.AutoLoggingcheckBox.Name = "AutoLoggingcheckBox";
+            this.AutoLoggingcheckBox.Size = new System.Drawing.Size(69, 17);
+            this.AutoLoggingcheckBox.TabIndex = 37;
+            this.AutoLoggingcheckBox.Text = "Auto Log";
+            this.AutoLoggingcheckBox.UseVisualStyleBackColor = true;
+            this.AutoLoggingcheckBox.CheckedChanged += new System.EventHandler(this.AutoLoggingcheckBox_CheckedChanged);
+            // 
             // ScriptLabel
             // 
             this.ScriptLabel.AutoSize = true;
@@ -453,21 +464,10 @@
             this.OutputTextBox.TabIndex = 0;
             this.OutputTextBox.Text = "";
             // 
-            // AutoLoggingcheckBox
-            // 
-            this.AutoLoggingcheckBox.AutoSize = true;
-            this.AutoLoggingcheckBox.Location = new System.Drawing.Point(304, 24);
-            this.AutoLoggingcheckBox.Name = "AutoLoggingcheckBox";
-            this.AutoLoggingcheckBox.Size = new System.Drawing.Size(69, 17);
-            this.AutoLoggingcheckBox.TabIndex = 37;
-            this.AutoLoggingcheckBox.Text = "Auto Log";
-            this.AutoLoggingcheckBox.UseVisualStyleBackColor = true;
-            this.AutoLoggingcheckBox.CheckedChanged += new System.EventHandler(this.AutoLoggingcheckBox_CheckedChanged);
-            // 
             // CrowesNest
             // 
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(961, 700);
+            this.ClientSize = new System.Drawing.Size(961, 693);
             this.Controls.Add(this.OutputGroup);
             this.Controls.Add(this.ToolGroupBox);
             this.Controls.Add(this.menuStrip1);

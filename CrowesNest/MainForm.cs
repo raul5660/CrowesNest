@@ -109,7 +109,7 @@ namespace CrowesNest
                         tools[(string)ToolsListBox.SelectedItem].Client = ClientTextBox.Text;
                         tools[(string)ToolsListBox.SelectedItem].DeployString = SyntaxTextBox.Text;
                         tools[(string)ToolsListBox.SelectedItem].AutoLog = AutoLoggingcheckBox.Checked;
-                        OutputTextBox.AppendText(Line());
+                        OutputTextBox.AppendText(DelimitOutput());
                         OutputTextBox.AppendText(tools[(string)ToolsListBox.SelectedItem].Deploy(ip, UsernameTextBox.Text, PasswordTextBox.Text));
                     }
                 }
@@ -123,7 +123,7 @@ namespace CrowesNest
                 tools[(string)ToolsListBox.SelectedItem].Client = ClientTextBox.Text;
                 tools[(string)ToolsListBox.SelectedItem].DeployString = SyntaxTextBox.Text;
                 tools[(string)ToolsListBox.SelectedItem].AutoLog = AutoLoggingcheckBox.Checked;
-                OutputTextBox.AppendText(Line());
+                OutputTextBox.AppendText(DelimitOutput());
                 OutputTextBox.AppendText(tools[(string)ToolsListBox.SelectedItem].Deploy(IPTextBox.Text, UsernameTextBox.Text, PasswordTextBox.Text));
             }
         }
@@ -294,15 +294,17 @@ namespace CrowesNest
             }
         }
 
-        private string Line()
+        private string DelimitOutput()
         {
-            string tmp = "\n";
-            for(int i =0; i < 100; i++)
+            if (tools[(string)ToolsListBox.SelectedItem].OperatingSystem.ToLower() == "linux")
             {
-                tmp += "=";
+                return $"\n{new string('=', 100)}\nLinux Command Running: {SyntaxTextBox.Text}\n";
             }
-            tmp += "\n";
-            return tmp;
+            else
+            {
+                return $"\n{new string('=', 100)}\n";
+            }
+           
         }
 
         private void AutoLoggingcheckBox_CheckedChanged(object sender, EventArgs e)
