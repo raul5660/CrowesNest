@@ -30,8 +30,7 @@ namespace CrowesNest
         [XmlElement("Category")]
         public string Category { get; set; }
 
-        //public string Client { get; set; } = @"Z:\XYZ";
-        public string Client { get; set; } = @"C:\Users\Raul Martinez\Desktop\test output";
+        public string Client { get; set; } = @"Z:\XYZ";
         public string DeployString { get; set; }
         public bool AutoLog { get; set; }
 
