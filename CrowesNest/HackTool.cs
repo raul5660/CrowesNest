@@ -70,7 +70,7 @@ namespace CrowesNest
                 {
                     MessageBox.Show("Error: Cannot deploy tool.");
                 }
-                return $"Running Windows Command: {this.DeployString}\nTime: {DateTime.Now.ToString()}\n\n";
+                return $"Running Windows Command: {this.DeployString}\nTime: {DateTime.Now.ToString()}\nTime: {DateTime.Now.ToString()}\n\n";
             }
 
             else
@@ -140,7 +140,7 @@ namespace CrowesNest
             catch (Exception)
             {
                 MessageBox.Show("Problem exporting. Make sure Hosts file and/or Script File is selected.");
-                return $"Error exporting \"C:\\Tools\\CrowesNest\\Bash\\{this.Name}.sh\"\n\n";
+                return $"Error exporting \"C:\\Tools\\CrowesNest\\Bash\\{this.Name}.sh\"\nTime: {DateTime.Now.ToString()}\n\n";
             }
 
         }
@@ -212,7 +212,7 @@ namespace CrowesNest
             catch (Exception)
             {
                 MessageBox.Show("Problem exporting. Make sure Hosts file and/or Script File is selected.");
-                return $"Error exporting Multi-Hosts Linux \"C:\\Tools\\CrowesNest\\Bash\\{this.Name}.sh\"\n\n";
+                return $"Error exporting Multi-Hosts Linux \"C:\\Tools\\CrowesNest\\Bash\\{this.Name}.sh\"\nTime: {DateTime.Now.ToString()}\n\n";
             }
         }
         public string ExportMultiCommands(string hostFile, string scriptOuputFile)
