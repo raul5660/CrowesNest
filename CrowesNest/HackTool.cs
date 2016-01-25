@@ -98,6 +98,10 @@ namespace CrowesNest
                                 }
                             }
                         }
+                        else
+                        {
+                            Output = RunCommand(deployCommand);
+                        }
                         return Output;
                     }
                     else
