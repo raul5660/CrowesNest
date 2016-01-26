@@ -66,6 +66,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OutputGroup = new System.Windows.Forms.GroupBox();
             this.OutputTextBox = new System.Windows.Forms.RichTextBox();
             this.ToolGroupBox.SuspendLayout();
@@ -81,7 +83,7 @@
             this.Run.Name = "Run";
             this.Run.Size = new System.Drawing.Size(75, 23);
             this.Run.TabIndex = 4;
-            this.Run.Text = "&Run";
+            this.Run.Text = "&Run Tool";
             this.Run.UseVisualStyleBackColor = true;
             this.Run.Click += new System.EventHandler(this.Run_Click);
             // 
@@ -144,7 +146,7 @@
             this.Export.Name = "Export";
             this.Export.Size = new System.Drawing.Size(75, 23);
             this.Export.TabIndex = 12;
-            this.Export.Text = "&Export";
+            this.Export.Text = "&Export Tool";
             this.Export.UseVisualStyleBackColor = true;
             this.Export.Click += new System.EventHandler(this.Export_Click);
             // 
@@ -423,7 +425,8 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.configureToolStripMenuItem});
+            this.configureToolStripMenuItem,
+            this.exportToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(961, 24);
@@ -444,6 +447,21 @@
             this.selectFileToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.selectFileToolStripMenuItem.Text = "Select XML File...";
             this.selectFileToolStripMenuItem.Click += new System.EventHandler(this.selectFileToolStripMenuItem_Click);
+            // 
+            // exportToolStripMenuItem
+            // 
+            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportHistoryToolStripMenuItem});
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.exportToolStripMenuItem.Text = "History";
+            // 
+            // exportHistoryToolStripMenuItem
+            // 
+            this.exportHistoryToolStripMenuItem.Name = "exportHistoryToolStripMenuItem";
+            this.exportHistoryToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.exportHistoryToolStripMenuItem.Text = "Export History...";
+            this.exportHistoryToolStripMenuItem.Click += new System.EventHandler(this.exportHistoryToolStripMenuItem_Click);
             // 
             // OutputGroup
             // 
@@ -531,6 +549,8 @@
         private System.Windows.Forms.GroupBox OutputGroup;
         private System.Windows.Forms.RichTextBox OutputTextBox;
         private System.Windows.Forms.CheckBox AutoLoggingcheckBox;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportHistoryToolStripMenuItem;
     }
 }
 
