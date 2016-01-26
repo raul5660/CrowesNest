@@ -304,5 +304,21 @@ namespace CrowesNest
             }
             check = false;
         }
+
+        private void exportHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists(@"C:\Tools\CrowesNest\History\") != true)
+            {
+                Directory.CreateDirectory(@"C:\Tools\CrowesNest\History\");
+            }
+            string fileLocation = String.Format(@"C:\Tools\CrowesNest\History\cn_history.txt");
+            FileInfo exportFileInfo = new FileInfo(fileLocation);
+            using (StreamWriter swFile = new StreamWriter(exportFileInfo.FullName))
+            {
+                swFile.WriteLine($"CrowesNest History exported on {DateTime.Now}\n\n");
+                swFile.WriteLine(OutputTextBox.Text);  
+            }
+            OutputTextBox.AppendText($"Exported History to C:\\Tools\\CrowesNest\\History\\cn_history.txt\nTime: {DateTime.Now}\n\n");
+        }
     }
 }
