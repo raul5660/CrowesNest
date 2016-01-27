@@ -57,7 +57,7 @@ namespace CrowesNest
                     else
                     {
                         string tmpfilename = this.DeployString.Replace(" ", "_");
-                        string deployCommand = $"-NoExit -command &{{ Start-Transcript -path {this.Client}\\{tmpfilename}.txt; {this.DeployString}; Stop-Transcript}}";
+                        string deployCommand = $"-Version 5 -NoExit -Command &{{Start-Transcript -Append -Path '{this.Client}\\{tmpfilename}.txt'; {this.DeployString}; Stop-Transcript}}";
                         ProcessStartInfo psInfo = new ProcessStartInfo("powershell.exe", deployCommand);
                         psInfo.UseShellExecute = true;
 

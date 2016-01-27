@@ -1,6 +1,8 @@
 # CrowesNest
 ##A productivity/tool deployment platform for Penetration Testers and IT Professionals.
 ![CrowesNest Overview](CrowesNestScreenshots/2.0/Overview.JPG?raw=true)
+
+
 ##The Problem:
 As technical professionals we use literally hundreds of tools to do our job. Majority of these tools are command-line oriented with varying degrees of complexity and arbitrary flags for using the features they support. Some of the tools are Windows based, some Linux based, some tools support multiple targets via input files or subnet logic (eg: nmaps -iL flag), some only support single targets (eg: nc.exe -nv targetIP targetPort). Almost all are slightly unintuitive to new users or at the very least have hard to remember syntax. These problems have pen testers constantly switching between virtual machines, refering to manual pages, refering to help files, refering to the internet, refering to our colleagues, or our own notes just to do a task. This time could be better spent thinking critically, thus providing more value to our clients through additional findings or better reports.
 
@@ -117,6 +119,8 @@ CrowesNest will launch a WinSCP commander with a single click! Allowing you to m
 * This session is a seperated process same as tools that are deployed, closing crowesNest will not effect the shell.
 
 ##Dependencies
+
+Powershell Version 5: https://www.microsoft.com/en-us/download/details.aspx?id=48729 
 
 ### Binary applications in these exact locations:
 * C:\Program Files (x86)\PuTTY\plink.exe
