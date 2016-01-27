@@ -12,7 +12,7 @@ namespace CrowesNest
         //Deserialize XML configuratio for tools into custom collection of HackTools C:\tools\CrowesNest\cn_config.xml
         private static HackToolCollection tools = HackToolCollection.GetConfiguration();
         private static bool check = false;
-        public static string ProgramFilesLocation = (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("PROCESSOR_ARCHITEW6432"))) ? "Program Files (x86)" : "Program Files";
+        private static string ProgramFilesLocation = (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("PROCESSOR_ARCHITEW6432"))) ? "Program Files (x86)" : "Program Files";
 
         public CrowesNest()
         {
