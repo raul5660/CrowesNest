@@ -12,7 +12,7 @@ namespace CrowesNest
         //Deserialize XML configuratio for tools into custom collection of HackTools C:\tools\CrowesNest\cn_config.xml
         private static HackToolCollection tools = HackToolCollection.GetConfiguration();
         private static bool check = false;
-
+        private static string ProgramFilesLocation = (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("PROCESSOR_ARCHITEW6432"))) ? "Program Files (x86)" : "Program Files";
 
         public CrowesNest()
         {
@@ -238,7 +238,7 @@ namespace CrowesNest
                 try
                 {
                     string command = $" -ssh -l {UsernameTextBox.Text} -pw {PasswordTextBox.Text} {IPTextBox.Text}";
-                    ProcessStartInfo psInfo = new ProcessStartInfo(@"C:\Program Files (x86)\PuTTY\putty.exe", command);
+                    ProcessStartInfo psInfo = new ProcessStartInfo(@"C:\"+ CrowesNest.ProgramFilesLocation + @"\PuTTY\putty.exe", command);
                     psInfo.UseShellExecute = false;
 
                     using (Process exeProcess = Process.Start(psInfo)) { }
@@ -263,7 +263,7 @@ namespace CrowesNest
                 try
                 {
                     string command = $" sftp://{UsernameTextBox.Text}:{PasswordTextBox.Text}@{IPTextBox.Text}";
-                    ProcessStartInfo psInfo = new ProcessStartInfo(@"C:\Program Files (x86)\WinSCP\WinSCP.exe", command);
+                    ProcessStartInfo psInfo = new ProcessStartInfo(@"C:\" + CrowesNest.ProgramFilesLocation + @"\WinSCP\WinSCP.exe", command);
                     psInfo.UseShellExecute = false;
 
                     using (Process exeProcess = Process.Start(psInfo)) { }

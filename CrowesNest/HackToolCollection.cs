@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 using System.Windows.Forms;
-
+using System.Text;
 
 namespace CrowesNest
 {
@@ -14,7 +14,7 @@ namespace CrowesNest
         [XmlArray("HackToolList")]
         [XmlArrayItem("HackTool", typeof(HackTool))]
         public List<HackTool> HackToolList { get; set; } //The collection of tools
-
+        private static string ProgramFilesLocation = (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("PROCESSOR_ARCHITEW6432"))) ? "Program Files (x86)" : "Program Files";
 
         //Custom indexer so I can choose tools base don their name. I would use dict if i knew how to use XML deserialization with it. Will refactor in future.
         public HackTool this[string index]
@@ -45,6 +45,30 @@ namespace CrowesNest
         //Deserialize XML configuratio for tools into custom collection of HackTools C:\tools\CrowesNest\cn_config.xml
         static public HackToolCollection GetConfiguration(string location = @"C:\tools\CrowesNest\cn_config.xml")
         {
+            if (!HackTool.AreDependenciesMet())
+            {
+                HackTool.Dependencies Check = HackTool.GetDependenciesMet();
+                StringBuilder output = new StringBuilder();
+                output.Append("Not all dependencies are met, so please check to make sure you have the following: ");
+                if ((HackTool.Dependencies.plink & Check) != HackTool.Dependencies.plink)
+                {
+                    output.Append("\nC:\\" + ProgramFilesLocation + "\\PuTTY\\plink.exe");
+                }
+                if ((HackTool.Dependencies.putty & Check) != HackTool.Dependencies.putty)
+                {
+                    output.Append("\nC:\\" + ProgramFilesLocation + "\\PuTTY\\putty.exe");
+                }
+                if ((HackTool.Dependencies.winscp & Check) != HackTool.Dependencies.winscp)
+                {
+                    output.Append("\nC:\\" + ProgramFilesLocation + "\\WinSCP\\WinSCP.exe");
+                }
+                if ((HackTool.Dependencies.powershell & Check) != HackTool.Dependencies.powershell)
+                { 
+                output.Append("\nPowershell Version 5: https://www.microsoft.com/en-us/download/details.aspx?id=48729");
+                }
+                MessageBox.Show(output.ToString());
+                System.Environment.Exit(1);
+            }
             XmlSerializer serializer = new XmlSerializer(typeof(HackToolCollection));
             HackToolCollection tools;
             try

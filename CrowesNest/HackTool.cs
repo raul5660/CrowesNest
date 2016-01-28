@@ -11,6 +11,16 @@ namespace CrowesNest
     [Serializable()]
     public class HackTool
     {
+        private static string ProgramFilesLocation = (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("PROCESSOR_ARCHITEW6432"))) ? "Program Files (x86)" : "Program Files";
+        public enum Dependencies : uint
+        {
+            none        = 0x00000000,
+            powershell  = 0x00000001,
+            plink       = 0x00000002,
+            putty       = 0x00000004,
+            winscp      = 0x00000008,
+            all         = powershell | plink | putty | winscp
+        };
         //Associating hacktool properties with correlationg XML elements for deserialization.
         [XmlElement("Name")]
         public string Name { get; set; } //Used for comboBox selection
@@ -39,6 +49,39 @@ namespace CrowesNest
             //this.Client = @"Z:\XYZ";
         }
        
+        public static Dependencies GetDependenciesMet()
+        {
+            Dependencies installed = Dependencies.none;
+            if (System.IO.File.Exists(@"C:\" + ProgramFilesLocation + @"\PuTTY\plink.exe")) { installed = installed | Dependencies.plink; }
+            if (System.IO.File.Exists(@"C:\" + ProgramFilesLocation + @"\PuTTY\putty.exe")) { installed = installed | Dependencies.putty; }
+            if (System.IO.File.Exists(@"C:\" + ProgramFilesLocation + @"\WinSCP\WinSCP.exe")) { installed = installed | Dependencies.winscp; }
+            if (isPowershell()) { installed = installed | Dependencies.powershell; }
+            return installed;
+        }
+        public static bool AreDependenciesMet()
+        {
+            bool result = false;
+            Dependencies installed = GetDependenciesMet();
+            return (installed == Dependencies.all);
+        }
+        private static bool isPowershell()
+        {
+            string deployCommand = String.Format("-Version 5 -Command &{{{0}}}", "$PSVersionTable.PSVersion | Select-Object Major");
+            ProcessStartInfo psInfo = new ProcessStartInfo("powershell.exe", deployCommand);
+            psInfo.UseShellExecute = false;
+            psInfo.CreateNoWindow = true;
+            psInfo.RedirectStandardOutput = true;
+
+            using (Process exeProcess = Process.Start(psInfo))
+            {
+                deployCommand = exeProcess.StandardOutput.ReadToEnd();
+                if (deployCommand.Contains("5"))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         //Created needed syntax then deploys the tool.
         public string Deploy(string ip, string username, string password)
         {
@@ -48,7 +91,7 @@ namespace CrowesNest
                 {
                     if (!this.AutoLog)
                     {
-                        string deployCommand = String.Format("-NoExit -command &{{{0}}}", this.DeployString);
+                        string deployCommand = String.Format("-NoExit -Command &{{{0}}}", this.DeployString);
                         ProcessStartInfo psInfo = new ProcessStartInfo("powershell.exe", deployCommand);
                         psInfo.UseShellExecute = true;
 
@@ -79,7 +122,7 @@ namespace CrowesNest
                 {
                     try
                     {
-                        string deployCommand = $"/K \"\"C:\\Program Files (x86)\\PuTTY\\plink.exe\" -pw {password} {username}@{ip} {this.DeployString}\"";
+                        string deployCommand = $"/K \"\"C:\\"+ ProgramFilesLocation +"\\PuTTY\\plink.exe\" -pw {password} {username}@{ip} {this.DeployString}\"";
                         ProcessStartInfo psInfo = new ProcessStartInfo("cmd.exe", deployCommand);
                         psInfo.UseShellExecute = false;
 
