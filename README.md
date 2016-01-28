@@ -121,7 +121,7 @@ CrowesNest will launch a WinSCP commander with a single click! Allowing you to m
 ##Dependencies
 
 Powershell Version 5: https://www.microsoft.com/en-us/download/details.aspx?id=48729
-.Net 4.5.2: https://support.microsoft.com/en-us/kb/2901907
+DotNet 4.5.2: https://support.microsoft.com/en-us/kb/2901907
 
 ### Binary applications in these exact locations:
 * C:\Program Files (x86)\PuTTY\plink.exe
