@@ -75,7 +75,6 @@ namespace CrowesNest
             using (Process exeProcess = Process.Start(psInfo))
             {
                 deployCommand = exeProcess.StandardOutput.ReadToEnd();
-                Debug.WriteLine(deployCommand);
                 if (deployCommand.Contains("5"))
                 {
                     return true;
