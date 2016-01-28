@@ -66,7 +66,7 @@ namespace CrowesNest
         }
         private static bool isPowershell()
         {
-            string deployCommand = String.Format("-Version 5 -Command &{{{0}}}", "$PSVersionTable.PSVersion");
+            string deployCommand = String.Format("-Version 5 -Command &{{{0}}}", "$PSVersionTable.PSVersion | Select-Object Major");
             ProcessStartInfo psInfo = new ProcessStartInfo("powershell.exe", deployCommand);
             psInfo.UseShellExecute = false;
             psInfo.CreateNoWindow = true;
@@ -75,7 +75,8 @@ namespace CrowesNest
             using (Process exeProcess = Process.Start(psInfo))
             {
                 deployCommand = exeProcess.StandardOutput.ReadToEnd();
-                if (deployCommand.Contains("Major         : 5"))
+                Debug.WriteLine(deployCommand);
+                if (deployCommand.Contains("5"))
                 {
                     return true;
                 }
