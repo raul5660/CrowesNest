@@ -10,7 +10,7 @@ namespace CrowesNest
     public partial class CrowesNest : Form
     {
         //Deserialize XML configuratio for tools into custom collection of HackTools C:\tools\CrowesNest\cn_config.xml
-        private static HackToolCollection tools = HackToolCollection.GetConfiguration();
+        public static HackToolCollection tools = HackToolCollection.GetConfiguration();
         private static bool check = false;
         private static string ProgramFilesLocation = (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("PROCESSOR_ARCHITEW6432"))) ? "Program Files (x86)" : "Program Files";
 
@@ -279,7 +279,11 @@ namespace CrowesNest
                 MessageBox.Show("Please provide connection information!");
             }
         }
-
+        public void reloadData()
+        {
+            CategoryListBox.DataSource = GetCategories();
+            ToolsListBox.DataSource = GetTools((string)CategoryListBox.SelectedItem);
+        }
         private void selectFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // New FolderBrowserDialog instance
@@ -289,8 +293,7 @@ namespace CrowesNest
             {
                 // Select successful
                 ReconfigureTools(Fld.FileName);
-                CategoryListBox.DataSource = GetCategories();
-                ToolsListBox.DataSource = GetTools((string)CategoryListBox.SelectedItem);
+                reloadData();
             }
         }
 
@@ -320,5 +323,12 @@ namespace CrowesNest
             }
             OutputTextBox.AppendText($"Exported History to C:\\Tools\\CrowesNest\\History\\cn_history.txt\nTime: {DateTime.Now}\n\n");
         }
+
+        private void addToolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddTool Window = new AddTool();
+            Window.Show();
+        }
+        
     }
 }

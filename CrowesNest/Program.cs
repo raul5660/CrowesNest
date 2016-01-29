@@ -3,17 +3,19 @@ using System.Windows.Forms;
 
 namespace CrowesNest
 {
-    static class Program
+    public static class Program
     {
+        public static CrowesNest App;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CrowesNest());
+            App = new CrowesNest();
+            Application.Run(App);
         }
     }
 }

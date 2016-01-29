@@ -70,6 +70,7 @@
             this.exportHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OutputGroup = new System.Windows.Forms.GroupBox();
             this.OutputTextBox = new System.Windows.Forms.RichTextBox();
+            this.addToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolGroupBox.SuspendLayout();
             this.RemoteGroupBox.SuspendLayout();
             this.DeploymentGroupBox.SuspendLayout();
@@ -436,7 +437,8 @@
             // configureToolStripMenuItem
             // 
             this.configureToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.selectFileToolStripMenuItem});
+            this.selectFileToolStripMenuItem,
+            this.addToolToolStripMenuItem});
             this.configureToolStripMenuItem.Name = "configureToolStripMenuItem";
             this.configureToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.configureToolStripMenuItem.Text = "&Configure";
@@ -481,6 +483,13 @@
             this.OutputTextBox.Size = new System.Drawing.Size(912, 110);
             this.OutputTextBox.TabIndex = 0;
             this.OutputTextBox.Text = "";
+            // 
+            // addToolToolStripMenuItem
+            // 
+            this.addToolToolStripMenuItem.Name = "addToolToolStripMenuItem";
+            this.addToolToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.addToolToolStripMenuItem.Text = "Add Tool";
+            this.addToolToolStripMenuItem.Click += new System.EventHandler(this.addToolToolStripMenuItem_Click);
             // 
             // CrowesNest
             // 
@@ -551,6 +560,7 @@
         private System.Windows.Forms.CheckBox AutoLoggingcheckBox;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportHistoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addToolToolStripMenuItem;
     }
 }
 

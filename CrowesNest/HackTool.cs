@@ -48,6 +48,27 @@ namespace CrowesNest
         {
             //this.Client = @"Z:\XYZ";
         }
+        
+        public HackTool(string name, string location, string arguments, string operatingsystem, string notes, string category)
+        {
+            this.Name = name;
+            this.Location = location;
+            this.Arguments = arguments;
+            this.OperatingSystem = operatingsystem;
+            this.Notes = notes;
+            this.Category = category;
+        }
+
+        public bool isEmpty()
+        {
+            if (this.Name == "" &&
+                this.Location == "" &&
+                this.Arguments == "")
+            {
+                return true;
+            }
+            return false;
+        }
        
         public static Dependencies GetDependenciesMet()
         {
