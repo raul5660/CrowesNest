@@ -58,6 +58,17 @@ namespace CrowesNest
             this.Notes = notes;
             this.Category = category;
         }
+
+        public bool isEmpty()
+        {
+            if (this.Name == "" &&
+                this.Location == "" &&
+                this.Arguments == "")
+            {
+                return true;
+            }
+            return false;
+        }
        
         public static Dependencies GetDependenciesMet()
         {

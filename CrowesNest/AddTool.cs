@@ -36,9 +36,32 @@ namespace CrowesNest
             using (FileStream fileStream = new FileStream("C:\\tools\\CrowesNest\\cn_config.xml", FileMode.Create))
             {
                 CrowesNest.tools.HackToolList.Add(new HackTool(Name, Location, Arguments, OperatingSystem, Notes, Category));
+                int count = CrowesNest.tools.HackToolList.Count;
+                int tmp = 0;
+                while (tmp < count)
+                {
+                    try
+                    {
+                        foreach (HackTool tool in CrowesNest.tools.HackToolList)
+                        {
+                            if (tool.isEmpty())
+                            {
+                                CrowesNest.tools.HackToolList.Remove(tool);
+                            }
+                        }
+                        break;
+                    }
+                    catch { }
+                    tmp++;
+                }
                 serializer.Serialize(fileStream, CrowesNest.tools);
             }
             this.Close();
+        }
+
+        private void AddTool_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Program.App.reloadData();
         }
     }
 }

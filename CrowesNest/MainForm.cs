@@ -279,7 +279,11 @@ namespace CrowesNest
                 MessageBox.Show("Please provide connection information!");
             }
         }
-
+        public void reloadData()
+        {
+            CategoryListBox.DataSource = GetCategories();
+            ToolsListBox.DataSource = GetTools((string)CategoryListBox.SelectedItem);
+        }
         private void selectFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // New FolderBrowserDialog instance
@@ -289,8 +293,7 @@ namespace CrowesNest
             {
                 // Select successful
                 ReconfigureTools(Fld.FileName);
-                CategoryListBox.DataSource = GetCategories();
-                ToolsListBox.DataSource = GetTools((string)CategoryListBox.SelectedItem);
+                reloadData();
             }
         }
 
@@ -326,5 +329,6 @@ namespace CrowesNest
             AddTool Window = new AddTool();
             Window.Show();
         }
+        
     }
 }

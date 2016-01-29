@@ -182,6 +182,7 @@
             this.Controls.Add(this.NameLabel);
             this.Name = "AddTool";
             this.Text = "AddTool";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddTool_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
