@@ -43,8 +43,6 @@ namespace CrowesNest
             if (filter != "All")
             {
                 IEnumerable<HackTool> filteredHackToolList = tools.HackToolList.Where( (tool => tool.Category == filter));
-                //stringList = filteredStringList.ToList<string>()
-
                 foreach (HackTool ht in filteredHackToolList)
                 {
                     stringList.Add(ht.Name);
@@ -328,6 +326,7 @@ namespace CrowesNest
         {
             AddTool Window = new AddTool();
             Window.Show();
+            OutputTextBox.AppendText($"Added Tool To CrowesNest\nTime: {DateTime.Now}\n\n");
         }
         
     }
