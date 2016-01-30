@@ -325,9 +325,13 @@ namespace CrowesNest
         private void addToolToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddTool Window = new AddTool();
+            Window.ToolAdded += HandleToolAdded;
             Window.Show();
-            OutputTextBox.AppendText($"Added Tool To CrowesNest\nTime: {DateTime.Now}\n\n");
         }
+        void HandleToolAdded(object sender, EventArgs e)
+        {
+            OutputTextBox.AppendText($"Added Tool To CrowesNest\nTime: {DateTime.Now}\n\n");
+        } 
         
     }
 }

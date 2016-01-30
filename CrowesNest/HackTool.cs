@@ -81,7 +81,6 @@ namespace CrowesNest
         }
         public static bool AreDependenciesMet()
         {
-            bool result = false;
             Dependencies installed = GetDependenciesMet();
             return (installed == Dependencies.all);
         }

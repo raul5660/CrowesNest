@@ -14,6 +14,7 @@ namespace CrowesNest
 {
     public partial class AddTool : Form
     {
+        public event EventHandler ToolAdded;
         public AddTool()
         {
             InitializeComponent();
@@ -55,6 +56,10 @@ namespace CrowesNest
                     tmp++;
                 }
                 serializer.Serialize(fileStream, CrowesNest.tools);
+            }
+            if (ToolAdded != null)
+            {
+                ToolAdded(this, e);
             }
             this.Close();
         }
