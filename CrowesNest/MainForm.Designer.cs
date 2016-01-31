@@ -66,11 +66,12 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.configureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OutputGroup = new System.Windows.Forms.GroupBox();
             this.OutputTextBox = new System.Windows.Forms.RichTextBox();
-            this.addToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RunRemoteButton = new System.Windows.Forms.Button();
             this.ToolGroupBox.SuspendLayout();
             this.RemoteGroupBox.SuspendLayout();
             this.DeploymentGroupBox.SuspendLayout();
@@ -218,7 +219,7 @@
             // 
             // ConnectButton
             // 
-            this.ConnectButton.Location = new System.Drawing.Point(229, 34);
+            this.ConnectButton.Location = new System.Drawing.Point(229, 21);
             this.ConnectButton.Name = "ConnectButton";
             this.ConnectButton.Size = new System.Drawing.Size(75, 23);
             this.ConnectButton.TabIndex = 21;
@@ -277,7 +278,7 @@
             // 
             // ScpButton
             // 
-            this.ScpButton.Location = new System.Drawing.Point(229, 59);
+            this.ScpButton.Location = new System.Drawing.Point(229, 49);
             this.ScpButton.Name = "ScpButton";
             this.ScpButton.Size = new System.Drawing.Size(75, 23);
             this.ScpButton.TabIndex = 30;
@@ -308,6 +309,7 @@
             // 
             // RemoteGroupBox
             // 
+            this.RemoteGroupBox.Controls.Add(this.RunRemoteButton);
             this.RemoteGroupBox.Controls.Add(this.ConnectButton);
             this.RemoteGroupBox.Controls.Add(this.ScpButton);
             this.RemoteGroupBox.Controls.Add(this.PasswordLabel);
@@ -450,6 +452,13 @@
             this.selectFileToolStripMenuItem.Text = "Select XML File...";
             this.selectFileToolStripMenuItem.Click += new System.EventHandler(this.selectFileToolStripMenuItem_Click);
             // 
+            // addToolToolStripMenuItem
+            // 
+            this.addToolToolStripMenuItem.Name = "addToolToolStripMenuItem";
+            this.addToolToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.addToolToolStripMenuItem.Text = "Add Tool";
+            this.addToolToolStripMenuItem.Click += new System.EventHandler(this.addToolToolStripMenuItem_Click);
+            // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -484,12 +493,15 @@
             this.OutputTextBox.TabIndex = 0;
             this.OutputTextBox.Text = "";
             // 
-            // addToolToolStripMenuItem
+            // RunRemoteButton
             // 
-            this.addToolToolStripMenuItem.Name = "addToolToolStripMenuItem";
-            this.addToolToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.addToolToolStripMenuItem.Text = "Add Tool";
-            this.addToolToolStripMenuItem.Click += new System.EventHandler(this.addToolToolStripMenuItem_Click);
+            this.RunRemoteButton.Location = new System.Drawing.Point(229, 78);
+            this.RunRemoteButton.Name = "RunRemoteButton";
+            this.RunRemoteButton.Size = new System.Drawing.Size(75, 23);
+            this.RunRemoteButton.TabIndex = 31;
+            this.RunRemoteButton.Text = "Run Remote";
+            this.RunRemoteButton.UseVisualStyleBackColor = true;
+            this.RunRemoteButton.Click += new System.EventHandler(this.RunRemoteButton_Click);
             // 
             // CrowesNest
             // 
@@ -561,6 +573,7 @@
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportHistoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addToolToolStripMenuItem;
+        private System.Windows.Forms.Button RunRemoteButton;
     }
 }
 

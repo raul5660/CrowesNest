@@ -331,7 +331,11 @@ namespace CrowesNest
         void HandleToolAdded(object sender, EventArgs e)
         {
             OutputTextBox.AppendText($"Added Tool To CrowesNest\nTime: {DateTime.Now}\n\n");
-        } 
-        
+        }
+
+        private void RunRemoteButton_Click(object sender, EventArgs e)
+        {
+            //Run Remote Command
+        }
     }
 }
