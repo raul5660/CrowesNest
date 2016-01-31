@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Linq;
 using System.IO;
+using Renci.SshNet;
 
 namespace CrowesNest
 {
@@ -336,6 +337,22 @@ namespace CrowesNest
         private void RunRemoteButton_Click(object sender, EventArgs e)
         {
             //Run Remote Command
+            if (OSValueLabel.Text.ToLower() == "linux")
+            {
+                //Linux Remote Command Run
+                SshClient client = new SshClient(IPTextBox.Text, UsernameTextBox.Text, PasswordTextBox.Text);
+                client.Connect();
+                String result = client.RunCommand(SyntaxTextBox.Text).Result;
+                client.Disconnect();
+            }
+            else if(OSValueLabel.Text.ToLower() == "windows")
+            {
+                //Windows Remote Command Run
+            }
+            else
+            {
+                MessageBox.Show("OS Could not be detected");
+            }
         }
     }
 }
