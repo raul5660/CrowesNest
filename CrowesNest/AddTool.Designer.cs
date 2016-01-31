@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CrowesNest));
             this.NameLabel = new System.Windows.Forms.Label();
             this.LocationLabel = new System.Windows.Forms.Label();
             this.ArgumentsLabel = new System.Windows.Forms.Label();
@@ -37,11 +38,12 @@
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.LocationTextBox = new System.Windows.Forms.TextBox();
             this.ArgumentsTextBox = new System.Windows.Forms.TextBox();
-            this.OperatingSystemTextBox = new System.Windows.Forms.TextBox();
             this.NotesTextBox = new System.Windows.Forms.TextBox();
             this.CategoryTextBox = new System.Windows.Forms.TextBox();
             this.CancelButton = new System.Windows.Forms.Button();
             this.AddButton = new System.Windows.Forms.Button();
+            this.OperatingSystemComboBox = new System.Windows.Forms.ComboBox();
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.SuspendLayout();
             // 
             // NameLabel
@@ -119,13 +121,6 @@
             this.ArgumentsTextBox.Size = new System.Drawing.Size(426, 20);
             this.ArgumentsTextBox.TabIndex = 8;
             // 
-            // OperatingSystemTextBox
-            // 
-            this.OperatingSystemTextBox.Location = new System.Drawing.Point(105, 94);
-            this.OperatingSystemTextBox.Name = "OperatingSystemTextBox";
-            this.OperatingSystemTextBox.Size = new System.Drawing.Size(426, 20);
-            this.OperatingSystemTextBox.TabIndex = 9;
-            // 
             // NotesTextBox
             // 
             this.NotesTextBox.Location = new System.Drawing.Point(105, 121);
@@ -161,16 +156,27 @@
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
+            // OperatingSystemComboBox
+            // 
+            this.OperatingSystemComboBox.FormattingEnabled = true;
+            this.OperatingSystemComboBox.Items.AddRange(new object[] {
+            "Windows",
+            "Linux"});
+            this.OperatingSystemComboBox.Location = new System.Drawing.Point(105, 93);
+            this.OperatingSystemComboBox.Name = "OperatingSystemComboBox";
+            this.OperatingSystemComboBox.Size = new System.Drawing.Size(426, 21);
+            this.OperatingSystemComboBox.TabIndex = 14;
+            // 
             // AddTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(543, 423);
+            this.Controls.Add(this.OperatingSystemComboBox);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.CategoryTextBox);
             this.Controls.Add(this.NotesTextBox);
-            this.Controls.Add(this.OperatingSystemTextBox);
             this.Controls.Add(this.ArgumentsTextBox);
             this.Controls.Add(this.LocationTextBox);
             this.Controls.Add(this.NameTextBox);
@@ -199,10 +205,10 @@
         private System.Windows.Forms.TextBox NameTextBox;
         private System.Windows.Forms.TextBox LocationTextBox;
         private System.Windows.Forms.TextBox ArgumentsTextBox;
-        private System.Windows.Forms.TextBox OperatingSystemTextBox;
         private System.Windows.Forms.TextBox NotesTextBox;
         private System.Windows.Forms.TextBox CategoryTextBox;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button AddButton;
+        private System.Windows.Forms.ComboBox OperatingSystemComboBox;
     }
 }

@@ -29,7 +29,7 @@ namespace CrowesNest
             String Name = this.NameTextBox.Text;
             String Location = this.LocationTextBox.Text;
             String Arguments = this.ArgumentsTextBox.Text;
-            String OperatingSystem = this.OperatingSystemTextBox.Text;
+            String OperatingSystem = this.OperatingSystemComboBox.Text;
             String Notes = this.NotesTextBox.Text;
             String Category = this.CategoryTextBox.Text;
             XmlSerializer serializer = new XmlSerializer(typeof(HackToolCollection));
