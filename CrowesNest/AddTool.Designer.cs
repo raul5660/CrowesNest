@@ -207,7 +207,7 @@
         private System.Windows.Forms.TextBox ArgumentsTextBox;
         private System.Windows.Forms.TextBox NotesTextBox;
         private System.Windows.Forms.TextBox CategoryTextBox;
-        private System.Windows.Forms.Button CancelButton;
+        private new System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.ComboBox OperatingSystemComboBox;
     }
