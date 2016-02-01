@@ -142,7 +142,7 @@ namespace CrowesNest
                 {
                     try
                     {
-                        string deployCommand = $"/K \"\"C:\\"+ ProgramFilesLocation +"\\PuTTY\\plink.exe\" -pw {password} {username}@{ip} {this.DeployString}\"";
+                        string deployCommand = $"/K \"\"C:\\{ProgramFilesLocation}\\PuTTY\\plink.exe\" -pw {password} {username}@{ip} {this.DeployString}\"";
                         ProcessStartInfo psInfo = new ProcessStartInfo("cmd.exe", deployCommand);
                         psInfo.UseShellExecute = false;
 
