@@ -342,6 +342,7 @@ namespace CrowesNest
             {
                 //Linux Remote Command Run
                 try {
+                    OutputTextBox.AppendText($"Running Remote Linux Command: {SyntaxTextBox.Text}\nTo:{UsernameTextBox.Text}@{IPTextBox.Text}\nTime: {DateTime.Now.ToString()}\n\n");
                     SshClient client = new SshClient(IPTextBox.Text, UsernameTextBox.Text, PasswordTextBox.Text);
                     client.Connect();
                     SshCommand command = client.RunCommand(SyntaxTextBox.Text);
@@ -353,6 +354,15 @@ namespace CrowesNest
                     }
                     else if (result != "")
                     {
+                        if (AutoLoggingcheckBox.Checked)
+                        {
+                            string tmpfilename = SyntaxTextBox.Text.Replace(" ", "_").Replace('/','_');
+                            using (StreamWriter swFile = new StreamWriter(ClientTextBox.Text+"\\"+tmpfilename+".txt", true))
+                            {
+                                swFile.WriteLine($"Ran Remote Linux Command: {SyntaxTextBox.Text}\r\nTo:{UsernameTextBox.Text}@{IPTextBox.Text}\r\nTime: {DateTime.Now.ToString()}\r\n\r\n");
+                                swFile.Write(result);
+                            }
+                        }
                         LinuxCommandOutputWindow Window = new LinuxCommandOutputWindow(result);
                         Window.Show();
                     }
