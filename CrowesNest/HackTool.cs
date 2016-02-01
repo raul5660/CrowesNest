@@ -73,10 +73,10 @@ namespace CrowesNest
         public static Dependencies GetDependenciesMet()
         {
             Dependencies installed = Dependencies.none;
-            if (System.IO.File.Exists(@"C:\" + ProgramFilesLocation + @"\PuTTY\plink.exe")) { installed = installed | Dependencies.plink; }
-            if (System.IO.File.Exists(@"C:\" + ProgramFilesLocation + @"\PuTTY\putty.exe")) { installed = installed | Dependencies.putty; }
-            if (System.IO.File.Exists(@"C:\" + ProgramFilesLocation + @"\WinSCP\WinSCP.exe")) { installed = installed | Dependencies.winscp; }
-            if (isPowershell()) { installed = installed | Dependencies.powershell; }
+            if (System.IO.File.Exists($"C:\\{ProgramFilesLocation}\\PuTTY\\plink.exe")) { installed = installed | Dependencies.plink; }
+            if (System.IO.File.Exists($"C:\\{ProgramFilesLocation}\\PuTTY\\putty.exe")) { installed = installed | Dependencies.putty; }
+            if (System.IO.File.Exists($"C:\\{ProgramFilesLocation}\\WinSCP\\WinSCP.exe")) { installed = installed | Dependencies.winscp; }
+            if (isPowershellInstalled()) { installed = installed | Dependencies.powershell; }
             return installed;
         }
         public static bool AreDependenciesMet()
@@ -84,9 +84,9 @@ namespace CrowesNest
             Dependencies installed = GetDependenciesMet();
             return (installed == Dependencies.all);
         }
-        private static bool isPowershell()
+        private static bool isPowershellInstalled()
         {
-            string deployCommand = String.Format("-Version 5 -Command &{{{0}}}", "$PSVersionTable.PSVersion | Select-Object Major");
+            string deployCommand = $"-Version 5 -Command &{{ $PSVersionTable.PSVersion | Select-Object Major }}";
             ProcessStartInfo psInfo = new ProcessStartInfo("powershell.exe", deployCommand);
             psInfo.UseShellExecute = false;
             psInfo.CreateNoWindow = true;
@@ -111,7 +111,7 @@ namespace CrowesNest
                 {
                     if (!this.AutoLog)
                     {
-                        string deployCommand = String.Format("-NoExit -Command &{{{0}}}", this.DeployString);
+                        string deployCommand = $"-NoExit -Command &{{{this.DeployString}}}";
                         ProcessStartInfo psInfo = new ProcessStartInfo("powershell.exe", deployCommand);
                         psInfo.UseShellExecute = true;
 
