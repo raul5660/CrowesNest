@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.IO;
 using Renci.SshNet;
+using System.Management;
 
 namespace CrowesNest
 {
@@ -340,10 +341,27 @@ namespace CrowesNest
             if (OSValueLabel.Text.ToLower() == "linux")
             {
                 //Linux Remote Command Run
-                SshClient client = new SshClient(IPTextBox.Text, UsernameTextBox.Text, PasswordTextBox.Text);
-                client.Connect();
-                String result = client.RunCommand(SyntaxTextBox.Text).Result;
-                client.Disconnect();
+                try {
+                    SshClient client = new SshClient(IPTextBox.Text, UsernameTextBox.Text, PasswordTextBox.Text);
+                    client.Connect();
+                    SshCommand command = client.RunCommand(SyntaxTextBox.Text);
+                    String result = command.Result.Replace("\n","\r\n");
+                    String error = command.Error;
+                    if (result == "" && error != "")
+                    {
+                        MessageBox.Show("Error: "+error);
+                    }
+                    else if (result != "")
+                    {
+                        LinuxCommandOutputWindow Window = new LinuxCommandOutputWindow(result);
+                        Window.Show();
+                    }
+                    client.Disconnect();
+                }
+                catch
+                {
+                    MessageBox.Show("Error connecting to server.");
+                }
             }
             else if(OSValueLabel.Text.ToLower() == "windows")
             {
