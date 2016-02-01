@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Linq;
 using System.IO;
+using Renci.SshNet;
+using System.Management;
 
 namespace CrowesNest
 {
@@ -331,7 +333,54 @@ namespace CrowesNest
         void HandleToolAdded(object sender, EventArgs e)
         {
             OutputTextBox.AppendText($"Added Tool To CrowesNest\nTime: {DateTime.Now}\n\n");
-        } 
-        
+        }
+
+        private void RunRemoteButton_Click(object sender, EventArgs e)
+        {
+            //Run Remote Command
+            if (OSValueLabel.Text.ToLower() == "linux")
+            {
+                //Linux Remote Command Run
+                try {
+                    OutputTextBox.AppendText($"Running Remote Linux Command: {SyntaxTextBox.Text}\nTo:{UsernameTextBox.Text}@{IPTextBox.Text}\nTime: {DateTime.Now.ToString()}\n\n");
+                    SshClient client = new SshClient(IPTextBox.Text, UsernameTextBox.Text, PasswordTextBox.Text);
+                    client.Connect();
+                    SshCommand command = client.RunCommand(SyntaxTextBox.Text);
+                    String result = command.Result.Replace("\n","\r\n");
+                    String error = command.Error;
+                    if (result == "" && error != "")
+                    {
+                        MessageBox.Show("Error: "+error);
+                    }
+                    else if (result != "")
+                    {
+                        if (AutoLoggingcheckBox.Checked)
+                        {
+                            string tmpfilename = SyntaxTextBox.Text.Replace(" ", "_").Replace('/','_');
+                            using (StreamWriter swFile = new StreamWriter(ClientTextBox.Text+"\\"+tmpfilename+".txt", true))
+                            {
+                                swFile.WriteLine($"Ran Remote Linux Command: {SyntaxTextBox.Text}\r\nTo:{UsernameTextBox.Text}@{IPTextBox.Text}\r\nTime: {DateTime.Now.ToString()}\r\n\r\n");
+                                swFile.Write(result);
+                            }
+                        }
+                        LinuxCommandOutputWindow Window = new LinuxCommandOutputWindow(result);
+                        Window.Show();
+                    }
+                    client.Disconnect();
+                }
+                catch
+                {
+                    MessageBox.Show("Error connecting to server.");
+                }
+            }
+            else if(OSValueLabel.Text.ToLower() == "windows")
+            {
+                //Windows Remote Command Run
+            }
+            else
+            {
+                MessageBox.Show("OS Could not be detected");
+            }
+        }
     }
 }
