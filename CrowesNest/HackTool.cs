@@ -142,11 +142,24 @@ namespace CrowesNest
                 {
                     try
                     {
-                        string deployCommand = $"/K \"\"C:\\{ProgramFilesLocation}\\PuTTY\\plink.exe\" -pw {password} {username}@{ip} {this.DeployString}\"";
-                        ProcessStartInfo psInfo = new ProcessStartInfo("cmd.exe", deployCommand);
-                        psInfo.UseShellExecute = false;
+                        if (!this.AutoLog)
+                        {
+                            string deployCommand = $"/K \"\"C:\\{ProgramFilesLocation}\\PuTTY\\plink.exe\" -pw {password} {username}@{ip} {this.DeployString}\"";
+                            ProcessStartInfo psInfo = new ProcessStartInfo("cmd.exe", deployCommand);
+                            psInfo.UseShellExecute = false;
 
-                        using ( Process exeProcess = Process.Start(psInfo)) { }
+                            using (Process exeProcess = Process.Start(psInfo)) { }
+                        }
+                        else
+                        {
+                            string tmpfilename = this.DeployString.Replace(" ", "_").Replace("/","_");
+                            string deployCommand = $"-Version 5 -NoExit -Command &{{Start-Transcript -Append -Path '{this.Client}\\{tmpfilename}.txt'; cd 'C:\\{ProgramFilesLocation}\\PuTTY'; ./plink.exe -pw {password} {username}@{ip} {this.DeployString}; Stop-Transcript}}";
+                            ProcessStartInfo psInfo = new ProcessStartInfo("powershell.exe", deployCommand);
+                            psInfo.UseShellExecute = true;
+
+                            using (Process exeProcess = Process.Start(psInfo)) { }
+
+                        }
                     }
                     catch (Exception)
                     {
