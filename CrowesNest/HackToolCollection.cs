@@ -16,7 +16,7 @@ namespace CrowesNest
         public List<HackTool> HackToolList { get; set; } //The collection of tools
         private static string ProgramFilesLocation = (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("PROCESSOR_ARCHITEW6432"))) ? "Program Files (x86)" : "Program Files";
 
-        //Custom indexer so I can choose tools base don their name. I would use dict if i knew how to use XML deserialization with it. Will refactor in future.
+        //Custom indexer so I can choose tools based on their name. I would use dict if i knew how to use XML deserialization with it. Will refactor in future.
         public HackTool this[string index]
         {
             get

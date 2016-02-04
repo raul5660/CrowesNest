@@ -69,7 +69,12 @@ namespace CrowesNest
             }
             return false;
         }
-       
+        
+        private string filterFileName(string filename)
+        {
+            return filename.Replace(" ", "_").Replace("<", "_").Replace(">", "_").Replace(":", "_").Replace("/", "_").Replace("\\", "_").Replace("|", "_").Replace("?", "_").Replace("*", "_").Replace("\"", "_");
+        }       
+
         public static Dependencies GetDependenciesMet()
         {
             Dependencies installed = Dependencies.none;
@@ -79,11 +84,13 @@ namespace CrowesNest
             if (isPowershellInstalled()) { installed = installed | Dependencies.powershell; }
             return installed;
         }
+
         public static bool AreDependenciesMet()
         {
             Dependencies installed = GetDependenciesMet();
             return (installed == Dependencies.all);
         }
+
         private static bool isPowershellInstalled()
         {
             string deployCommand = $"-Version 5 -Command &{{ $PSVersionTable.PSVersion | Select-Object Major }}";
@@ -119,7 +126,7 @@ namespace CrowesNest
                     }
                     else
                     {
-                        string tmpfilename = this.DeployString.Replace(" ", "_");
+                        string tmpfilename = filterFileName(this.DeployString);
                         string deployCommand = $"-Version 5 -NoExit -Command &{{Start-Transcript -Append -Path '{this.Client}\\{tmpfilename}.txt'; {this.DeployString}; Stop-Transcript}}";
                         ProcessStartInfo psInfo = new ProcessStartInfo("powershell.exe", deployCommand);
                         psInfo.UseShellExecute = true;
@@ -152,7 +159,7 @@ namespace CrowesNest
                         }
                         else
                         {
-                            string tmpfilename = this.DeployString.Replace(" ", "_").Replace("/","_");
+                            string tmpfilename = filterFileName(this.DeployString);
                             string deployCommand = $"-Version 5 -NoExit -Command &{{Start-Transcript -Append -Path '{this.Client}\\{tmpfilename}.txt'; cd 'C:\\{ProgramFilesLocation}\\PuTTY'; ./plink.exe -pw {password} {username}@{ip} {this.DeployString}; Stop-Transcript}}";
                             ProcessStartInfo psInfo = new ProcessStartInfo("powershell.exe", deployCommand);
                             psInfo.UseShellExecute = true;
