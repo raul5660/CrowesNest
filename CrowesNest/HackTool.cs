@@ -73,6 +73,19 @@ namespace CrowesNest
         private string filterFileName(string filename)
         {
             return filename.Replace(" ", "_").Replace("<", "_").Replace(">", "_").Replace(":", "_").Replace("/", "_").Replace("\\", "_").Replace("|", "_").Replace("?", "_").Replace("*", "_").Replace("\"", "_");
+        }
+        
+        private string filterFilePath(string path, string filename)
+        {
+            filename = filterFileName(filename);
+            string fullPath = $"{path}\\{filename}.txt";
+
+            if (fullPath.Length < 260)
+            {
+                fullPath = $"{path}\\{filename.Substring(0,250-path.Length)}.txt";
+            }
+
+            return fullPath;
         }       
 
         public static Dependencies GetDependenciesMet()
